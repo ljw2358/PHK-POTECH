@@ -1,426 +1,140 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHK-POSCO Global | Physical AI Era</title>
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
-    <style>
-        :root {
-            --bg-color: #050810;
-            --card-bg: #111827;
-            --accent-blue: #38bdf8;
-            --accent-green: #10b981;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --border-color: #1f2937;
-            --gradient-primary: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Pretendard', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0; width: 100%;
-            height: 70px;
-            background: rgba(5, 8, 16, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .lang-nav {
-            display: flex;
-            gap: 15px;
-        }
-
-        .lang-nav a {
-            color: var(--text-dim);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: 0.3s;
-            padding: 5px 10px;
-            border-radius: 8px;
-        }
-
-        .lang-nav a:hover, .lang-nav a.active {
-            color: var(--accent-blue);
-            background: rgba(56, 189, 248, 0.1);
-        }
-
-        /* Layout Structure */
-        section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 100px 20px;
-            border-bottom: 1px dashed var(--border-color);
-        }
-
-        .container {
-            width: 100%;
-            max-width: 600px;
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Header Card Style */
-        .header-card {
-            background: var(--card-bg);
-            border-radius: 32px;
-            padding: 30px;
-            margin-bottom: 24px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-
-        .brand-box {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .logo-symbol {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-primary);
-            border-radius: 14px;
-            position: relative;
-        }
-
-        .logo-symbol::after {
-            content: '';
-            position: absolute;
-            top: 25%; left: 25%;
-            width: 50%; height: 50%;
-            border: 3px solid white;
-            border-radius: 50%;
-        }
-
-        .brand-name h2 { font-size: 1.5rem; letter-spacing: -0.5px; }
-        .brand-name p { font-size: 0.9rem; color: var(--accent-blue); font-weight: 500; }
-
-        .status-badge {
-            background: #1e293b;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            border: 1px solid #334155;
-        }
-
-        /* Content Card Style */
-        .main-card {
-            background: var(--card-bg);
-            border-radius: 32px;
-            padding: 40px 30px;
-            border: 1px solid var(--border-color);
-        }
-
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 25px;
-            line-height: 1.2;
-            word-break: keep-all;
-        }
-
-        .desc {
-            font-size: 1.05rem;
-            color: var(--text-dim);
-            margin-bottom: 35px;
-        }
-
-        .desc b { color: var(--text-main); }
-
-        .info-grid {
-            display: grid;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .info-item {
-            background: #1e293b;
-            padding: 20px;
-            border-radius: 20px;
-            border: 1px solid transparent;
-            transition: 0.3s;
-        }
-
-        .info-item:hover {
-            border-color: var(--accent-blue);
-            background: #161e2d;
-        }
-
-        .label {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--accent-blue);
-            text-transform: uppercase;
-            margin-bottom: 5px;
-            font-weight: 700;
-        }
-
-        .value { font-size: 1.1rem; font-weight: 600; }
-
-        .footer-btns {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr 1fr;
-            gap: 10px;
-        }
-
-        .btn {
-            background: #0f172a;
-            padding: 15px;
-            border-radius: 16px;
-            text-align: center;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-dim);
-            cursor: pointer;
-        }
-
-        .btn.active {
-            background: #064e3b;
-            color: #4ade80;
-            border: 1px solid #065f46;
-        }
-
-        /* RTL for Arabic */
-        .rtl { direction: rtl; font-family: sans-serif; }
-
-        /* Smooth scroll */
-        html { scroll-behavior: smooth; }
-    </style>
+  <meta charset="UTF-8" />
+  <title>PHK-POSCO | Industrial Transformation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #0b0b2e, #1a0033);
+      color: #ffffff;
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+      color: #b388ff;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      color: #e0c3ff;
+    }
+    p {
+      font-size: 1.05rem;
+      margin-bottom: 18px;
+    }
+    .killer {
+      margin: 40px 0;
+      padding: 25px;
+      border-left: 4px solid #b388ff;
+      background: rgba(255,255,255,0.05);
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+    footer {
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      font-size: 0.9rem;
+      color: #cccccc;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <h1 id="title"></h1>
 
-    <nav>
-        <div class="lang-nav">
-            <a href="#ko">KOREAN</a>
-            <a href="#en">ENGLISH</a>
-            <a href="#ar">ARABIC</a>
-            <a href="#zh">CHINESE</a>
-            <a href="#ja">JAPANESE</a>
-            <a href="#de">GERMAN</a>
-        </div>
-    </nav>
+    <p id="p1"></p>
+    <p id="p2"></p>
 
-    <section id="ko">
-        <div class="container">
-            <div class="header-card">
-                <div class="brand-box">
-                    <div class="logo-symbol"></div>
-                    <div class="brand-name">
-                        <h2>PHK-POSCO</h2>
-                        <p>피지컬 AI • 강철의 지능</p>
-                    </div>
-                </div>
-                <div class="status-badge">상태: 글로벌 구축 • Figure AI 전략 파트너 • 채용 중</div>
-            </div>
-            <div class="main-card">
-                <h1>피지컬 AI 시대를<br>완성합니다.</h1>
-                <p class="desc">
-                    PHK-POSCO는 제철소와 산업 현장을 넘어 <b>"실생활 투입 가능 휴머노이드"</b>를 개발합니다. 포스코의 소재 기술과 PHK의 AI 브레인이 결합된 독보적인 생산 로드맵을 구축합니다.
-                </p>
-                <div class="info-grid">
-                    <div class="info-item"><span class="label">핵심 분야</span><div class="value">산업 • 물류 • 의료 • 방산 • 휴머노이드</div></div>
-                    <div class="info-item"><span class="label">목표</span><div class="value">양산 체계 확립 & 글로벌 로봇 생태계 구축</div></div>
-                    <div class="info-item"><span class="label">모델</span><div class="value">하드웨어 + 소프트웨어 + 통합 서비스</div></div>
-                </div>
-                <div class="footer-btns">
-                    <div class="btn">메인</div><div class="btn active">로드맵</div><div class="btn">포트폴리오</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <h2 id="h1"></h2>
+    <p id="p3"></p>
 
-    <section id="en">
-        <div class="container">
-            <div class="header-card">
-                <div class="brand-box">
-                    <div class="logo-symbol"></div>
-                    <div class="brand-name">
-                        <h2>PHK-POSCO</h2>
-                        <p>Physical AI • Steel Intelligence</p>
-                    </div>
-                </div>
-                <div class="status-badge">Status: Global Infrastructure • Strategic Partner • Hiring</div>
-            </div>
-            <div class="main-card">
-                <h1>Creating the Era of<br>Physical AI.</h1>
-                <p class="desc">
-                    PHK-POSCO develops <b>"Ready-to-use Humanoids"</b> for factories, logistics, and future cities. We build a scalable production roadmap powered by POSCO materials.
-                </p>
-                <div class="info-grid">
-                    <div class="info-item"><span class="label">Core Sectors</span><div class="value">Industry • Logistics • Defense • Humanoid</div></div>
-                    <div class="info-item"><span class="label">Goal</span><div class="value">Mass Production & Global Ecosystem</div></div>
-                    <div class="info-item"><span class="label">Model</span><div class="value">Hardware + Software + Service (SaaS)</div></div>
-                </div>
-                <div class="footer-btns">
-                    <div class="btn">Main</div><div class="btn active">Roadmap</div><div class="btn">Portfolio</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="killer" id="killer"></div>
 
-    <section id="ar" class="rtl">
-        <div class="container">
-            <div class="header-card">
-                <div class="brand-box">
-                    <div class="logo-symbol"></div>
-                    <div class="brand-name">
-                        <h2>PHK-POSCO</h2>
-                        <p>الذكاء الاصطناعي المادي • ذكاء الفولاذ</p>
-                    </div>
-                </div>
-                <div class="status-badge">الحالة: بناء عالمي • شريك استراتيجي • توظيف</div>
-            </div>
-            <div class="main-card">
-                <h1>نصنع عصر<br>الذكاء الاصطناعي المادي.</h1>
-                <p class="desc">
-                    تقوم PHK-POSCO بتطوير <b>"روبوتات بشرية جاهزة للاستخدام"</b> للمصانع والخدمات اللوجستية. نحن نبني خارطة طريق للإنتاج مدعومة بتقنيات POSCO.
-                </p>
-                <div class="info-grid">
-                    <div class="info-item"><span class="label">المجالات الرئيسية</span><div class="value">الصناعة • اللوجستيات • الدفاع • الروبوتات</div></div>
-                    <div class="info-item"><span class="label">الهدف</span><div class="value">الإنتاج الضخم وبناء النظام البيئي العالمي</div></div>
-                    <div class="info-item"><span class="label">النموذج</span><div class="value">الأجهزة + البرمجيات + الخدمات المتكاملة</div></div>
-                </div>
-                <div class="footer-btns">
-                    <div class="btn">الرئيسية</div><div class="btn active">الخطة</div><div class="btn">الأعمال</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <footer>
+      Contact: <strong>info@phkposco.com</strong><br>
+      © PHK-POSCO. Industrial Future Re-Engineered.
+    </footer>
+  </div>
 
-    <section id="zh">
-        <div class="container">
-            <div class="header-card">
-                <div class="brand-box">
-                    <div class="logo-symbol"></div>
-                    <div class="brand-name">
-                        <h2>PHK-POSCO</h2>
-                        <p>物理人工智能 • 钢铁智能</p>
-                    </div>
-                </div>
-                <div class="status-badge">状态：全球建设 • 战略合作伙伴 • 正在招聘</div>
-            </div>
-            <div class="main-card">
-                <h1>开启物理人工智能<br>新时代。</h1>
-                <p class="desc">
-                    PHK-POSCO 致力于开发用于工厂和物流的 <b>“实战型人形机器人”</b>。我们将浦项制铁的材料技术与 PHK 的人工智能大脑相结合。
-                </p>
-                <div class="info-grid">
-                    <div class="info-item"><span class="label">核心领域</span><div class="value">工业 • 物流 • 医疗 • 国防 • 人形机器人</div></div>
-                    <div class="info-item"><span class="label">目标</span><div class="value">建立量产体系与全球机器人生态系统</div></div>
-                    <div class="info-item"><span class="label">模式</span><div class="value">硬件 + 软件 + 一体化服务</div></div>
-                </div>
-                <div class="footer-btns">
-                    <div class="btn">主页</div><div class="btn active">路线图</div><div class="btn">组合</div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <script>
+    const content = {
+      ko: {
+        title: "PHK-POSCO 산업 전환 선언",
+        p1: "현재 제조 산업은 노동력 부족과 국제 가격 경쟁력 상실로 심각한 위기에 직면해 있다.",
+        p2: "새롭게 진출한 사업들 또한 속도를 내지 못하며 구조적 한계에 막혀 있다.",
+        h1: "해결의 첫 번째 방법",
+        p3: "PHK-POSCO는 Figure AI 로봇과 인공태양(핵융합) 기술에 대한 대규모 투자를 통해 산업 구조를 근본적으로 전환해야 한다. 로봇은 3D 업종을 대체하고, 인력 부족과 단가 경쟁력을 완전히 뒤바꿀 것이다.",
+        killer: "사람이 부족한 시대가 아니라, 자동화에 투자하지 않은 기업이 도태되는 시대다."
+      },
+      en: {
+        title: "PHK-POSCO Industrial Transformation",
+        p1: "The manufacturing industry is facing a severe crisis due to labor shortages and declining global price competitiveness.",
+        p2: "New business ventures are stagnating, blocked by structural limitations.",
+        h1: "The First Solution",
+        p3: "PHK-POSCO must invest heavily in Figure AI robotics and artificial sun (nuclear fusion) technology. Robots will replace 3D jobs and fundamentally change labor shortages and cost competitiveness.",
+        killer: "This is not an era of labor shortage — it is an era where companies that fail to automate are eliminated."
+      },
+      zh: {
+        title: "PHK-POSCO 产业转型宣言",
+        p1: "制造业正因劳动力短缺和国际价格竞争力下降而面临严重危机。",
+        p2: "新进入的业务也因结构性限制而发展缓慢。",
+        h1: "第一解决方案",
+        p3: "PHK-POSCO必须大力投资Figure AI机器人和人造太阳（核聚变）技术。机器人将取代3D产业工作，从根本上改变人力短缺和成本结构。",
+        killer: "被淘汰的不是没有人力的企业，而是拒绝自动化的企业。"
+      },
+      ar: {
+        title: "تحول PHK-POSCO الصناعي",
+        p1: "تواجه الصناعات التحويلية أزمة حادة بسبب نقص العمالة وضعف القدرة التنافسية السعرية عالميًا.",
+        p2: "حتى الأعمال الجديدة تعاني من الركود بسبب القيود الهيكلية.",
+        h1: "الحل الأول",
+        p3: "يجب على PHK-POSCO الاستثمار بقوة في روبوتات Figure AI وتقنيات الشمس الاصطناعية (الاندماج النووي). الروبوتات ستستبدل وظائف 3D وتغير جذريًا مشكلة نقص العمالة وتكاليف الإنتاج.",
+        killer: "لسنا في عصر نقص العمالة، بل في عصر سقوط من يرفض الأتمتة."
+      },
+      es: {
+        title: "Transformación Industrial PHK-POSCO",
+        p1: "La industria manufacturera enfrenta una grave crisis por la escasez de mano de obra y la pérdida de competitividad en precios.",
+        p2: "Los nuevos negocios avanzan lentamente debido a limitaciones estructurales.",
+        h1: "La Primera Solución",
+        p3: "PHK-POSCO debe invertir fuertemente en robots Figure AI y en tecnología de sol artificial (fusión nuclear). Los robots reemplazarán trabajos 3D y transformarán radicalmente la competitividad de costos.",
+        killer: "No es la falta de trabajadores lo que destruye a las empresas, sino la falta de automatización."
+      },
+      de: {
+        title: "PHK-POSCO Industrielle Transformation",
+        p1: "Die Industrie leidet unter Arbeitskräftemangel und sinkender internationaler Preiswettbewerbsfähigkeit.",
+        p2: "Neue Geschäftsfelder kommen aufgrund struktureller Grenzen nur langsam voran.",
+        h1: "Die erste Lösung",
+        p3: "PHK-POSCO muss massiv in Figure-AI-Roboter und künstliche Sonne (Kernfusion) investieren. Roboter ersetzen 3D-Jobs und verändern Arbeitskräftemangel und Kostenstrukturen grundlegend.",
+        killer: "Nicht der Arbeitskräftemangel zerstört Unternehmen, sondern die Weigerung zu automatisieren."
+      },
+      ja: {
+        title: "PHK-POSCO 産業転換宣言",
+        p1: "製造業は人手不足と国際価格競争力の低下により深刻な危機に直面しています。",
+        p2: "新規事業も構造的な限界により停滞しています。",
+        h1: "第一の解決策",
+        p3: "PHK-POSCOはFigure AIロボットと人工太陽（核融合）技術に大規模投資を行うべきです。ロボットは3D業種を代替し、人手不足とコスト競争力を根本から変えます。",
+        killer: "人手不足の時代ではない。自動化しない企業が淘汰される時代だ。"
+      }
+    };
 
-    <section id="ja">
-        <div class="container">
-            <div class="header-card">
-                <div class="brand-box">
-                    <div class="logo-symbol"></div>
-                    <div class="brand-name">
-                        <h2>PHK-POSCO</h2>
-                        <p>フィジカルAI • 鋼の知能</p>
-                    </div>
-                </div>
-                <div class="status-badge">ステータス: グローバル展開 • 戦略的パートナー • 採用中</div>
-            </div>
-            <div class="main-card">
-                <h1>フィジカルAI時代の<br>幕開け。</h1>
-                <p class="desc">
-                    PHK-POSCOは、工場や物流現場で <b>「即戦力となるヒューマノイド」</b> を開発しています。POSCOの素材技術とPHKのAIを融合させた量産ロードマップを構築します。
-                </p>
-                <div class="info-grid">
-                    <div class="info-item"><span class="label">コア分野</span><div class="value">産業 • 物流 • 医療 • 防衛 • ヒューマノイド</div></div>
-                    <div class="info-item"><span class="label">目標</span><div class="value">量産体制の確立とエコシステムの構築</div></div>
-                    <div class="info-item"><span class="label">モデル</span><div class="value">ハードウェア + ソフトウェア + サービス</div></div>
-                </div>
-                <div class="footer-btns">
-                    <div class="btn">メイン</div><div class="btn active">ロードマップ</div><div class="btn">実績</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    const lang = navigator.language.slice(0,2);
+    const c = content[lang] || content.en;
 
-    <section id="de">
-        <div class="container">
-            <div class="header-card">
-                <div class="brand-box">
-                    <div class="logo-symbol"></div>
-                    <div class="brand-name">
-                        <h2>PHK-POSCO</h2>
-                        <p>Physical AI • Intelligenz aus Stahl</p>
-                    </div>
-                </div>
-                <div class="status-badge">Status: Globaler Aufbau • Strategischer Partner • Karriere</div>
-            </div>
-            <div class="main-card">
-                <h1>Wir schaffen die Ära der<br>Physical AI.</h1>
-                <p class="desc">
-                    PHK-POSCO entwickelt <b>"Einsatzbereite Humanoide"</b> für Industrie und Logistik. Wir kombinieren die Materialexpertise von POSCO mit der KI von PHK.
-                </p>
-                <div class="info-grid">
-                    <div class="info-item"><span class="label">Kernbereiche</span><div class="value">Industrie • Logistik • Verteidigung • Robotik</div></div>
-                    <div class="info-item"><span class="label">Ziel</span><div class="value">Serienproduktion & Globales Ökosystem</div></div>
-                    <div class="info-item"><span class="label">Modell</span><div class="value">Hardware + Software + Service</div></div>
-                </div>
-                <div class="footer-btns">
-                    <div class="btn">Start</div><div class="btn active">Roadmap</div><div class="btn">Portfolio</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // Simple scroll spy for active nav link
-        window.addEventListener('scroll', () => {
-            let current = "";
-            const sections = document.querySelectorAll("section");
-            const navLi = document.querySelectorAll(".lang-nav a");
-
-            sections.forEach((section) => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 100) {
-                    current = section.getAttribute("id");
-                }
-            });
-
-            navLi.forEach((a) => {
-                a.classList.remove("active");
-                if (a.getAttribute("href").includes(current)) {
-                    a.classList.add("active");
-                }
-            });
-        });
-    </script>
+    document.getElementById("title").innerText = c.title;
+    document.getElementById("p1").innerText = c.p1;
+    document.getElementById("p2").innerText = c.p2;
+    document.getElementById("h1").innerText = c.h1;
+    document.getElementById("p3").innerText = c.p3;
+    document.getElementById("killer").innerText = c.killer;
+  </script>
 </body>
 </html>
