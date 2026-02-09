@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHK POTECH | Shaping the Future</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&family=Noto+Sans+SC:wght@300;700&family=Noto+Sans+Arabic:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a0633 0%, #3d0a63 100%);
+            font-family: 'Noto Sans KR', sans-serif;
+            color: white;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffd700;
+        }
+        .lang-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .arabic { font-family: 'Noto Sans Arabic', sans-serif; direction: rtl; }
+        .chinese { font-family: 'Noto Sans SC', sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-6">
+
+    <header class="text-center mb-16 animate-fade-in">
+        <h1 class="text-6xl font-bold tracking-tighter mb-4 text-white">
+            PHK <span class="text-yellow-400">POTECH</span>
+        </h1>
+        <p class="text-xl text-purple-200 opacity-80 uppercase tracking-widest">Next-Gen Bio & Robotics Engineering</p>
+    </header>
+
+    <main class="max-w-6xl w-full space-y-12">
+        
+        <section class="text-center space-y-6">
+            <h2 class="text-3xl md:text-5xl font-bold leading-tight">
+                인류 산업의 미래를 설계하다<br>
+                <span class="text-yellow-400 text-2xl md:text-4xl">Designing the Future of Human Industry</span>
+            </h2>
+        </section>
+
+        <div class="lang-grid">
+            <div class="glass-card p-8 rounded-2xl">
+                <span class="text-yellow-400 font-bold mb-2 block">KOREAN</span>
+                <h3 class="text-xl font-bold mb-4">핵심 기술과 비전</h3>
+                <p class="text-purple-100 leading-relaxed">자율 로봇의 산업 현장 투입을 통한 위험 작업 제로화 및 스마트 팩토리 혁신을 주도합니다.</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl">
+                <span class="text-yellow-400 font-bold mb-2 block">ENGLISH</span>
+                <h3 class="text-xl font-bold mb-4">Investment Synergy</h3>
+                <p class="text-purple-100 leading-relaxed">Securing dominant market share by combining financial infrastructure with the robotics ecosystem.</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl chinese">
+                <span class="text-yellow-400 font-bold mb-2 block">CHINESE</span>
+                <h3 class="text-xl font-bold mb-4">核心技术与愿景</h3>
+                <p class="text-purple-100 leading-relaxed">通过在工业现场部署自主机器人，实现危险作业零化，引领智能工厂革新。</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl arabic">
+                <span class="text-yellow-400 font-bold mb-2 block text-right">ARABIC</span>
+                <h3 class="text-xl font-bold mb-4 text-right">التكنولوجيا والرؤية</h3>
+                <p class="text-purple-100 leading-relaxed text-right">قيادة الابتكار في المصانع الذكية والقضاء على الأعمال الخطرة من خلال نشر الروبوتات المستقلة.</p>
+            </div>
+        </div>
+
+        <section class="mt-20 text-center">
+            <div class="inline-block glass-card px-8 py-4 rounded-full border-yellow-500/50">
+                <p class="text-sm uppercase tracking-widest text-purple-200 mb-1">Global Business Inquiry</p>
+                <a href="mailto:info@phkpotech.com" class="text-xl font-bold text-yellow-400 hover:text-white transition-colors">
+                    info@phkpotech.com
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-20 text-purple-300 text-sm opacity-50">
+        &copy; 2026 PHK POTECH. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
