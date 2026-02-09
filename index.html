@@ -2,112 +2,94 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>PHK-POSCO | STRATEGIC COMMAND</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHK POTECH | Shaping the Future</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&family=Noto+Sans+SC:wght@300;700&family=Noto+Sans+Arabic:wght@300;700&display=swap" rel="stylesheet">
     <style>
-        :root { --main-p: #3c006b; --dark-p: #1a0033; --gold: #FFD700; --glass: rgba(255, 255, 255, 0.08); }
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { background: linear-gradient(180deg, var(--dark-p) 0%, var(--main-p) 100%); color: #fff; font-family: 'Noto Sans KR', sans-serif; min-height: 100vh; transition: 0.5s; }
-        nav { padding: 15px 20px; display: flex; justify-content: flex-end; gap: 6px; }
-        .l-btn { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 5px 10px; border-radius: 4px; font-size: 0.65rem; font-weight: bold; cursor: pointer; }
-        .l-btn:active { background: var(--gold); color: #000; }
-        header { padding: 30px 25px; text-align: center; }
-        .logo { font-family: 'Orbitron'; font-size: 2.4rem; letter-spacing: 3px; margin-bottom: 8px; text-shadow: 0 0 15px rgba(255,215,0,0.3); }
-        .sub-t { font-size: 0.85rem; font-weight: 300; letter-spacing: 1px; color: rgba(255,255,255,0.6); margin-bottom: 35px; }
-        .head { font-size: 1.8rem; font-weight: 700; line-height: 1.3; margin-bottom: 35px; min-height: 2.6em; }
-        .cont { padding: 0 20px 40px; }
-        .card { background: var(--glass); border-radius: 18px; padding: 22px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(8px); }
-        .card h4 { font-size: 1.05rem; color: var(--gold); margin-bottom: 8px; font-weight: 700; }
-        .card p { font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
-        .chat { background: rgba(0,0,0,0.25); border-radius: 15px; height: 220px; overflow-y: auto; padding: 15px; margin-top: 15px; border: 1px solid rgba(255,255,255,0.05); }
-        .bub { padding: 10px 14px; border-radius: 12px; font-size: 0.82rem; margin-bottom: 8px; max-width: 85%; line-height: 1.4; }
-        .bot { background: rgba(255,255,255,0.08); align-self: flex-start; border-left: 2px solid var(--gold); }
-        footer { text-align: center; padding: 25px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.75rem; color: rgba(255,255,255,0.4); letter-spacing: 1px; }
+        body {
+            background: linear-gradient(135deg, #1a0633 0%, #3d0a63 100%);
+            font-family: 'Noto Sans KR', sans-serif;
+            color: white;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffd700;
+        }
+        .lang-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .arabic { font-family: 'Noto Sans Arabic', sans-serif; direction: rtl; }
+        .chinese { font-family: 'Noto Sans SC', sans-serif; }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col items-center justify-center p-6">
 
-<nav>
-    <button class="l-btn" onclick="setLang('EN')">EN</button>
-    <button class="l-btn" onclick="setLang('KR')">KR</button>
-    <button class="l-btn" onclick="setLang('CN')">CN</button>
-    <button class="l-btn" onclick="setLang('AR')">AR</button>
-</nav>
+    <header class="text-center mb-16 animate-fade-in">
+        <h1 class="text-6xl font-bold tracking-tighter mb-4 text-white">
+            PHK <span class="text-yellow-400">POTECH</span>
+        </h1>
+        <p class="text-xl text-purple-200 opacity-80 uppercase tracking-widest">Next-Gen Bio & Robotics Engineering</p>
+    </header>
 
-<header>
-    <div class="logo">PHK-POSCO</div>
-    <div class="sub-t" id="sub-t">NEXT-GEN STEEL & ROBOTICS ECOSYSTEM</div>
-    <h1 class="head" id="main-h">철강 산업의 미래를<br>로보틱스로 재설계하다</h1>
-</header>
+    <main class="max-w-6xl w-full space-y-12">
+        
+        <section class="text-center space-y-6">
+            <h2 class="text-3xl md:text-5xl font-bold leading-tight">
+                인류 산업의 미래를 설계하다<br>
+                <span class="text-yellow-400 text-2xl md:text-4xl">Designing the Future of Human Industry</span>
+            </h2>
+        </section>
 
-<div class="cont">
-    <div class="card">
-        <h4 id="c1-t">혁신 기술: FIGURE AI 통합</h4>
-        <p id="c1-p">고온 및 고위험 제철 공정에 Figure AI 휴머노이드를 투입하여 인간 안전 100% 보장 및 공정 효율 극대화</p>
-    </div>
-    <div class="card">
-        <h4 id="c2-t">PHK 홀딩스 투자 시너지</h4>
-        <p id="c2-p">PHK-POSCO의 강력한 제조 기반과 금융·AI 자본의 결합으로 글로벌 로보틱스 시장 지배력 확보</p>
-    </div>
-    <div class="card">
-        <h4 id="c3-t">지속 가능한 비전</h4>
-        <p id="c3-p">탄소 중립과 자동화를 동시에 달성하는 스마트 팩토리의 정점을 PHK-POSCO가 선도합니다.</p>
-    </div>
-    
-    <div class="chat" id="chat">
-        <div class="bub bot" id="bot-m">안녕하십니까, 혜공 형님. PHK-POSCO 전략 보고 모드를 가동합니다.</div>
-    </div>
-</div>
+        <div class="lang-grid">
+            <div class="glass-card p-8 rounded-2xl">
+                <span class="text-yellow-400 font-bold mb-2 block">KOREAN</span>
+                <h3 class="text-xl font-bold mb-4">핵심 기술과 비전</h3>
+                <p class="text-purple-100 leading-relaxed">자율 로봇의 산업 현장 투입을 통한 위험 작업 제로화 및 스마트 팩토리 혁신을 주도합니다.</p>
+            </div>
 
-<footer>
-    © 2026 PHK-POSCO STRATEGY GROUP · GLOBAL HUB
-</footer>
+            <div class="glass-card p-8 rounded-2xl">
+                <span class="text-yellow-400 font-bold mb-2 block">ENGLISH</span>
+                <h3 class="text-xl font-bold mb-4">Investment Synergy</h3>
+                <p class="text-purple-100 leading-relaxed">Securing dominant market share by combining financial infrastructure with the robotics ecosystem.</p>
+            </div>
 
-<script>
-    const data = {
-        KR: {
-            sub: "NEXT-GEN STEEL & ROBOTICS ECOSYSTEM", h: "철강 산업의 미래를<br>로보틱스로 재설계하다",
-            c1t: "혁신 기술: FIGURE AI 통합", c1p: "제철소 위험 공정에 Figure AI 로봇을 투입하여 생산 효율을 극대화합니다.",
-            c2t: "PHK 홀딩스 투자 시너지", c2p: "PHK의 자본과 로보틱스 기술을 결합하여 압도적 시장 점유율을 선점합니다.",
-            c3t: "지속 가능한 비전", c3p: "스마트 팩토리의 정점, PHK-POSCO가 미래를 선도합니다.",
-            bot: "안녕하십니까, 혜공 형님. PHK-POSCO 전략 분석이 완료되었습니다."
-        },
-        EN: {
-            sub: "NEXT-GEN STEEL & ROBOTICS ECOSYSTEM", h: "Redesigning Steel Industry<br>with Robotics",
-            c1t: "Tech: FIGURE AI Integration", c1p: "Ensuring 100% safety and maximizing efficiency via Figure AI humanoids.",
-            c2t: "PHK Investment Synergy", c2p: "Securing dominance through integration of PHK finance and robotics.",
-            c3t: "Sustainable Vision", c3p: "PHK-POSCO leads the peak of smart factory innovation.",
-            bot: "Greetings, Boss. PHK-POSCO strategic analysis is complete."
-        },
-        CN: {
-            sub: "下一代钢铁与机器人生态系统", h: "通过机器人技术<br>重新设计钢铁工业",
-            c1t: "创新技术：集成 FIGURE AI", c1p: "在钢铁厂投入 Figure AI 机器人，确保 100% 安全并实现效率最大化。",
-            c2t: "PHK 控股投资协同效应", c2p: "结合 PHK 的资本与机器人技术，抢占压倒性的市场份额。",
-            c3t: "可持续愿景", c3p: "PHK-POSCO 引领智能工厂的巅峰，开创未来。",
-            bot: "您好，大哥。PHK-POSCO 战略分析已完成。"
-        },
-        AR: {
-            sub: "نظام بيئي للصلب والروبوتات من الجيل القادم", h: "إعادة تصميم صناعة الصلب<br>بالاعتماد على الروبوتات",
-            c1t: "تكنولوجيا: تكامل FIGURE AI", c1p: "ضمان الأمان بنسبة 100% وزيادة الكفاءة من خلال روبوتات Figure AI.",
-            c2t: "تآزر استثمار PHK", c2p: "تأمين الهيمنة من خلال دمج تمويل PHK والروبوتات.",
-            c3t: "رؤية مستدامة", c3p: "PHK-POSCO تقود قمة ابتكار المصانع الذكية.",
-            bot: "أهلاً بك يا أخي. تم الانتهاء من تحليل PHK-POSCO الاستراتيجي."
-        }
-    };
+            <div class="glass-card p-8 rounded-2xl chinese">
+                <span class="text-yellow-400 font-bold mb-2 block">CHINESE</span>
+                <h3 class="text-xl font-bold mb-4">核心技术与愿景</h3>
+                <p class="text-purple-100 leading-relaxed">通过在工业现场部署自主机器人，实现危险作业零化，引领智能工厂革新。</p>
+            </div>
 
-    function setLang(l) {
-        document.getElementById('sub-t').innerText = data[l].sub;
-        document.getElementById('main-h').innerHTML = data[l].h;
-        document.getElementById('c1-t').innerText = data[l].c1t;
-        document.getElementById('c1-p').innerText = data[l].c1p;
-        document.getElementById('c2-t').innerText = data[l].c2t;
-        document.getElementById('c2-p').innerText = data[l].c2p;
-        document.getElementById('c3-t').innerText = data[l].c3t;
-        document.getElementById('c3-p').innerText = data[l].c3p;
-        document.getElementById('bot-m').innerText = data[l].bot;
-        document.body.style.direction = (l === 'AR') ? 'rtl' : 'ltr';
-    }
-</script>
+            <div class="glass-card p-8 rounded-2xl arabic">
+                <span class="text-yellow-400 font-bold mb-2 block text-right">ARABIC</span>
+                <h3 class="text-xl font-bold mb-4 text-right">التكنولوجيا والرؤية</h3>
+                <p class="text-purple-100 leading-relaxed text-right">قيادة الابتكار في المصانع الذكية والقضاء على الأعمال الخطرة من خلال نشر الروبوتات المستقلة.</p>
+            </div>
+        </div>
+
+        <section class="mt-20 text-center">
+            <div class="inline-block glass-card px-8 py-4 rounded-full border-yellow-500/50">
+                <p class="text-sm uppercase tracking-widest text-purple-200 mb-1">Global Business Inquiry</p>
+                <a href="mailto:info@phkpotech.com" class="text-xl font-bold text-yellow-400 hover:text-white transition-colors">
+                    info@phkpotech.com
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-20 text-purple-300 text-sm opacity-50">
+        &copy; 2026 PHK POTECH. All Rights Reserved.
+    </footer>
+
 </body>
 </html>
