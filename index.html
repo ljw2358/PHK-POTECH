@@ -2,265 +2,165 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PHK-POSCO | Global Industry Platform</title>
+<title>PHK-POSCO Global Platform</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="contact" content="info@phkposco.com">
-
 <style>
-/* =========================
-   GLOBAL STYLE
-========================= */
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(180deg, #0b0b14, #140b2e);
+    background: #0b0b2e;
     color: #ffffff;
-    line-height: 1.8;
 }
-
-section {
-    min-height: 100vh;
-    padding: 110px 10%;
-    border-bottom: 1px solid rgba(255,255,255,0.12);
-}
-
-h1 {
-    font-size: 3rem;
-    margin-bottom: 35px;
-    letter-spacing: 2px;
-}
-
-h2 {
-    font-size: 2rem;
-    margin-top: 55px;
-    margin-bottom: 20px;
-    color: #d6b8ff;
-}
-
-p {
-    max-width: 1000px;
-    margin-bottom: 22px;
-    opacity: 0.96;
-}
-
-footer {
-    padding: 70px 20px;
+header {
+    background: #12004d;
+    padding: 20px;
     text-align: center;
-    background: #05050a;
-    font-size: 0.9rem;
-    opacity: 0.85;
+}
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+nav {
+    margin-top: 15px;
+}
+nav button {
+    margin: 4px;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #6a5acd;
+    color: #fff;
+    font-weight: bold;
+}
+nav button:hover {
+    background: #8a7cff;
+}
+.section {
+    display: none;
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+.section h2 {
+    color: #bfa9ff;
+}
+.section p {
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+footer {
+    background: #12004d;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: #ccc;
+}
+.active {
+    display: block;
 }
 </style>
+
+<script>
+function showLang(lang) {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(sec => sec.classList.remove('active'));
+    document.getElementById(lang).classList.add('active');
+}
+</script>
 </head>
 
 <body>
 
-<!-- ==================================================
- ENGLISH PAGE
-================================================== -->
-<section id="english">
-<h1>PHK-POSCO</h1>
+<header>
+    <h1>PHK-POSCO Global Platform</h1>
+    <p>Industrial · Bio · Energy · Web3 Infrastructure</p>
+    <nav>
+        <button onclick="showLang('en')">English</button>
+        <button onclick="showLang('ko')">한국어</button>
+        <button onclick="showLang('zh')">中文</button>
+        <button onclick="showLang('ar')">العربية</button>
+        <button onclick="showLang('es')">Español</button>
+    </nav>
+</header>
 
-<p>
-PHK-POSCO is a next-generation global industrial platform integrating
-steel, bio-materials, future energy, Web3 technology, and ESG governance.
-</p>
-
-<h2>Who We Are</h2>
-<p>
-PHK-POSCO was founded to redefine heavy industry for the 21st century.
-We believe industrial power must serve humanity, not dominate it.
-</p>
-
-<h2>Core Industries</h2>
-<p>
-Advanced steel manufacturing, bio-based materials, fusion energy,
-AI-driven manufacturing systems, and decentralized financial infrastructure.
-</p>
-
-<h2>Web3 & Transparency</h2>
-<p>
-All value flows within PHK-POSCO are designed to be transparent,
-traceable, and accountable through blockchain technology.
-</p>
-
-<h2>Global Vision</h2>
-<p>
-Our goal is to share industrial profits with society, build sustainable cities,
-and establish a universal economic safety net through technology.
-</p>
-
-<p>Contact: info@phkposco.com</p>
+<!-- ENGLISH -->
+<section id="en" class="section active">
+<h2>PHK-POSCO Global Vision</h2>
+<p>PHK-POSCO is a next-generation industrial and bio-technology platform designed to integrate steel, bio, energy, and Web3 finance into a unified global ecosystem.</p>
+<p>We believe that future industries must coexist with humanity, sustainability, and digital sovereignty.</p>
+<p>Through advanced manufacturing, bio-innovation, and decentralized finance, PHK-POSCO aims to redefine how value is created and distributed.</p>
+<p>Our platform connects real-world production with digital assets, enabling transparent ownership and fair global participation.</p>
+<p>PHK-POSCO collaborates with strategic partners across Asia, Europe, the Middle East, and the Americas.</p>
+<p>We focus on green energy, carbon-neutral manufacturing, and AI-driven optimization.</p>
+<p>Web3 banking and tokenized infrastructure allow global citizens to participate without borders.</p>
+<p>PHK-POSCO is not just a company—it is an industrial civilization model.</p>
+<p>Contact us for partnerships, investment, and technology collaboration.</p>
+<p>Email: info@phkposco.com</p>
 </section>
 
-<!-- ==================================================
- KOREAN PAGE
-================================================== -->
-<section id="korean">
-<h1>PHK-POSCO</h1>
-
-<p>
-PHK-POSCO는 철강, 바이오 소재, 미래 에너지,
-Web3 기술 및 ESG 거버넌스를 융합한
-차세대 글로벌 산업 플랫폼입니다.
-</p>
-
-<h2>우리는 누구인가</h2>
-<p>
-PHK-POSCO는 21세기 중후장대 산업의 구조를
-근본적으로 혁신하기 위해 설립되었습니다.
-</p>
-
-<h2>핵심 산업 분야</h2>
-<p>
-초고강도 철강, 바이오 기반 신소재, 인공태양 에너지,
-AI 자동화 제조 시스템, 탈중앙 금융 인프라를 포함합니다.
-</p>
-
-<h2>Web3 기반 투명성</h2>
-<p>
-PHK-POSCO의 모든 가치 흐름은
-블록체인 기술을 통해 투명하고
-검증 가능하도록 설계되어 있습니다.
-</p>
-
-<h2>글로벌 비전</h2>
-<p>
-산업의 성과를 사회와 공유하고,
-지속 가능한 도시와 보편적 경제 안전망을
-구축하는 것이 우리의 목표입니다.
-</p>
-
+<!-- KOREAN -->
+<section id="ko" class="section">
+<h2>PHK-POSCO 글로벌 비전</h2>
+<p>PHK-POSCO는 철강, 바이오, 에너지, Web3 금융을 하나로 통합하는 차세대 산업 플랫폼입니다.</p>
+<p>우리는 미래 산업이 인류와 공존하고 지속 가능해야 한다고 믿습니다.</p>
+<p>첨단 제조와 바이오 혁신, 탈중앙 금융을 통해 가치 창출 방식을 재정의합니다.</p>
+<p>PHK-POSCO는 실물 산업과 디지털 자산을 연결합니다.</p>
+<p>이를 통해 투명한 소유 구조와 공정한 글로벌 참여를 실현합니다.</p>
+<p>아시아, 유럽, 중동, 미주 지역의 전략적 파트너들과 협력합니다.</p>
+<p>탄소중립 제조와 친환경 에너지 기술에 집중합니다.</p>
+<p>Web3 뱅킹을 통해 국경 없는 금융 참여를 제공합니다.</p>
+<p>PHK-POSCO는 하나의 회사가 아닌 문명 설계입니다.</p>
 <p>문의: info@phkposco.com</p>
 </section>
 
-<!-- ==================================================
- CHINESE PAGE
-================================================== -->
-<section id="chinese">
-<h1>PHK-POSCO</h1>
-
-<p>
-PHK-POSCO 是一个融合钢铁、生物材料、
-未来能源、Web3 技术和 ESG 治理的
-下一代全球产业平台。
-</p>
-
-<h2>公司使命</h2>
-<p>
-PHK-POSCO 致力于重新定义 21 世纪的重工业，
-让产业力量真正服务于人类社会。
-</p>
-
-<h2>核心产业结构</h2>
-<p>
-先进钢铁制造、生物基新材料、聚变能源、
-人工智能制造系统以及去中心化金融基础设施。
-</p>
-
-<h2>区块链透明体系</h2>
-<p>
-所有价值流动均通过区块链技术实现
-公开、透明和可追溯。
-</p>
-
-<h2>全球发展愿景</h2>
-<p>
-我们致力于构建可持续城市体系，
-并通过技术实现全球经济安全。
-</p>
-
-<p>联系方式: info@phkposco.com</p>
+<!-- CHINESE -->
+<section id="zh" class="section">
+<h2>PHK-POSCO 全球愿景</h2>
+<p>PHK-POSCO 是一个融合钢铁、生物、能源与 Web3 金融的下一代产业平台。</p>
+<p>我们相信未来产业必须与人类和环境共生。</p>
+<p>通过先进制造、生物创新和去中心化金融创造新价值。</p>
+<p>PHK-POSCO 将实体经济与数字资产相连接。</p>
+<p>实现透明的所有权和全球公平参与。</p>
+<p>我们与亚洲、欧洲、中东和美洲的合作伙伴携手前进。</p>
+<p>专注于绿色能源和碳中和技术。</p>
+<p>Web3 银行体系实现无国界金融。</p>
+<p>PHK-POSCO 是产业文明的新模型。</p>
+<p>联系邮箱: info@phkposco.com</p>
 </section>
 
-<!-- ==================================================
- ARABIC PAGE
-================================================== -->
-<section id="arabic" dir="rtl">
-<h1>PHK-POSCO</h1>
-
-<p>
-PHK-POSCO هي منصة صناعية عالمية من الجيل القادم
-تدمج الصلب والمواد الحيوية وطاقة المستقبل
-وتقنيات Web3 وحوكمة ESG.
-</p>
-
-<h2>من نحن</h2>
-<p>
-تأسست PHK-POSCO لإعادة تعريف الصناعة الثقيلة
-بطريقة تخدم الإنسان وتحقق الاستدامة.
-</p>
-
-<h2>القطاعات الأساسية</h2>
-<p>
-الصلب المتقدم، المواد الحيوية،
-طاقة الاندماج النووي،
-أنظمة التصنيع الذكية،
-والتمويل اللامركزي.
-</p>
-
-<h2>الشفافية القائمة على البلوك تشين</h2>
-<p>
-تم تصميم جميع تدفقات القيمة
-لتكون شفافة وقابلة للتتبع
-باستخدام تقنية البلوك تشين.
-</p>
-
-<h2>الرؤية العالمية</h2>
-<p>
-نهدف إلى بناء اقتصاد عالمي عادل
-وتقاسم أرباح الصناعة مع المجتمع.
-</p>
-
+<!-- ARABIC -->
+<section id="ar" class="section" dir="rtl">
+<h2>رؤية PHK-POSCO العالمية</h2>
+<p>PHK-POSCO منصة صناعية من الجيل القادم تجمع بين الصلب والتقنية الحيوية والطاقة وWeb3.</p>
+<p>نؤمن بأن الصناعة المستقبلية يجب أن تتعايش مع الإنسان والبيئة.</p>
+<p>نخلق قيمة جديدة من خلال التصنيع المتقدم والتمويل اللامركزي.</p>
+<p>نربط الاقتصاد الحقيقي بالأصول الرقمية.</p>
+<p>نحقق الشفافية والمشاركة العالمية العادلة.</p>
+<p>نتعاون مع شركاء في آسيا وأوروبا والشرق الأوسط والأمريكتين.</p>
+<p>نركز على الطاقة الخضراء والتصنيع المحايد كربونيًا.</p>
+<p>Web3 يتيح التمويل بلا حدود.</p>
+<p>PHK-POSCO نموذج حضاري صناعي جديد.</p>
 <p>البريد الإلكتروني: info@phkposco.com</p>
 </section>
 
-<!-- ==================================================
- SPANISH PAGE
-================================================== -->
-<section id="spanish">
-<h1>PHK-POSCO</h1>
-
-<p>
-PHK-POSCO es una plataforma industrial global
-que integra acero, biomateriales,
-energía del futuro, Web3 y gobernanza ESG.
-</p>
-
-<h2>Quiénes Somos</h2>
-<p>
-PHK-POSCO nace para transformar la industria pesada
-y alinearla con el bienestar de la humanidad.
-</p>
-
-<h2>Industrias Estratégicas</h2>
-<p>
-Acero avanzado, nuevos biomateriales,
-energía de fusión,
-fabricación inteligente con IA
-y finanzas descentralizadas.
-</p>
-
-<h2>Transparencia Web3</h2>
-<p>
-Todos los flujos de valor están diseñados
-para ser transparentes y verificables
-mediante tecnología blockchain.
-</p>
-
-<h2>Visión Global</h2>
-<p>
-Buscamos compartir el valor industrial,
-crear ciudades sostenibles
-y garantizar seguridad económica global.
-</p>
-
+<!-- SPANISH -->
+<section id="es" class="section">
+<h2>Visión Global de PHK-POSCO</h2>
+<p>PHK-POSCO es una plataforma industrial de nueva generación que integra acero, bio, energía y Web3.</p>
+<p>Creemos en una industria futura sostenible y centrada en la humanidad.</p>
+<p>Redefinimos la creación de valor mediante innovación industrial y financiera.</p>
+<p>Conectamos la economía real con activos digitales.</p>
+<p>Promovemos propiedad transparente y participación global.</p>
+<p>Colaboramos con socios estratégicos en todo el mundo.</p>
+<p>Impulsamos energía verde y manufactura neutra en carbono.</p>
+<p>Web3 permite inclusión financiera sin fronteras.</p>
+<p>PHK-POSCO es más que una empresa: es un sistema global.</p>
 <p>Contacto: info@phkposco.com</p>
 </section>
 
 <footer>
-<p>© 2026 PHK-POSCO. All Rights Reserved.</p>
-<p>Contact: info@phkposco.com</p>
+    © 2026 PHK-POSCO Global Platform · Contact: info@phkposco.com
 </footer>
 
 </body>
