@@ -3,185 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>FIGURE AI x POSCO STRATEGIC HUB</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>PHK-BIO GLOBAL STRATEGY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --posco-blue: #004587; /* 포스코 상징색 */
-            --neon-cyan: #00f2ff;
-            --deep-black: #050505;
-            --glass: rgba(255, 255, 255, 0.05);
-        }
-
+        :root { --main-p: #4A0080; --dark-p: #2D0050; --gold: #FFD700; --glass: rgba(255, 255, 255, 0.1); }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { background: var(--deep-black); color: #fff; font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden; }
-
-        /* Header & Lang Toggle */
-        header {
-            height: 70px; border-bottom: 1px solid #222; display: flex; justify-content: space-between;
-            align-items: center; padding: 0 20px; background: rgba(0,0,0,0.8); backdrop-filter: blur(15px);
-            position: sticky; top: 0; z-index: 1000;
-        }
-        .logo { font-family: 'Orbitron'; font-weight: 700; color: var(--neon-cyan); font-size: 1.2rem; }
-        .lang-switch {
-            background: var(--posco-blue); color: white; border: none; padding: 5px 12px;
-            border-radius: 20px; font-size: 0.8rem; font-weight: bold; cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero { padding: 40px 20px; text-align: center; border-bottom: 1px solid #111; }
-        .hero h2 { font-family: 'Orbitron'; font-size: 0.8rem; letter-spacing: 4px; color: var(--posco-blue); margin-bottom: 10px; }
-        .hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: 15px; background: linear-gradient(to right, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-        /* Dashboard Grid */
-        .grid { display: grid; grid-template-columns: 1fr; gap: 15px; padding: 20px; }
-        .card { background: var(--glass); border: 1px solid #222; border-radius: 15px; padding: 20px; position: relative; overflow: hidden; }
-        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--posco-blue); }
-        .stat-val { font-family: 'Orbitron'; font-size: 2.2rem; font-weight: 700; color: var(--neon-cyan); margin: 10px 0; }
-        
-        /* Chat Interface */
-        .chat-box { height: 350px; background: #000; border: 1px solid #1a1a1a; border-radius: 10px; display: flex; flex-direction: column; margin-top: 10px; }
-        #chat-log { flex: 1; overflow-y: auto; padding: 15px; font-size: 0.9rem; line-height: 1.5; }
-        .msg { margin-bottom: 12px; padding: 10px 14px; border-radius: 10px; max-width: 85%; }
-        .msg.bot { background: #111; color: #ccc; align-self: flex-start; border-left: 2px solid var(--neon-cyan); }
-        .msg.user { background: var(--posco-blue); color: #fff; align-self: flex-end; }
-        .input-area { display: flex; padding: 10px; border-top: 1px solid #111; gap: 8px; }
-        input { flex: 1; background: #0a0a0a; border: 1px solid #222; color: #fff; padding: 12px; border-radius: 8px; outline: none; }
-        .send-btn { background: var(--neon-cyan); color: #000; border: none; padding: 0 15px; border-radius: 8px; font-weight: bold; }
-
-        /* Report Text */
-        .report { padding: 30px 20px; background: #080808; border-top: 1px solid #111; }
-        .report h3 { font-family: 'Orbitron'; color: var(--posco-blue); margin-bottom: 15px; }
-        .content-body { color: #777; font-size: 0.85rem; line-height: 1.8; text-align: justify; }
-
-        footer { padding: 30px; text-align: center; color: #333; font-size: 0.7rem; font-family: 'Orbitron'; }
+        body { background: linear-gradient(180deg, var(--dark-p) 0%, var(--main-p) 100%); color: #fff; font-family: 'Noto Sans KR', sans-serif; min-height: 100vh; }
+        nav { padding: 20px; display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+        .lang-btn { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 6px 14px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .lang-btn:hover { background: var(--gold); color: #000; }
+        header { padding: 40px 25px; text-align: center; }
+        .logo { font-family: 'Orbitron'; font-size: 2.2rem; letter-spacing: 2px; margin-bottom: 10px; }
+        .sub-title { font-size: 0.9rem; font-weight: 300; color: rgba(255,255,255,0.7); margin-bottom: 40px; }
+        .headline { font-size: 2rem; font-weight: 700; line-height: 1.3; margin-bottom: 40px; min-height: 2.6em; }
+        .container { padding: 0 25px 50px; }
+        .info-card { background: var(--glass); border-radius: 20px; padding: 25px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); }
+        .info-card h4 { font-size: 1.1rem; color: var(--gold); margin-bottom: 10px; }
+        .info-card p { font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.6; }
+        .chat-box { background: rgba(0,0,0,0.3); border-radius: 15px; height: 250px; overflow-y: auto; padding: 15px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        .bubble { padding: 10px 15px; border-radius: 12px; font-size: 0.85rem; margin-bottom: 10px; max-width: 85%; }
+        .bot { background: rgba(255,255,255,0.1); align-self: flex-start; }
+        footer { text-align: center; padding: 30px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: rgba(255,255,255,0.5); }
     </style>
 </head>
 <body>
 
+<nav>
+    <button class="lang-btn" onclick="setLang('EN')">EN</button>
+    <button class="lang-btn" onclick="setLang('KR')">KR</button>
+    <button class="lang-btn" onclick="setLang('CN')">CN</button>
+    <button class="lang-btn" onclick="setLang('AR')">AR</button>
+</nav>
+
 <header>
-    <div class="logo">HG x FIGURE</div>
-    <button class="lang-switch" onclick="toggleLang()" id="langBtn">ENG / KOR</button>
+    <div class="logo">PHK-BIO</div>
+    <div class="sub-title" id="sub-t">차세대 인류를 위한 바이오·로봇 공학</div>
+    <h1 class="headline" id="main-h">인류 산업의 미래를<br>설계하다</h1>
 </header>
 
-<div class="hero">
-    <h2 id="hero-sub">GLOBAL STEALTH PROJECT</h2>
-    <h1 id="hero-title">POSCO NEXT GEN. VISION</h1>
-    <p style="color: #555; font-size: 0.9rem;" id="hero-desc">인간과 로봇의 공존, 포스코의 미래를 혜공 형님이 설계합니다.</p>
-</div>
-
-<div class="grid">
-    <div class="card">
-        <span id="stat-label">AI Integration ROI</span>
-        <div class="stat-val">+342.8%</div>
-        <div style="font-size: 0.75rem; color: #10b981;">▲ Expected Efficiency in Steel Mill</div>
+<div class="container">
+    <div class="info-card">
+        <h4 id="c1-t">핵심 기술과 비전</h4>
+        <p id="c1-p">Figure AI 자율 로봇의 POSCO 제철소 투입을 통한 위험 작업 제로화 및 스마트 팩토리 혁신</p>
     </div>
-
-    <div class="card">
-        <span id="chart-label">Strategic Market Share</span>
-        <canvas id="poscoChart" height="180"></canvas>
+    <div class="info-card">
+        <h4 id="c2-t">투자 시너지</h4>
+        <p id="c2-p">PHK Holdings의 금융 인프라와 로보틱스 생태계 결합을 통한 압도적 시장 점유율 확보</p>
     </div>
-
-    <div class="card" style="padding: 10px;">
-        <h3 style="font-size: 0.8rem; padding: 10px; color: var(--neon-cyan);" id="chat-title">STRATEGIC BOT: BINI</h3>
-        <div class="chat-box">
-            <div id="chat-log">
-                <div class="msg bot" id="welcome-msg">
-                    안녕하십니까, 혜공 형님. 포스코 임원들을 압도할 Figure AI 협상 전략 보고서를 준비했습니다. 어떤 지표를 먼저 띄울까요?
-                </div>
-            </div>
-            <div class="input-area">
-                <input type="text" id="userInput" placeholder="지시사항 입력...">
-                <button class="send-btn" onclick="sendMsg()">Go</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="report">
-    <h3 id="report-title">CONFIDENTIAL REPORT</h3>
-    <div class="content-body" id="report-text">
-        포스코의 스마트 팩토리 전략에 Figure 02 휴머노이드를 투입하는 시나리오는 단순한 자동화를 넘어섭니다. 고온의 작업 환경과 정밀한 자재 관리가 필요한 제철 현장에서 인간형 로봇은 인명 사고율을 0%로 줄이는 유일한 해법입니다. 혜공 형님의 지휘 아래 진행되는 이번 인수는 대한민국 중공업의 역사를 바꿀 마스터피스가 될 것입니다.
+    
+    <div class="chat-box" id="chat">
+        <div class="bubble bot" id="bot-m">안녕하십니까, 혜공 형님. 글로벌 지표 분석이 완료되었습니다.</div>
     </div>
 </div>
 
 <footer>
-    &copy; 2026 HG STRATEGY GROUP | POWERED BY BINI AI
+    © 2026 PHK Holdings · info@phkbio.com
 </footer>
 
 <script>
-    let isKor = true;
-    const texts = {
-        kor: {
-            sub: "GLOBAL STEALTH PROJECT", title: "POSCO NEXT GEN. VISION", 
-            desc: "인간과 로봇의 공존, 포스코의 미래를 혜공 형님이 설계합니다.",
-            stat: "AI 통합 기대 수익", chart: "전략적 시장 점유율", chat: "전략 봇: 삐니",
-            welcome: "안녕하십니까, 혜공 형님. 포스코 임원들을 압도할 전략 보고서가 준비되었습니다.",
-            report: "비공개 전략 보고서",
-            body: "포스코의 스마트 팩토리 전략에 Figure 02 휴머노이드를 투입하는 시나리오는 단순한 자동화를 넘어섭니다. 고온의 제철 현장에서 인간형 로봇은 사고율 0%를 달성할 유일한 해법입니다.",
-            input: "지시사항 입력..."
+    const data = {
+        KR: {
+            sub: "차세대 인류를 위한 바이오·로봇 공학", h: "인류 산업의 미래를<br>설계하다",
+            c1t: "핵심 기술과 비전", c1p: "Figure AI 자율 로봇의 POSCO 투입을 통한 제철 혁신",
+            c2t: "투자 시너지", c2p: "금융·AI·로보틱스 결합을 통한 글로벌 시장 점유율 선점",
+            bot: "안녕하십니까, 혜공 형님. 분석이 완료되었습니다."
         },
-        eng: {
-            sub: "GLOBAL STEALTH PROJECT", title: "POSCO NEXT GEN. VISION", 
-            desc: "Designing the future of POSCO with Figure AI Robotics.",
-            stat: "AI Integration ROI", chart: "Strategic Market Share", chat: "STRATEGIC BOT: BINI",
-            welcome: "Greetings, Boss. The strategic report to overwhelm POSCO executives is ready.",
-            report: "CONFIDENTIAL REPORT",
-            body: "Integrating Figure 02 humanoids into POSCO's smart factories goes beyond automation. In high-heat environments, humanoids are the only solution to zero accident rates.",
-            input: "Command here..."
+        EN: {
+            sub: "Bio-Robotics for Next Generation", h: "Engineering the Future<br>of Humanity",
+            c1t: "Core Tech & Vision", c1p: "Revolutionizing steel mills via Figure AI autonomous robotics.",
+            c2t: "Investment Synergy", c2p: "Leading global markets through Finance-AI-Robotics integration.",
+            bot: "Greetings, Boss. Global data analysis is complete."
+        },
+        CN: {
+            sub: "为下一代打造的生物机器人工程", h: "设计人类工业<br>的未来",
+            c1t: "核心技术与愿景", c1p: "通过在浦项制铁投入Figure AI自主机器人，实现钢铁生产革新。",
+            c2t: "投资协同效应", c2p: "通过金融、人工智能与机器人技术的结合，抢占全球市场份额。",
+            bot: "您好，大哥。全球指标分析已完成。"
+        },
+        AR: {
+            sub: "هندسة الروبوتات الحيوية للجيل القادم", h: "هندسة مستقبل<br>الصناعة البشرية",
+            c1t: "التكنولوجيا الأساسية والرؤية", c1p: "ابتكار إنتاج الصلب من خلال إدخال روبوتات Figure AI في مصانع بوسكو.",
+            c2t: "تآزر الاستثمار", c2p: "الاستحواذ على حصة السوق العالمية من خلال تكامل التمويل والذكاء الاصطناعي والروبوتات.",
+            bot: "أهلاً بك يا أخي. تم الانتهاء من تحليل المؤشرات العالمية."
         }
     };
 
-    function toggleLang() {
-        isKor = !isKor;
-        const lang = isKor ? 'kor' : 'eng';
-        document.getElementById('hero-sub').innerText = texts[lang].sub;
-        document.getElementById('hero-title').innerText = texts[lang].title;
-        document.getElementById('hero-desc').innerText = texts[lang].desc;
-        document.getElementById('stat-label').innerText = texts[lang].stat;
-        document.getElementById('chart-label').innerText = texts[lang].chart;
-        document.getElementById('chat-title').innerText = texts[lang].chat;
-        document.getElementById('welcome-msg').innerText = texts[lang].welcome;
-        document.getElementById('report-title').innerText = texts[lang].report;
-        document.getElementById('report-text').innerText = texts[lang].body;
-        document.getElementById('userInput').placeholder = texts[lang].input;
+    function setLang(l) {
+        document.getElementById('sub-t').innerText = data[l].sub;
+        document.getElementById('main-h').innerHTML = data[l].h;
+        document.getElementById('c1-t').innerText = data[l].c1t;
+        document.getElementById('c1-p').innerText = data[l].c1p;
+        document.getElementById('c2-t').innerText = data[l].c2t;
+        document.getElementById('c2-p').innerText = data[l].c2p;
+        document.getElementById('bot-m').innerText = data[l].bot;
+        // 아랍어일 경우 우측 정렬
+        document.body.style.direction = (l === 'AR') ? 'rtl' : 'ltr';
     }
-
-    function sendMsg() {
-        const input = document.getElementById('userInput');
-        const log = document.getElementById('chat-log');
-        if(!input.value) return;
-
-        const uMsg = document.createElement('div');
-        uMsg.className = 'msg user';
-        uMsg.innerText = input.value;
-        log.appendChild(uMsg);
-
-        const val = input.value;
-        input.value = '';
-
-        setTimeout(() => {
-            const bMsg = document.createElement('div');
-            bMsg.className = 'msg bot';
-            bMsg.innerHTML = isKor ? "<b>[지시 수신]</b> POSCO 이사회 제출용 로봇 가동 시뮬레이션을 가동합니다. 형님, 데이터 분석 결과 수익성이 압도적입니다." : "<b>[COMMAND RECEIVED]</b> Activating simulation for POSCO Board. Boss, the ROI data is overwhelming.";
-            log.appendChild(bMsg);
-            log.scrollTop = log.scrollHeight;
-        }, 800);
-    }
-
-    const ctx = document.getElementById('poscoChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['26', '27', '28', '29', '30'],
-            datasets: [{
-                label: 'Market %', data: [12, 28, 45, 67, 89],
-                borderColor: '#00f2ff', tension: 0.4, fill: true, backgroundColor: 'rgba(0, 242, 255, 0.1)'
-            }]
-        },
-        options: { plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#555' } }, y: { display: false } } }
-    });
 </script>
 </body>
 </html>
