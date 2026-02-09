@@ -3,292 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHK-POSCO Global Strategy 2026</title>
+    <title>PHK-POSCO Global Hyper-Gap Strategy 2026</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
     <style>
         :root {
             --posco-blue: #004a99;
             --posco-cyan: #00aaff;
-            --ai-purple: #6c5ce7;
-            --sun-orange: #ff7675;
+            --ai-glow: #7d5fff;
+            --sun-fire: #ff4d4d;
             --gold: #d4af37;
-            --dark-bg: #050505;
-            --card-bg: rgba(255, 255, 255, 0.03);
+            --bg-deep: #020202;
+            --glass: rgba(255, 255, 255, 0.03);
         }
 
-        * { box-sizing: border-box; scroll-behavior: smooth; }
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--dark-bg);
-            color: #ffffff;
-            font-family: 'Pretendard', sans-serif;
-            overflow-x: hidden;
-        }
+        * { box-sizing: border-box; scroll-behavior: smooth; font-family: 'Pretendard', sans-serif; }
+        body { margin: 0; background: var(--bg-deep); color: #fff; line-height: 1.7; overflow-x: hidden; }
 
-        /* Full Page Section Base */
-        .page {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 5% 10%;
-            border-bottom: 1px solid #222;
-            position: relative;
-        }
+        /* Navigation Dot */
+        #nav-dots { position: fixed; right: 30px; top: 50%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 15px; }
+        #nav-dots a { width: 12px; height: 12px; border: 2px solid var(--posco-cyan); border-radius: 50%; transition: 0.3s; }
+        #nav-dots a:hover, #nav-dots a.active { background: var(--posco-cyan); transform: scale(1.3); }
 
-        .lang-indicator {
-            position: absolute;
-            top: 20px;
-            right: 10%;
-            font-size: 5rem;
-            font-weight: 900;
-            opacity: 0.1;
-            color: var(--posco-cyan);
-            pointer-events: none;
-        }
+        /* Section Layout */
+        .section { min-height: 100vh; padding: 80px 10%; display: flex; flex-direction: column; justify-content: center; position: relative; border-bottom: 1px solid #1a1a1a; }
+        .lang-bg { position: absolute; top: 10%; right: 5%; font-size: 10rem; font-weight: 900; opacity: 0.03; color: var(--posco-cyan); pointer-events: none; }
 
-        h1.title {
-            font-size: 3rem;
-            margin-bottom: 50px;
-            color: var(--posco-cyan);
-            border-left: 10px solid var(--gold);
-            padding-left: 20px;
-        }
+        .killer-box { border-left: 5px solid var(--gold); padding-left: 25px; margin-bottom: 50px; }
+        .killer-box h1 { font-size: 3.5rem; margin: 0; background: linear-gradient(to right, #fff, var(--posco-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .card { background: var(--glass); border: 1px solid #333; padding: 40px; border-radius: 24px; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .card:hover { transform: translateY(-15px); border-color: var(--posco-cyan); box-shadow: 0 20px 40px rgba(0, 170, 255, 0.1); background: rgba(0, 170, 255, 0.05); }
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
+        .card h2 { color: var(--gold); font-size: 1.6rem; margin-top: 0; }
+        .badge { display: inline-block; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; }
+        .badge-ai { background: var(--ai-glow); color: #fff; }
+        .badge-sun { background: var(--sun-fire); color: #fff; }
 
-        .content-box {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid #333;
-            transition: 0.4s;
-        }
+        .contact-footer { text-align: center; padding: 100px 0; background: #000; }
+        .email-link { font-size: 2rem; color: var(--posco-cyan); text-decoration: none; font-weight: 800; border-bottom: 2px solid var(--posco-cyan); transition: 0.3s; }
+        .email-link:hover { color: var(--gold); border-color: var(--gold); }
 
-        .content-box:hover {
-            border-color: var(--posco-cyan);
-            transform: translateY(-10px);
-            background: rgba(0, 170, 255, 0.05);
-        }
+        .rtl { direction: rtl; text-align: right; }
+        .rtl .killer-box { border-left: none; border-right: 5px solid var(--gold); padding-left: 0; padding-right: 25px; }
 
-        .content-box h2 {
-            font-size: 1.8rem;
-            margin-top: 0;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .content-box h2::before {
-            content: '●';
-            margin-right: 10px;
-            font-size: 1rem;
-            color: var(--gold);
-        }
-
-        .highlight { color: var(--posco-cyan); font-weight: bold; }
-        .ai-text { color: var(--ai-purple); font-weight: bold; }
-        .sun-text { color: var(--sun-orange); font-weight: bold; }
-
-        /* Arabic Support */
-        .rtl { direction: rtl; font-family: 'Amiri', serif; }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        nav a {
-            width: 12px;
-            height: 12px;
-            background: #444;
-            border-radius: 50%;
-            transition: 0.3s;
-        }
-
-        nav a:hover, nav a.active { background: var(--posco-cyan); transform: scale(1.5); }
-
-        footer {
-            padding: 100px 10%;
-            background: #000;
-            text-align: center;
-        }
-
-        .contact-btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: var(--posco-blue);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-top: 20px;
-            border: 1px solid var(--posco-cyan);
-        }
-
-        .killer-badge {
-            background: var(--gold);
-            color: black;
-            padding: 5px 15px;
-            border-radius: 5px;
-            font-weight: 800;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
+        /* Mobile */
+        @media (max-width: 1024px) { .grid { grid-template-columns: 1fr; } .killer-box h1 { font-size: 2.5rem; } }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#kor" title="KOREAN"></a>
-        <a href="#eng" title="ENGLISH"></a>
-        <a href="#chn" title="CHINESE"></a>
-        <a href="#ara" title="ARABIC"></a>
-        <a href="#esp" title="SPANISH"></a>
-    </nav>
+    <div id="nav-dots">
+        <a href="#kor" class="active"></a>
+        <a href="#eng"></a>
+        <a href="#chn"></a>
+        <a href="#jpn"></a>
+        <a href="#ara"></a>
+        <a href="#esp"></a>
+    </div>
 
-    <section id="kor" class="page">
-        <div class="lang-indicator">KOR</div>
-        <div class="killer-badge">Killer Concept: Figure AI & K-STAR</div>
-        <h1 class="title">PHK-POSCO: 2026 초격차 로봇-에너지 전략</h1>
-        
-        <div class="grid-container">
-            <div class="content-box">
+    <section id="kor" class="section">
+        <div class="lang-bg">KOR</div>
+        <div class="killer-box">
+            <div class="badge badge-ai">Figure AI Integration</div>
+            <h1>인력난의 종식, 무한 에너지의 시작</h1>
+            <p style="font-size: 1.4rem;">PHK-POSCO는 <span style="color:var(--posco-cyan)">Figure AI 휴머노이드</span>와 <span style="color:var(--sun-fire)">인공태양</span>으로 제조 원가의 혁명을 일으킵니다.</p>
+        </div>
+        <div class="grid">
+            <div class="card">
                 <h2>문제점</h2>
-                <p>전통 철강 산업의 수익성 악화 및 중국발 저가 공세로 인한 시장 점유율 하락. 고위험 수작업 위주의 공정으로 인한 안전 사고 리스크 상존 및 탄소 배출 규제 대응 비용 급증.</p>
+                <p>고질적인 현장 인력난과 인건비 상승, 그리고 에너지 가격 변동성으로 인한 제조 단가 경쟁력 약화.</p>
             </div>
-            <div class="content-box">
+            <div class="card">
                 <h2>개선방안</h2>
-                <p><span class="ai-text">Figure AI 휴머노이드</span>를 제철소 전 공정에 투입하여 무인 자동화 달성. <span class="sun-text">인공태양(K-Star) 에너지</span>를 기반으로 한 넷제로(Net-Zero) 전력망 구축 및 고효율 특수 소재 개발.</p>
+                <p><span class="badge-ai badge">AI 휴머노이드</span> 투입으로 24시간 무인 공정 가동. <span class="badge-sun badge">인공태양</span> 기반 전력으로 에너지 자립 및 탄소세 완전 면제.</p>
             </div>
-            <div class="content-box">
+            <div class="card">
                 <h2>기대효과</h2>
-                <p>생산성 400% 향상 및 사고율 0% 달성. 에너지 비용 90% 절감. 2030년까지 글로벌 지능형 로봇 시장 점유율 1위 확보 및 지속 가능한 에너지 리더십 확립.</p>
+                <p>글로벌 최저 단가 실현. 인적 리스크 제로. 2030년 철강 및 로봇 에너지 시장 압도적 점유율 1위.</p>
             </div>
         </div>
     </section>
 
-    <section id="eng" class="page">
-        <div class="lang-indicator">ENG</div>
-        <h1 class="title">PHK-POSCO: Global Hyper-Gap Strategy</h1>
-        <div class="grid-container">
-            <div class="content-box">
-                <h2>Current Issues</h2>
-                <p>Diminishing margins in traditional steel sectors and intense global price competition. Structural risks in high-risk manual labor environments and the escalating costs of carbon neutrality compliance.</p>
+    <section id="eng" class="section">
+        <div class="lang-bg">ENG</div>
+        <div class="killer-box">
+            <div class="badge badge-sun">Unlimited Energy</div>
+            <h1>Zero Labor, Zero Carbon, Zero Limits</h1>
+            <p style="font-size: 1.4rem;">PHK-POSCO redefines global cost competitiveness via <span style="color:var(--ai-glow)">Figure AI</span> and <span style="color:var(--sun-fire)">Fusion Energy</span>.</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h2>Core Crisis</h2>
+                <p>Severe labor shortages and skyrocketing energy costs paralyzing traditional industrial growth.</p>
             </div>
-            <div class="content-box">
-                <h2>Solutions</h2>
-                <p>Full-scale deployment of <span class="ai-text">Figure AI Humanoids</span> for 24/7 autonomous operations. Transitioning to <span class="sun-text">Artificial Sun (K-Star)</span> fusion energy for a limitless, carbon-free power supply.</p>
+            <div class="card">
+                <h2>Innovation</h2>
+                <p>Replacing manual labor with 100% autonomous <span class="highlight">Figure AI</span>. Powering all facilities with <span class="highlight">K-STAR Fusion</span> technology.</p>
             </div>
-            <div class="content-box">
-                <h2>Impact</h2>
-                <p>4x increase in operational efficiency and total elimination of workplace hazards. Dominance in the AI-robotics layer and achieving ultimate energy independence by 2035.</p>
+            <div class="card">
+                <h2>Vision 2030</h2>
+                <p>Achieving the world's lowest production cost. Dominating the intelligent robotics and green energy market.</p>
             </div>
         </div>
     </section>
 
-    <section id="chn" class="page">
-        <div class="lang-indicator">CHN</div>
-        <h1 class="title">PHK-POSCO: 2026 全球超差距机器人-能源战略</h1>
-        <div class="grid-container">
-            <div class="content-box">
-                <h2>主要问题</h2>
-                <p>传统钢铁行业的盈利能力下降，全球供应过剩。高危作业环境导致的人员安全隐患，以及由于脱碳政策带来的巨大成本压力。</p>
+    <section id="chn" class="section">
+        <div class="lang-bg">CHN</div>
+        <div class="killer-box">
+            <h1>解决劳动力短缺，重塑全球竞争力</h1>
+            <p style="font-size: 1.4rem;">PHK-POSCO 通过 <span style="color:var(--posco-cyan)">Figure AI</span> 和 <span style="color:var(--sun-fire)">人工太阳</span> 开启工业新纪元。</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h2>现有问题</h2>
+                <p>劳动力日益短缺，人工成本上升，以及能源供应不稳定导致的市场竞争力下降。</p>
             </div>
-            <div class="content-box">
+            <div class="card">
                 <h2>改进方案</h2>
-                <p>在所有工厂部署 <span class="ai-text">Figure AI 机器人</span>，实现全无人化生产。引入 <span class="sun-text">人工太阳 (K-Star) 能源</span> 系统，打造低成本、零排放的绿色工厂。</p>
+                <p>全面投入 <span class="badge-ai badge">Figure AI 机器人</span> 实现全自动化生产。利用 <span class="badge-sun badge">核聚变能源</span> 实现零成本电力供应。</p>
             </div>
-            <div class="content-box">
+            <div class="card">
                 <h2>预期效果</h2>
-                <p>生产效率提升 400%，实现零工伤。大幅降低能源支出，在全球智能制造和特种材料领域确立不可撼动的领导地位。</p>
+                <p>实现全球最低单价。彻底消除安全事故。在 2030 年前确立全球智能制造领域的霸主地位。</p>
             </div>
         </div>
     </section>
 
-    <section id="ara" class="page rtl">
-        <div class="lang-indicator">ARA</div>
-        <h1 class="title">PHK-POSCO: استراتيجية الفجوة الفائقة 2026</h1>
-        <div class="grid-container">
-            <div class="content-box">
-                <h2>التحديات</h2>
-                <p>تراجع الربحية في قطاع الصلب التقليدي بسبب المنافسة العالمية الشرسة. مخاطر العمل اليدوي في البيئات الخطرة وزيادة تكاليف التحول الأخضر.</p>
+    <section id="jpn" class="section">
+        <div class="lang-bg">JPN</div>
+        <div class="killer-box">
+            <h1>労働力不足の終焉、無限エネルギーの到来</h1>
+            <p style="font-size: 1.4rem;">PHK-POSCOは<span style="color:var(--ai-glow)">Figure AI</span>と<span style="color:var(--sun-fire)">人工太陽</span>で製造原価のパラダイムを変えます。</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h2>課題</h2>
+                <p>深刻な人手不足と人件費の急騰。エネルギー価格の変動による価格競争力の喪失。</p>
             </div>
-            <div class="content-box">
-                <h2>الحلول</h2>
-                <p>نشر روبوتات <span class="ai-text">Figure AI</span> في جميع مراحل الإنتاج. الاعتماد على طاقة <span class="sun-text">الشمس الاصطناعية (K-Star)</span> لتوفير طاقة نظيفة وغير محدودة.</p>
+            <div class="card">
+                <h2>ソリューション</h2>
+                <p><span class="badge-ai badge">AIヒューマノイド</span>による24時間無人化。 <span class="badge-sun badge">K-STAR核融合</span>によるエネルギーの完全自給自足。</p>
             </div>
-            <div class="content-box">
-                <h2>النتائج المتوقعة</h2>
-                <p>زيادة الإنتاجية بنسبة 400% والقضاء على الحوادث. خفض تكاليف الطاقة بنسبة 90% وقيادة سوق الروبوتات العالمي بحلول 2030.</p>
+            <div class="card">
+                <h2>期待効果</h2>
+                <p>世界最低水準のコスト実現。人的リスクの排除。2030年までにロボティクス・エネルギー市場を独占。</p>
             </div>
         </div>
     </section>
 
-    <section id="esp" class="page">
-        <div class="lang-indicator">ESP</div>
-        <h1 class="title">PHK-POSCO: Estrategia de Convergencia Global</h1>
-        <div class="grid-container">
-            <div class="content-box">
-                <h2>Desafíos</h2>
-                <p>Erosión de márgenes en la industria del acero tradicional y competencia agresiva de precios. Riesgos de seguridad en procesos manuales y altos costos de cumplimiento ambiental.</p>
+    <section id="ara" class="section rtl">
+        <div class="lang-bg">ARA</div>
+        <div class="killer-box">
+            <h1>نهاية نقص العمالة، وبداية الطاقة اللامتناهية</h1>
+            <p style="font-size: 1.4rem;">PHK-POSCO تخلق ثورة في التكاليف من خلال <span style="color:var(--posco-cyan)">Figure AI</span> و <span style="color:var(--sun-fire)">الشمس الاصطناعية</span>.</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h2>المشكلة</h2>
+                <p>النقص الحاد في العمالة وارتفاع التكاليف، وضعف التنافسية بسبب تقلبات أسعار الطاقة العالمية.</p>
             </div>
-            <div class="content-box">
-                <h2>Mejoras</h2>
-                <p>Implementación masiva de <span class="ai-text">Humanoides Figure AI</span> para automatización total. Uso de energía de <span class="sun-text">Sol Artificial (K-Star)</span> para una producción con huella de carbono cero.</p>
+            <div class="card">
+                <h2>الحل</h2>
+                <p>استخدام <span class="badge-ai badge">روبوتات Figure AI</span> للأتمتة الكاملة. الاعتماد على <span class="badge-sun badge">طاقة الاندماج</span> لتوفير كهرباء نظيفة ومجانية.</p>
             </div>
-            <div class="content-box">
-                <h2>Efectos Esperados</h2>
-                <p>Aumento del 400% en la productividad y seguridad total. Liderazgo absoluto en materiales avanzados y robótica inteligente para la década de 2030.</p>
+            <div class="card">
+                <h2>النتائج</h2>
+                <p>تحقيق أدنى سعر إنتاج في العالم. ريادة سوق الروبوتات والطاقة المستدامة بحلول عام 2030.</p>
             </div>
         </div>
     </section>
 
-    <footer>
-        <h2>PHK-POSCO GLOBAL NETWORK</h2>
-        <p>Innovation for Human & Earth Intelligence</p>
-        <a href="mailto:info@phkposco.co" class="contact-btn">Contact: info@phkposco.co</a>
-        <div style="margin-top: 50px; opacity: 0.5;">
-            <p>© 2026 PHK-POSCO HOLDINGS. AUTHORIZED BY HYEGONG.</p>
-            <p>Strategic Partners: Figure AI | K-STAR Energy Group</p>
+    <section id="esp" class="section">
+        <div class="lang-bg">ESP</div>
+        <div class="killer-box">
+            <h1>El Fin de la Escasez Laboral, El Inicio de la Energía Infinita</h1>
+            <p style="font-size: 1.4rem;">PHK-POSCO revoluciona los costos con <span style="color:var(--ai-glow)">Figure AI</span> y el <span style="color:var(--sun-fire)">Sol Artificial</span>.</p>
         </div>
+        <div class="grid">
+            <div class="card">
+                <h2>Problemas</h2>
+                <p>Escasez crónica de mano de obra y aumento de costos operativos. Vulnerabilidad ante los precios de la energía.</p>
+            </div>
+            <div class="card">
+                <h2>Soluciones</h2>
+                <p>Implementación de <span class="badge-ai badge">Humanoides AI</span> para procesos autónomos. Energía ilimitada mediante <span class="badge-sun badge">Fusión Nuclear K-STAR</span>.</p>
+            </div>
+            <div class="card">
+                <h2>Impacto</h2>
+                <p>Costo de producción mínimo global. Seguridad total. Liderazgo absoluto en la industria inteligente para 2030.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="contact-footer">
+        <h2 style="font-size: 1.2rem; color: var(--gold); margin-bottom: 20px;">CONTACT FOR STRATEGIC PARTNERSHIP</h2>
+        <a href="mailto:info@phkposco.co" class="email-link">info@phkposco.co</a>
+        <p style="margin-top: 50px; opacity: 0.4;">© 2026 PHK-POSCO HOLDINGS. ALL RIGHTS RESERVED BY HYEGONG.</p>
     </footer>
 
     <script>
-        // Navigation Active State Script
-        const sections = document.querySelectorAll('.page');
-        const navLinks = document.querySelectorAll('nav a');
+        // Simple scroll spy for nav dots
+        const sections = document.querySelectorAll('.section');
+        const dots = document.querySelectorAll('#nav-dots a');
 
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
+        window.onscroll = () => {
+            let current = "";
+            sections.forEach((section) => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-                    current = section.getAttribute('id');
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute("id");
                 }
             });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
+            dots.forEach((dot) => {
+                dot.classList.remove("active");
+                if (dot.getAttribute("href").includes(current)) {
+                    dot.classList.add("active");
                 }
             });
-        });
+        };
     </script>
 </body>
 </html>
