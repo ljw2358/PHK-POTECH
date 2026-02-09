@@ -1,167 +1,294 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>PHK-POSCO Global Platform</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #0b0b2e;
-    color: #ffffff;
-}
-header {
-    background: #12004d;
-    padding: 20px;
-    text-align: center;
-}
-header h1 {
-    margin: 0;
-    font-size: 28px;
-}
-nav {
-    margin-top: 15px;
-}
-nav button {
-    margin: 4px;
-    padding: 10px 14px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    background: #6a5acd;
-    color: #fff;
-    font-weight: bold;
-}
-nav button:hover {
-    background: #8a7cff;
-}
-.section {
-    display: none;
-    padding: 40px 20px;
-    max-width: 1000px;
-    margin: auto;
-}
-.section h2 {
-    color: #bfa9ff;
-}
-.section p {
-    line-height: 1.8;
-    margin-bottom: 16px;
-}
-footer {
-    background: #12004d;
-    text-align: center;
-    padding: 20px;
-    font-size: 14px;
-    color: #ccc;
-}
-.active {
-    display: block;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHK-POSCO Global Strategy 2026</title>
+    <style>
+        :root {
+            --posco-blue: #004a99;
+            --posco-cyan: #00aaff;
+            --ai-purple: #6c5ce7;
+            --sun-orange: #ff7675;
+            --gold: #d4af37;
+            --dark-bg: #050505;
+            --card-bg: rgba(255, 255, 255, 0.03);
+        }
 
-<script>
-function showLang(lang) {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(sec => sec.classList.remove('active'));
-    document.getElementById(lang).classList.add('active');
-}
-</script>
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            font-family: 'Pretendard', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Full Page Section Base */
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 5% 10%;
+            border-bottom: 1px solid #222;
+            position: relative;
+        }
+
+        .lang-indicator {
+            position: absolute;
+            top: 20px;
+            right: 10%;
+            font-size: 5rem;
+            font-weight: 900;
+            opacity: 0.1;
+            color: var(--posco-cyan);
+            pointer-events: none;
+        }
+
+        h1.title {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            color: var(--posco-cyan);
+            border-left: 10px solid var(--gold);
+            padding-left: 20px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .content-box {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #333;
+            transition: 0.4s;
+        }
+
+        .content-box:hover {
+            border-color: var(--posco-cyan);
+            transform: translateY(-10px);
+            background: rgba(0, 170, 255, 0.05);
+        }
+
+        .content-box h2 {
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .content-box h2::before {
+            content: '●';
+            margin-right: 10px;
+            font-size: 1rem;
+            color: var(--gold);
+        }
+
+        .highlight { color: var(--posco-cyan); font-weight: bold; }
+        .ai-text { color: var(--ai-purple); font-weight: bold; }
+        .sun-text { color: var(--sun-orange); font-weight: bold; }
+
+        /* Arabic Support */
+        .rtl { direction: rtl; font-family: 'Amiri', serif; }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        nav a {
+            width: 12px;
+            height: 12px;
+            background: #444;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        nav a:hover, nav a.active { background: var(--posco-cyan); transform: scale(1.5); }
+
+        footer {
+            padding: 100px 10%;
+            background: #000;
+            text-align: center;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--posco-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            border: 1px solid var(--posco-cyan);
+        }
+
+        .killer-badge {
+            background: var(--gold);
+            color: black;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-    <h1>PHK-POSCO Global Platform</h1>
-    <p>Industrial · Bio · Energy · Web3 Infrastructure</p>
     <nav>
-        <button onclick="showLang('en')">English</button>
-        <button onclick="showLang('ko')">한국어</button>
-        <button onclick="showLang('zh')">中文</button>
-        <button onclick="showLang('ar')">العربية</button>
-        <button onclick="showLang('es')">Español</button>
+        <a href="#kor" title="KOREAN"></a>
+        <a href="#eng" title="ENGLISH"></a>
+        <a href="#chn" title="CHINESE"></a>
+        <a href="#ara" title="ARABIC"></a>
+        <a href="#esp" title="SPANISH"></a>
     </nav>
-</header>
 
-<!-- ENGLISH -->
-<section id="en" class="section active">
-<h2>PHK-POSCO Global Vision</h2>
-<p>PHK-POSCO is a next-generation industrial and bio-technology platform designed to integrate steel, bio, energy, and Web3 finance into a unified global ecosystem.</p>
-<p>We believe that future industries must coexist with humanity, sustainability, and digital sovereignty.</p>
-<p>Through advanced manufacturing, bio-innovation, and decentralized finance, PHK-POSCO aims to redefine how value is created and distributed.</p>
-<p>Our platform connects real-world production with digital assets, enabling transparent ownership and fair global participation.</p>
-<p>PHK-POSCO collaborates with strategic partners across Asia, Europe, the Middle East, and the Americas.</p>
-<p>We focus on green energy, carbon-neutral manufacturing, and AI-driven optimization.</p>
-<p>Web3 banking and tokenized infrastructure allow global citizens to participate without borders.</p>
-<p>PHK-POSCO is not just a company—it is an industrial civilization model.</p>
-<p>Contact us for partnerships, investment, and technology collaboration.</p>
-<p>Email: info@phkposco.com</p>
-</section>
+    <section id="kor" class="page">
+        <div class="lang-indicator">KOR</div>
+        <div class="killer-badge">Killer Concept: Figure AI & K-STAR</div>
+        <h1 class="title">PHK-POSCO: 2026 초격차 로봇-에너지 전략</h1>
+        
+        <div class="grid-container">
+            <div class="content-box">
+                <h2>문제점</h2>
+                <p>전통 철강 산업의 수익성 악화 및 중국발 저가 공세로 인한 시장 점유율 하락. 고위험 수작업 위주의 공정으로 인한 안전 사고 리스크 상존 및 탄소 배출 규제 대응 비용 급증.</p>
+            </div>
+            <div class="content-box">
+                <h2>개선방안</h2>
+                <p><span class="ai-text">Figure AI 휴머노이드</span>를 제철소 전 공정에 투입하여 무인 자동화 달성. <span class="sun-text">인공태양(K-Star) 에너지</span>를 기반으로 한 넷제로(Net-Zero) 전력망 구축 및 고효율 특수 소재 개발.</p>
+            </div>
+            <div class="content-box">
+                <h2>기대효과</h2>
+                <p>생산성 400% 향상 및 사고율 0% 달성. 에너지 비용 90% 절감. 2030년까지 글로벌 지능형 로봇 시장 점유율 1위 확보 및 지속 가능한 에너지 리더십 확립.</p>
+            </div>
+        </div>
+    </section>
 
-<!-- KOREAN -->
-<section id="ko" class="section">
-<h2>PHK-POSCO 글로벌 비전</h2>
-<p>PHK-POSCO는 철강, 바이오, 에너지, Web3 금융을 하나로 통합하는 차세대 산업 플랫폼입니다.</p>
-<p>우리는 미래 산업이 인류와 공존하고 지속 가능해야 한다고 믿습니다.</p>
-<p>첨단 제조와 바이오 혁신, 탈중앙 금융을 통해 가치 창출 방식을 재정의합니다.</p>
-<p>PHK-POSCO는 실물 산업과 디지털 자산을 연결합니다.</p>
-<p>이를 통해 투명한 소유 구조와 공정한 글로벌 참여를 실현합니다.</p>
-<p>아시아, 유럽, 중동, 미주 지역의 전략적 파트너들과 협력합니다.</p>
-<p>탄소중립 제조와 친환경 에너지 기술에 집중합니다.</p>
-<p>Web3 뱅킹을 통해 국경 없는 금융 참여를 제공합니다.</p>
-<p>PHK-POSCO는 하나의 회사가 아닌 문명 설계입니다.</p>
-<p>문의: info@phkposco.com</p>
-</section>
+    <section id="eng" class="page">
+        <div class="lang-indicator">ENG</div>
+        <h1 class="title">PHK-POSCO: Global Hyper-Gap Strategy</h1>
+        <div class="grid-container">
+            <div class="content-box">
+                <h2>Current Issues</h2>
+                <p>Diminishing margins in traditional steel sectors and intense global price competition. Structural risks in high-risk manual labor environments and the escalating costs of carbon neutrality compliance.</p>
+            </div>
+            <div class="content-box">
+                <h2>Solutions</h2>
+                <p>Full-scale deployment of <span class="ai-text">Figure AI Humanoids</span> for 24/7 autonomous operations. Transitioning to <span class="sun-text">Artificial Sun (K-Star)</span> fusion energy for a limitless, carbon-free power supply.</p>
+            </div>
+            <div class="content-box">
+                <h2>Impact</h2>
+                <p>4x increase in operational efficiency and total elimination of workplace hazards. Dominance in the AI-robotics layer and achieving ultimate energy independence by 2035.</p>
+            </div>
+        </div>
+    </section>
 
-<!-- CHINESE -->
-<section id="zh" class="section">
-<h2>PHK-POSCO 全球愿景</h2>
-<p>PHK-POSCO 是一个融合钢铁、生物、能源与 Web3 金融的下一代产业平台。</p>
-<p>我们相信未来产业必须与人类和环境共生。</p>
-<p>通过先进制造、生物创新和去中心化金融创造新价值。</p>
-<p>PHK-POSCO 将实体经济与数字资产相连接。</p>
-<p>实现透明的所有权和全球公平参与。</p>
-<p>我们与亚洲、欧洲、中东和美洲的合作伙伴携手前进。</p>
-<p>专注于绿色能源和碳中和技术。</p>
-<p>Web3 银行体系实现无国界金融。</p>
-<p>PHK-POSCO 是产业文明的新模型。</p>
-<p>联系邮箱: info@phkposco.com</p>
-</section>
+    <section id="chn" class="page">
+        <div class="lang-indicator">CHN</div>
+        <h1 class="title">PHK-POSCO: 2026 全球超差距机器人-能源战略</h1>
+        <div class="grid-container">
+            <div class="content-box">
+                <h2>主要问题</h2>
+                <p>传统钢铁行业的盈利能力下降，全球供应过剩。高危作业环境导致的人员安全隐患，以及由于脱碳政策带来的巨大成本压力。</p>
+            </div>
+            <div class="content-box">
+                <h2>改进方案</h2>
+                <p>在所有工厂部署 <span class="ai-text">Figure AI 机器人</span>，实现全无人化生产。引入 <span class="sun-text">人工太阳 (K-Star) 能源</span> 系统，打造低成本、零排放的绿色工厂。</p>
+            </div>
+            <div class="content-box">
+                <h2>预期效果</h2>
+                <p>生产效率提升 400%，实现零工伤。大幅降低能源支出，在全球智能制造和特种材料领域确立不可撼动的领导地位。</p>
+            </div>
+        </div>
+    </section>
 
-<!-- ARABIC -->
-<section id="ar" class="section" dir="rtl">
-<h2>رؤية PHK-POSCO العالمية</h2>
-<p>PHK-POSCO منصة صناعية من الجيل القادم تجمع بين الصلب والتقنية الحيوية والطاقة وWeb3.</p>
-<p>نؤمن بأن الصناعة المستقبلية يجب أن تتعايش مع الإنسان والبيئة.</p>
-<p>نخلق قيمة جديدة من خلال التصنيع المتقدم والتمويل اللامركزي.</p>
-<p>نربط الاقتصاد الحقيقي بالأصول الرقمية.</p>
-<p>نحقق الشفافية والمشاركة العالمية العادلة.</p>
-<p>نتعاون مع شركاء في آسيا وأوروبا والشرق الأوسط والأمريكتين.</p>
-<p>نركز على الطاقة الخضراء والتصنيع المحايد كربونيًا.</p>
-<p>Web3 يتيح التمويل بلا حدود.</p>
-<p>PHK-POSCO نموذج حضاري صناعي جديد.</p>
-<p>البريد الإلكتروني: info@phkposco.com</p>
-</section>
+    <section id="ara" class="page rtl">
+        <div class="lang-indicator">ARA</div>
+        <h1 class="title">PHK-POSCO: استراتيجية الفجوة الفائقة 2026</h1>
+        <div class="grid-container">
+            <div class="content-box">
+                <h2>التحديات</h2>
+                <p>تراجع الربحية في قطاع الصلب التقليدي بسبب المنافسة العالمية الشرسة. مخاطر العمل اليدوي في البيئات الخطرة وزيادة تكاليف التحول الأخضر.</p>
+            </div>
+            <div class="content-box">
+                <h2>الحلول</h2>
+                <p>نشر روبوتات <span class="ai-text">Figure AI</span> في جميع مراحل الإنتاج. الاعتماد على طاقة <span class="sun-text">الشمس الاصطناعية (K-Star)</span> لتوفير طاقة نظيفة وغير محدودة.</p>
+            </div>
+            <div class="content-box">
+                <h2>النتائج المتوقعة</h2>
+                <p>زيادة الإنتاجية بنسبة 400% والقضاء على الحوادث. خفض تكاليف الطاقة بنسبة 90% وقيادة سوق الروبوتات العالمي بحلول 2030.</p>
+            </div>
+        </div>
+    </section>
 
-<!-- SPANISH -->
-<section id="es" class="section">
-<h2>Visión Global de PHK-POSCO</h2>
-<p>PHK-POSCO es una plataforma industrial de nueva generación que integra acero, bio, energía y Web3.</p>
-<p>Creemos en una industria futura sostenible y centrada en la humanidad.</p>
-<p>Redefinimos la creación de valor mediante innovación industrial y financiera.</p>
-<p>Conectamos la economía real con activos digitales.</p>
-<p>Promovemos propiedad transparente y participación global.</p>
-<p>Colaboramos con socios estratégicos en todo el mundo.</p>
-<p>Impulsamos energía verde y manufactura neutra en carbono.</p>
-<p>Web3 permite inclusión financiera sin fronteras.</p>
-<p>PHK-POSCO es más que una empresa: es un sistema global.</p>
-<p>Contacto: info@phkposco.com</p>
-</section>
+    <section id="esp" class="page">
+        <div class="lang-indicator">ESP</div>
+        <h1 class="title">PHK-POSCO: Estrategia de Convergencia Global</h1>
+        <div class="grid-container">
+            <div class="content-box">
+                <h2>Desafíos</h2>
+                <p>Erosión de márgenes en la industria del acero tradicional y competencia agresiva de precios. Riesgos de seguridad en procesos manuales y altos costos de cumplimiento ambiental.</p>
+            </div>
+            <div class="content-box">
+                <h2>Mejoras</h2>
+                <p>Implementación masiva de <span class="ai-text">Humanoides Figure AI</span> para automatización total. Uso de energía de <span class="sun-text">Sol Artificial (K-Star)</span> para una producción con huella de carbono cero.</p>
+            </div>
+            <div class="content-box">
+                <h2>Efectos Esperados</h2>
+                <p>Aumento del 400% en la productividad y seguridad total. Liderazgo absoluto en materiales avanzados y robótica inteligente para la década de 2030.</p>
+            </div>
+        </div>
+    </section>
 
-<footer>
-    © 2026 PHK-POSCO Global Platform · Contact: info@phkposco.com
-</footer>
+    <footer>
+        <h2>PHK-POSCO GLOBAL NETWORK</h2>
+        <p>Innovation for Human & Earth Intelligence</p>
+        <a href="mailto:info@phkposco.co" class="contact-btn">Contact: info@phkposco.co</a>
+        <div style="margin-top: 50px; opacity: 0.5;">
+            <p>© 2026 PHK-POSCO HOLDINGS. AUTHORIZED BY HYEGONG.</p>
+            <p>Strategic Partners: Figure AI | K-STAR Energy Group</p>
+        </div>
+    </footer>
 
+    <script>
+        // Navigation Active State Script
+        const sections = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
