@@ -3,94 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHK POTECH | 글로벌 산업의 재탄생</title>
+    <title>PHK POTECH | Shaping the Future</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;900&family=Noto+Sans+SC:wght@300;900&family=Noto+Sans+Arabic:wght@300;900&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;900&family=Noto+Sans+SC:wght@300;900&family=Noto+Sans+Arabic:wght@300;900&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Noto Sans KR', sans-serif; scroll-behavior: smooth; }
-        .snap-container { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; }
-        .section { height: 100vh; scroll-snap-align: start; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .bg-video-mock { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.4; z-index: -1; background: radial-gradient(circle, #3d0a63 0%, #000 100%); }
-        .overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8)); position: absolute; top: 0; width: 100%; height: 100%; z-index: 0; }
-        .content { z-index: 10; text-align: center; padding: 0 20px; }
-        .gold-text { color: #ffd700; }
+        body { background-color: #000; color: #fff; margin: 0; overflow: hidden; }
+        .snap-container { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+        section { 
+            height: 100vh; 
+            scroll-snap-align: start; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 40px;
+            position: relative;
+            text-align: center;
+        }
+        /* 각 페이지별 배경 톤 차별화 */
+        .bg-ko { background: linear-gradient(135deg, #1a0633 0%, #000 100%); }
+        .bg-en { background: linear-gradient(135deg, #051937 0%, #000 100%); }
+        .bg-zh { background: linear-gradient(135deg, #3b0909 0%, #000 100%); }
+        .bg-ar { background: linear-gradient(135deg, #0a2e1a 0%, #000 100%); }
+
+        .glass-box {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 2rem;
+            max-width: 900px;
+            width: 100%;
+        }
         .arabic { font-family: 'Noto Sans Arabic', sans-serif; direction: rtl; }
         .chinese { font-family: 'Noto Sans SC', sans-serif; }
+        .highlight { color: #ffd700; }
     </style>
 </head>
 <body>
 
     <div class="snap-container">
         
-        <section class="section" id="ko">
-            <div class="bg-video-mock"></div>
-            <div class="overlay"></div>
-            <div class="content">
-                <h2 class="text-sm tracking-[0.5em] text-yellow-500 mb-4">REBIRTH OF K-INDUSTRY</h2>
-                <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">노후된 제철 산업,<br><span class="gold-text">로봇으로 재탄생하다</span></h1>
-                <p class="max-w-2xl mx-auto text-lg text-gray-300 mb-10">
-                    PHK POTECH은 POSCO와 같은 전통 제조 현장의 노후화된 공정에 Figure AI의 지능형 로봇을 수혈합니다. 
-                    단순한 자동화를 넘어, <strong>위험은 제로화하고 효율은 극대화</strong>하여 대한민국 중공업의 새로운 100년을 설계합니다.
-                </p>
-                <div class="flex justify-center gap-4">
-                    <span class="px-6 py-2 border border-yellow-500 text-yellow-500 rounded-full">스마트 팩토리</span>
-                    <span class="px-6 py-2 border border-yellow-500 text-yellow-500 rounded-full">자율 로봇</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="en">
-            <div class="bg-video-mock" style="background: radial-gradient(circle, #1a365d 0%, #000 100%);"></div>
-            <div class="overlay"></div>
-            <div class="content">
-                <h2 class="text-sm tracking-[0.5em] text-blue-400 mb-4">GLOBAL INFRASTRUCTURE</h2>
-                <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight uppercase font-[Oswald]">Designing the Future<br><span class="text-blue-400">of Human Industry</span></h1>
-                <p class="max-w-2xl mx-auto text-lg text-gray-300 mb-10">
-                    We don't just upgrade factories; we redefine the relationship between humans and machines. 
-                    By integrating PHK Holdings' financial power with cutting-edge robotics, we transform legacy industries into future-proof assets.
-                </p>
-                <a href="mailto:info@phkpotech.com" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-lg font-bold transition-all">CONNECT WITH US</a>
-            </div>
-        </section>
-
-        <section class="section chinese" id="zh">
-            <div class="bg-video-mock" style="background: radial-gradient(circle, #742a2a 0%, #000 100%);"></div>
-            <div class="overlay"></div>
-            <div class="content">
-                <h2 class="text-sm tracking-[0.5em] text-red-500 mb-4">产业升级与核心技术</h2>
-                <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">赋予陈旧产业<br><span class="text-red-500">新的生命力</span></h1>
-                <p class="max-w-2xl mx-auto text-lg text-gray-300 mb-10">
-                    PHK POTECH 致力于将传统制造业向智能化转型。通过部署高度自主的机器人系统，
-                    我们将过时的生产线转变为高效率、零风险的未来工厂，引领全球产业革命。
+        <section class="bg-ko">
+            <div class="glass-box">
+                <h2 class="text-yellow-500 tracking-widest mb-6">KOREAN</h2>
+                <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">인류 산업의 미래를 <span class="highlight">설계하다</span></h1>
+                <h3 class="text-2xl font-bold mb-6">핵심 기술과 비전</h3>
+                <p class="text-xl text-gray-300 leading-relaxed">
+                    자율 로봇의 산업 현장 투입을 통한 위험 작업 제로화 및 스마트 팩토리 혁신을 주도합니다. 
+                    노후화된 국내 제조 산업에 새로운 생명력을 불어넣고, 인류의 안전과 효율을 동시에 달성합니다.
                 </p>
             </div>
         </section>
 
-        <section class="section arabic" id="ar">
-            <div class="bg-video-mock" style="background: radial-gradient(circle, #276749 0%, #000 100%);"></div>
-            <div class="overlay"></div>
-            <div class="content">
-                <h2 class="text-sm tracking-[0.5em] text-green-500 mb-4">رؤية عالمية</h2>
-                <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">إعادة ابتكار <br><span class="text-green-500">الصناعات التقليدية</span></h1>
-                <p class="max-w-2xl mx-auto text-xl text-gray-300 mb-10">
-                    نحن في PHK POTECH نقوم بتحويل الصناعات القديمة إلى عصر جديد من الذكاء الاصطناعي. 
-                    رؤيتنا تتجاوز الحدود لتطوير بنية تحتية ذكية تخدم الإنسانية جمعاء.
+        <section class="bg-en">
+            <div class="glass-box">
+                <h2 class="text-blue-400 tracking-widest mb-6">ENGLISH</h2>
+                <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight uppercase">Designing the <span class="text-blue-400">Future</span></h1>
+                <h3 class="text-2xl font-bold mb-6">Investment Synergy</h3>
+                <p class="text-xl text-gray-300 leading-relaxed">
+                    Securing dominant market share by combining PHK Holdings' financial infrastructure with the global robotics ecosystem. 
+                    We transform legacy industrial assets into high-value technological powerhouses through strategic AI integration.
                 </p>
-                <p class="text-2xl font-bold tracking-widest">info@phkpotech.com</p>
+            </div>
+        </section>
+
+        <section class="bg-zh chinese">
+            <div class="glass-box">
+                <h2 class="text-red-500 tracking-widest mb-6">CHINESE</h2>
+                <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">设计人类产业的<span class="text-red-500">未来</span></h1>
+                <h3 class="text-2xl font-bold mb-6">核心技术与愿景</h3>
+                <p class="text-xl text-gray-300 leading-relaxed">
+                    通过在工业现场部署自主机器人，实现危险作业零化，引领智能工厂革新。
+                    我们将落后的工业体系升级为世界领先的AI驱动生产基地。
+                </p>
+            </div>
+        </section>
+
+        <section class="bg-ar arabic">
+            <div class="glass-box">
+                <h2 class="text-green-500 tracking-widest mb-6 text-right">ARABIC</h2>
+                <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight text-right">تصميم مستقبل <span class="text-green-500">الصناعة البشرية</span></h1>
+                <h3 class="text-2xl font-bold mb-6 text-right">التكنولوجيا والرؤية</h3>
+                <p class="text-xl text-gray-300 leading-relaxed text-right">
+                    قيادة الابتكار في المصانع الذكية والقضاء على الأعمال الخطرة من خلال نشر الروبوتات المستقلة. 
+                    إعادة إحياء القطاعات الصناعية القديمة وتحويلها إلى مراكز تكنولوجية متقدمة.
+                </p>
             </div>
         </section>
 
     </div>
 
-    <div class="fixed top-8 left-8 z-50">
-        <h1 class="text-2xl font-black tracking-tighter">PHK <span class="text-yellow-500">POTECH</span></h1>
-    </div>
-
-    <div class="fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4">
-        <a href="#ko" class="w-3 h-3 bg-yellow-500 rounded-full"></a>
-        <a href="#en" class="w-3 h-3 bg-gray-500 rounded-full"></a>
-        <a href="#zh" class="w-3 h-3 bg-gray-500 rounded-full"></a>
-        <a href="#ar" class="w-3 h-3 bg-gray-500 rounded-full"></a>
+    <div class="fixed bottom-10 left-0 right-0 z-50 text-center">
+        <a href="mailto:info@phkpotech.com" class="inline-block bg-white/10 hover:bg-yellow-500 hover:text-black text-white px-8 py-3 rounded-full border border-white/20 transition-all font-bold">
+            GLOBAL BUSINESS INQUIRY: info@phkpotech.com
+        </a>
     </div>
 
 </body>
