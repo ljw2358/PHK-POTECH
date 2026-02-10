@@ -1,153 +1,211 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHK POTECH | Global Vision 2026</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-        body { font-family: 'Noto Sans KR', 'Noto Sans SC', 'Noto Sans Arabic', sans-serif; background-color: #050505; color: #ffffff; scroll-behavior: smooth; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .glow-text { text-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
-        .lang-card:hover { transform: translateY(-10px); transition: 0.4s; border-color: #3b82f6; }
-        .arabic { direction: rtl; font-family: 'Noto Sans Arabic', sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #020617 100%); }
-    </style>
+  <meta charset="UTF-8" />
+  <title>PHK-POTECH</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(180deg, #050820, #0a1340);
+      color: #ffffff;
+      text-align: center;
+    }
+
+    header {
+      padding: 90px 20px 60px;
+    }
+
+    header h1 {
+      font-size: 44px;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+    }
+
+    header p {
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 900px;
+      margin: 0 auto 40px;
+      opacity: 0.92;
+    }
+
+    .lang-buttons button {
+      margin: 6px;
+      padding: 10px 22px;
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.4);
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .lang-buttons button.active {
+      background: #ffffff;
+      color: #0a1340;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 70px 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    section h2 {
+      font-size: 36px;
+      margin-bottom: 26px;
+    }
+
+    section p {
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 960px;
+      margin: 0 auto;
+      opacity: 0.95;
+    }
+
+    .card {
+      background: linear-gradient(180deg, #1a2360, #141b48);
+      border-radius: 20px;
+      padding: 34px 28px;
+      margin: 28px auto;
+      max-width: 960px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.4);
+    }
+
+    .card h3 {
+      font-size: 23px;
+      margin-bottom: 14px;
+    }
+
+    .card p {
+      font-size: 17px;
+      line-height: 1.6;
+      opacity: 0.96;
+    }
+
+    footer {
+      padding: 45px 20px 55px;
+      font-size: 14px;
+      opacity: 0.75;
+    }
+
+    footer strong {
+      display: block;
+      margin-top: 12px;
+      font-size: 15px;
+    }
+  </style>
 </head>
-<body class="overflow-x-hidden">
 
-    <nav class="fixed w-full z-50 glass px-8 py-5 flex justify-between items-center">
-        <div class="text-3xl font-black tracking-tighter glow-text">PHK <span class="text-blue-500">POTECH</span></div>
-        <div class="hidden lg:flex space-x-6 text-xs font-bold uppercase tracking-widest text-gray-400">
-            <a href="#korean" class="hover:text-blue-400 transition">KOR</a>
-            <a href="#english" class="hover:text-blue-400 transition">ENG</a>
-            <a href="#chinese" class="hover:text-blue-400 transition">CHN</a>
-            <a href="#arabic" class="hover:text-blue-400 transition">ARB</a>
-            <a href="#spanish" class="hover:text-blue-400 transition">ESP</a>
-        </div>
-        <a href="mailto:info@phkpotech.com" class="bg-white text-black px-6 py-2 rounded-full font-bold hover:bg-blue-500 hover:text-white transition duration-300">
-            CONTACT US
-        </a>
-    </nav>
+<body>
 
-    <section class="min-h-screen flex items-center justify-center gradient-bg relative pt-20">
-        <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div class="text-center z-10 px-6" data-aos="fade-up">
-            <h1 class="text-7xl md:text-9xl font-black mb-6 tracking-tighter">GLOBAL<br><span class="text-blue-600">ALLIANCE</span></h1>
-            <p class="text-xl md:text-2xl text-gray-400 mb-12 max-w-4xl mx-auto font-light leading-relaxed">
-                POSCO Technology meets Figure AI Intelligence. <br>
-                5 Languages, One Vision: Empowering the Future of Humanity.
-            </p>
-            <div class="flex justify-center animate-bounce">
-                <svg class="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-            </div>
-        </div>
-    </section>
+  <!-- HERO -->
+  <header>
+    <h1>PHK-POTECH</h1>
+    <p id="heroText">
+      Engineering the Future of Industry, Energy, and Space.<br>
+      Beyond steel. Beyond automation. We design the next industrial civilization.
+    </p>
 
-    <section id="korean" class="py-32 px-10 border-b border-zinc-900">
-        <div class="max-w-6xl mx-auto" data-aos="fade-right">
-            <h2 class="text-blue-500 font-bold mb-4 uppercase tracking-widest text-sm">Korea Headquarters</h2>
-            <h3 class="text-5xl font-black mb-8">혁신의 심장, PHK POTECH</h3>
-            <p class="text-gray-400 text-lg leading-loose mb-10">
-                포스코의 초격차 철강 기술과 Figure AI의 휴머노이드 기술이 결합되어 대한민국 산업의 새로운 전성기를 엽니다. 
-                우리는 단순한 기계를 만드는 것이 아니라, 인류의 동반자를 설계합니다. 혜공 형님의 리더십 아래 2026년 코스피의 주역이 되겠습니다.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="p-6 glass rounded-xl"><strong>핵심 전략:</strong> 포스코 소재 공급망 최적화</div>
-                <div class="p-6 glass rounded-xl"><strong>목표:</strong> 2026년 휴머노이드 상용화</div>
-            </div>
-        </div>
-    </section>
+    <div class="lang-buttons">
+      <button class="active" onclick="setLang('en')">English</button>
+      <button onclick="setLang('ko')">한국어</button>
+      <button onclick="setLang('zh')">中文</button>
+      <button onclick="setLang('ar')">العربية</button>
+      <button onclick="setLang('es')">Español</button>
+    </div>
+  </header>
 
-    <section id="english" class="py-32 px-10 bg-zinc-900/50 border-b border-zinc-900">
-        <div class="max-w-6xl mx-auto text-right" data-aos="fade-left">
-            <h2 class="text-blue-500 font-bold mb-4 uppercase tracking-widest text-sm">Global Strategic Vision</h2>
-            <h3 class="text-5xl font-black mb-8 italic text-white">"Beyond Human Limits"</h3>
-            <p class="text-gray-400 text-lg leading-loose mb-10">
-                PHK POTECH is redefining the integration of heavy industry and artificial intelligence. 
-                By acquiring Figure AI, we secure the most advanced general-purpose humanoid platform. 
-                Our mission is to deploy 1 million AI units across global logistics and manufacturing sites by 2030.
-            </p>
-            <button class="border border-blue-500 text-blue-500 px-8 py-3 rounded hover:bg-blue-500 hover:text-white transition">READ WHITE PAPER</button>
-        </div>
-    </section>
+  <!-- WHO WE ARE -->
+  <section>
+    <h2 id="whoTitle">Who We Are</h2>
+    <p id="whoText">
+      POSCO built the steel foundation of modern industry.<br><br>
+      PHK-POTECH inherits that legacy — and replaces it.<br><br>
+      We dismantle labor-intensive, carbon-heavy industries and rebuild them with
+      robotics, artificial intelligence, advanced energy systems, and aerospace-grade manufacturing.
+      <br><br>
+      This is not innovation for headlines.  
+      This is national-level industrial survival engineering.
+    </p>
+  </section>
 
-    <section id="chinese" class="py-32 px-10 border-b border-zinc-900">
-        <div class="max-w-6xl mx-auto" data-aos="fade-up">
-            <h2 class="text-blue-500 font-bold mb-4 uppercase tracking-widest text-sm">亚太市场与供应链</h2>
-            <h3 class="text-5xl font-black mb-8">融合钢铁与智能</h3>
-            <p class="text-gray-400 text-lg leading-loose mb-10">
-                PHK POTECH 致力于打造全球领先的智能制造生态系统。结合浦项制铁（POSCO）的世界级材料技术，
-                我们正在开发能够适应极端工业环境的新型机器人。我们将引领亚太地区进入自动化生产的新时代。
-            </p>
-            <div class="flex space-x-4">
-                <span class="px-4 py-1 bg-zinc-800 text-zinc-400 rounded">智能制造</span>
-                <span class="px-4 py-1 bg-zinc-800 text-zinc-400 rounded">机器人技术</span>
-            </div>
-        </div>
-    </section>
+  <!-- ROBOTICS -->
+  <div class="card">
+    <h3 id="rTitle">🤖 Robotics & Automation</h3>
+    <p id="rText">
+      Through partnerships and investments including Figure-class humanoid robotics,
+      we replace 3D industries with autonomous AI systems —
+      permanently solving labor shortages and cost collapse.
+    </p>
+  </div>
 
-    <section id="arabic" class="py-32 px-10 bg-blue-900/10 border-b border-zinc-900 arabic">
-        <div class="max-w-6xl mx-auto" data-aos="zoom-in">
-            <h2 class="text-blue-500 font-bold mb-4 uppercase tracking-widest text-sm">الشرق الأوسط وأفريقيا</h2>
-            <h3 class="text-5xl font-black mb-8">مستقبل الذكاء الاصطناعي</h3>
-            <p class="text-gray-300 text-xl leading-relaxed mb-10">
-                تقوم PHK POTECH بتحويل الصناعات الثقيلة من خلال دمج تقنيات Figure AI مع خبرة POSCO في الصلب. 
-                نحن نسعى لبناء مدن ذكية ومصانع آلية بالكامل في قلب الشرق الأوسط، مما يدعم رؤية التحول الرقمي العالمي.
-            </p>
-            <div class="inline-block p-4 border-r-4 border-blue-600 glass">
-                ثورة الروبوتات تبدأ هنا
-            </div>
-        </div>
-    </section>
+  <!-- ENERGY -->
+  <div class="card">
+    <h3 id="eTitle">☀️ Advanced Energy & Artificial Sun</h3>
+    <p id="eText">
+      PHK-POTECH develops core components and infrastructure for fusion-related systems,
+      hydrogen economies, and intelligent power grids —
+      engineering the artificial sun that powers post-carbon civilization.
+    </p>
+  </div>
 
-    <section id="spanish" class="py-32 px-10 border-b border-zinc-900">
-        <div class="max-w-6xl mx-auto" data-aos="fade-up">
-            <h2 class="text-blue-500 font-bold mb-4 uppercase tracking-widest text-sm">Mercados Iberoamericanos</h2>
-            <h3 class="text-5xl font-black mb-8">Innovación Sin Fronteras</h3>
-            <p class="text-gray-400 text-lg leading-loose mb-10">
-                PHK POTECH y Figure AI están creando la fuerza de trabajo del mañana. Nuestra tecnología de acero avanzado 
-                garantiza durabilidad, mientras que el cerebro de IA proporciona versatilidad. Estamos listos para 
-                liderar la revolución industrial en el mundo de habla hispana.
-            </p>
-            <div class="grid grid-cols-3 gap-4">
-                <div class="h-2 w-full bg-blue-900"></div>
-                <div class="h-2 w-full bg-blue-600"></div>
-                <div class="h-2 w-full bg-blue-300"></div>
-            </div>
-        </div>
-    </section>
+  <!-- SPACE -->
+  <div class="card">
+    <h3 id="sTitle">🚀 Aerospace & Space</h3>
+    <p id="sText">
+      We manufacture ultra-precision components for aviation,
+      satellites, launch systems, and orbital infrastructure —
+      where industrial accuracy defines geopolitical power.
+    </p>
+  </div>
 
-    <section id="contact" class="py-40 bg-black relative">
-        <div class="max-w-4xl mx-auto text-center px-6">
-            <h2 class="text-6xl font-black mb-12 glow-text">CONTACT US</h2>
-            <div class="glass p-12 rounded-3xl border-blue-500/20">
-                <p class="text-2xl text-gray-300 mb-6">사업 제휴 및 투자 문의</p>
-                <a href="mailto:info@phkpotech.com" class="text-4xl md:text-5xl font-bold text-blue-400 hover:text-white transition underline decoration-1 underline-offset-8">
-                    info@phkpotech.com
-                </a>
-                <div class="mt-12 text-zinc-500 flex flex-col items-center space-y-2">
-                    <p>Seoul | New York | Riyadh | Shanghai | Madrid</p>
-                    <p class="text-xs tracking-[0.5em] text-zinc-700">PHK POTECH GLOBAL GROUP</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- AI -->
+  <div class="card">
+    <h3 id="aiTitle">🧠 Industrial AI</h3>
+    <p id="aiText">
+      Our industrial AI optimizes pricing, production, logistics,
+      and global supply chains — transforming data into strategic dominance
+      for governments and global enterprises.
+    </p>
+  </div>
 
-    <footer class="py-10 px-8 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center text-zinc-600 text-xs">
-        <p>&copy; 2026 PHK POTECH & 혜공 형님. Engineered by 삐니.</p>
-        <div class="flex space-x-6 mt-4 md:mt-0 uppercase font-bold">
-            <a href="#" class="hover:text-blue-500">Privacy Policy</a>
-            <a href="#" class="hover:text-blue-500">Terms of Service</a>
-            <a href="#" class="hover:text-blue-500">Admin</a>
-        </div>
-    </footer>
+  <!-- FOOTER -->
+  <footer>
+    PHK Group Network: PHK-BANK · PHK-BIO · PHK-UMB · PHK-POTECH
+    <strong>Contact: info@phkpotech.com</strong>
+    © PHK-POTECH. All Rights Reserved.
+  </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: true });
-    </script>
+  <!-- LANGUAGE SCRIPT -->
+  <script>
+    const text = {
+      en: {
+        hero: "Engineering the Future of Industry, Energy, and Space.<br>Beyond steel. Beyond automation. We design the next industrial civilization.",
+        who: "POSCO built the steel foundation of modern industry.<br><br>PHK-POTECH inherits that legacy — and replaces it.<br><br>We dismantle labor-intensive, carbon-heavy industries and rebuild them with robotics, artificial intelligence, advanced energy systems, and aerospace-grade manufacturing.<br><br>This is not innovation for headlines. This is national-level industrial survival engineering."
+      },
+      ko: {
+        hero: "산업·에너지·우주의 미래를 설계하다.<br>철강을 넘어, 자동화를 넘어 새로운 산업문명을 만든다.",
+        who: "포스코가 철강으로 산업의 기초를 만들었다면,<br><br>PHK-POTECH는 그 유산을 계승해 산업을 교체한다.<br><br>우리는 노동집약·탄소집약 산업을 해체하고 로봇·AI·차세대 에너지·우주급 제조로 재구성한다.<br><br>이것은 홍보가 아니라 국가 생존 전략이다."
+      }
+    };
+
+    function setLang(lang) {
+      document.getElementById("heroText").innerHTML = text[lang].hero;
+      document.getElementById("whoText").innerHTML = text[lang].who;
+      document.querySelectorAll(".lang-buttons button").forEach(b => b.classList.remove("active"));
+      event.target.classList.add("active");
+    }
+  </script>
+
 </body>
 </html>
