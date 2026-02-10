@@ -1,204 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PHK-POTECH</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PHK POTECH | Beyond POSCO</title>
 
-<style>
-body{
-margin:0;
-font-family:Arial, sans-serif;
-background:linear-gradient(#0b0f2e,#141a4d);
-color:white;
-text-align:center;
-}
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Arial, sans-serif; }
+    body { background: #0b0e14; color: #eaeaea; line-height: 1.6; }
 
-.container{
-padding:40px 20px;
-max-width:900px;
-margin:auto;
-}
+    header {
+      height: 100vh;
+      background: linear-gradient(135deg, #1a1f2b, #0b0e14);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
 
-h1{
-font-size:50px;
-margin-bottom:10px;
-}
+    header h1 {
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
 
-.subtitle{
-font-size:20px;
-opacity:0.8;
-margin-bottom:30px;
-}
+    header h1 span {
+      color: #4da6ff;
+    }
 
-.lang-btn{
-border:1px solid white;
-padding:10px 20px;
-border-radius:30px;
-margin:5px;
-cursor:pointer;
-background:transparent;
-color:white;
-}
+    header p {
+      max-width: 800px;
+      font-size: 1.2rem;
+      opacity: 0.85;
+    }
 
-.lang-btn.active{
-background:white;
-color:#141a4d;
-font-weight:bold;
-}
+    section {
+      padding: 80px 10%;
+    }
 
-.card{
-background:rgba(255,255,255,0.08);
-padding:25px;
-border-radius:20px;
-margin:20px 0;
-}
+    .section-title {
+      font-size: 2.4rem;
+      margin-bottom: 30px;
+      border-left: 5px solid #4da6ff;
+      padding-left: 15px;
+    }
 
-footer{
-margin-top:40px;
-opacity:0.7;
-font-size:14px;
-}
-</style>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #141a26;
+      padding: 30px;
+      border-radius: 12px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(77,166,255,0.25);
+    }
+
+    .card h3 {
+      color: #4da6ff;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      background: #070a10;
+      padding: 40px 10%;
+      text-align: center;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .contact {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #4da6ff;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <!-- HERO -->
+  <header>
+    <h1>POSCO → <span>PHK POTECH</span></h1>
+    <p>
+      From steel to the future.  
+      PHK POTECH redefines global industry through robotics, AI, advanced materials,
+      clean energy, and space-grade manufacturing.
+    </p>
+  </header>
 
-<h1>PHK-POTECH</h1>
-<div id="subtitle" class="subtitle"></div>
+  <!-- VISION -->
+  <section>
+    <div class="section-title">Our Vision</div>
+    <p>
+      POSCO built the foundation of industrial Korea.  
+      PHK POTECH goes beyond — creating a post-steel civilization driven by automation,
+      artificial intelligence, and next-generation industrial ecosystems.
+    </p>
+  </section>
 
-<div>
-<button class="lang-btn active" onclick="setLang('en')">English</button>
-<button class="lang-btn" onclick="setLang('ko')">한국어</button>
-<button class="lang-btn" onclick="setLang('zh')">中文</button>
-<button class="lang-btn" onclick="setLang('ar')">العربية</button>
-<button class="lang-btn" onclick="setLang('es')">Español</button>
-</div>
+  <!-- CORE INDUSTRIES -->
+  <section>
+    <div class="section-title">Core Industries</div>
+    <div class="grid">
+      <div class="card">
+        <h3>Robotics & Automation</h3>
+        <p>Replacing 3D industries, solving labor shortages, and redefining productivity.</p>
+      </div>
+      <div class="card">
+        <h3>AI Manufacturing</h3>
+        <p>Autonomous factories powered by real-time data and generative intelligence.</p>
+      </div>
+      <div class="card">
+        <h3>Advanced Materials</h3>
+        <p>Beyond steel — ultra-light, ultra-strong, and space-grade materials.</p>
+      </div>
+      <div class="card">
+        <h3>Energy & Artificial Sun</h3>
+        <p>Fusion-related components and next-generation energy infrastructure.</p>
+      </div>
+      <div class="card">
+        <h3>Space & Defense Parts</h3>
+        <p>Precision components for aerospace, satellites, and global security.</p>
+      </div>
+      <div class="card">
+        <h3>Industrial Platform Banking</h3>
+        <p>Parts Bank + Industrial Finance + Web3 infrastructure.</p>
+      </div>
+    </div>
+  </section>
 
-<h2 id="whoTitle"></h2>
-<p id="whoDesc"></p>
+  <!-- STRATEGY -->
+  <section>
+    <div class="section-title">Global Strategy</div>
+    <p>
+      PHK POTECH invests aggressively in robotics leaders, AI core technologies,
+      and energy breakthroughs — building an industrial empire designed for
+      the next 50 years.
+    </p>
+  </section>
 
-<div class="card">
-<h3 id="robotTitle"></h3>
-<p id="robotDesc"></p>
-</div>
+  <!-- FOOTER -->
+  <footer>
+    © 2026 PHK POTECH. All Rights Reserved.
+    <div class="contact">Contact: info@phkpotech.com</div>
+  </footer>
 
-<div class="card">
-<h3 id="energyTitle"></h3>
-<p id="energyDesc"></p>
-</div>
-
-<div class="card">
-<h3 id="spaceTitle"></h3>
-<p id="spaceDesc"></p>
-</div>
-
-<div class="card">
-<h3 id="aiTitle"></h3>
-<p id="aiDesc"></p>
-</div>
-
-<footer id="footer"></footer>
-
-</div>
-
-<script>
-
-const content = {
-
-en:{
-subtitle:"Engineering the Future of Industry, Energy, and Space",
-whoTitle:"Who We Are",
-whoDesc:"PHK-POTECH is the core technology pillar of the PHK Group, leading advanced manufacturing, robotics, clean energy, aerospace systems, and industrial AI. We exist to restore global competitiveness through technology.",
-robotTitle:"🤖 Robotics & Automation",
-robotDesc:"Replacing labor-intensive industries with autonomous, AI-driven robotic systems.",
-energyTitle:"☀ Advanced Energy",
-energyDesc:"Next-generation energy systems including fusion, hydrogen, and smart grids.",
-spaceTitle:"🚀 Aerospace & Space",
-spaceDesc:"High-precision components for aviation, satellites, and space infrastructure.",
-aiTitle:"🧠 Industrial AI",
-aiDesc:"AI optimization for pricing, production efficiency, and global supply chains.",
-footer:"PHK Group Network: PHK-BANK · PHK-BIO · PHK-UMB · PHK-POTECH <br> Contact: info@phkpotech.com <br> © PHK-POTECH. All Rights Reserved."
-},
-
-ko:{
-subtitle:"산업, 에너지, 우주의 미래를 설계합니다",
-whoTitle:"회사 소개",
-whoDesc:"PHK-POTECH는 PHK 그룹의 핵심 기술 축으로 첨단 제조, 로봇, 청정 에너지, 항공우주 시스템 및 산업 AI를 선도합니다. 우리는 기술을 통해 글로벌 경쟁력을 회복하기 위해 존재합니다.",
-robotTitle:"🤖 로봇 & 자동화",
-robotDesc:"AI 기반 자율 로봇 시스템으로 노동 집약 산업을 대체합니다.",
-energyTitle:"☀ 첨단 에너지",
-energyDesc:"핵융합, 수소, 스마트 그리드를 포함한 차세대 에너지 시스템.",
-spaceTitle:"🚀 항공우주",
-spaceDesc:"항공, 위성 및 우주 인프라를 위한 초정밀 부품.",
-aiTitle:"🧠 산업 AI",
-aiDesc:"가격, 생산 효율 및 글로벌 공급망 최적화를 위한 AI 기술.",
-footer:"PHK 그룹 네트워크: PHK-BANK · PHK-BIO · PHK-UMB · PHK-POTECH <br> 문의: info@phkpotech.com <br> © PHK-POTECH. 모든 권리 보유."
-},
-
-zh:{
-subtitle:"打造工业、能源与太空的未来",
-whoTitle:"关于我们",
-whoDesc:"PHK-POTECH是PHK集团的核心技术支柱，领导先进制造、机器人、清洁能源、航空航天系统及工业人工智能。我们致力于通过技术恢复全球竞争力。",
-robotTitle:"🤖 机器人与自动化",
-robotDesc:"用人工智能驱动的自主机器人系统取代劳动密集型产业。",
-energyTitle:"☀ 先进能源",
-energyDesc:"包括核聚变、氢能和智能电网的下一代能源系统。",
-spaceTitle:"🚀 航空航天",
-spaceDesc:"为航空、卫星及太空基础设施提供高精度组件。",
-aiTitle:"🧠 工业人工智能",
-aiDesc:"用于定价、生产效率及全球供应链优化的AI技术。",
-footer:"PHK集团网络: PHK-BANK · PHK-BIO · PHK-UMB · PHK-POTECH <br> 联系方式: info@phkpotech.com <br> © PHK-POTECH 版权所有."
-},
-
-ar:{
-subtitle:"هندسة مستقبل الصناعة والطاقة والفضاء",
-whoTitle:"من نحن",
-whoDesc:"تعد PHK-POTECH الركيزة التكنولوجية الأساسية لمجموعة PHK، حيث تقود التصنيع المتقدم والروبوتات والطاقة النظيفة وأنظمة الفضاء والذكاء الاصطناعي الصناعي. نحن موجودون لاستعادة القدرة التنافسية العالمية من خلال التكنولوجيا.",
-robotTitle:"🤖 الروبوتات والأتمتة",
-robotDesc:"استبدال الصناعات كثيفة العمالة بأنظمة روبوتية مستقلة مدعومة بالذكاء الاصطناعي.",
-energyTitle:"☀ الطاقة المتقدمة",
-energyDesc:"أنظمة الطاقة من الجيل القادم بما في ذلك الاندماج النووي والهيدروجين والشبكات الذكية.",
-spaceTitle:"🚀 الطيران والفضاء",
-spaceDesc:"مكونات عالية الدقة للطيران والأقمار الصناعية والبنية التحتية الفضائية.",
-aiTitle:"🧠 الذكاء الاصطناعي الصناعي",
-aiDesc:"تحسين الأسعار وكفاءة الإنتاج وسلاسل التوريد العالمية باستخدام الذكاء الاصطناعي.",
-footer:"شبكة PHK: PHK-BANK · PHK-BIO · PHK-UMB · PHK-POTECH <br> الاتصال: info@phkpotech.com <br> جميع الحقوق محفوظة © PHK-POTECH."
-},
-
-es:{
-subtitle:"Ingeniería del futuro de la industria, energía y espacio",
-whoTitle:"Quiénes Somos",
-whoDesc:"PHK-POTECH es el pilar tecnológico central del Grupo PHK, liderando manufactura avanzada, robótica, energía limpia, sistemas aeroespaciales e inteligencia artificial industrial. Existimos para restaurar la competitividad global mediante la tecnología.",
-robotTitle:"🤖 Robótica y Automatización",
-robotDesc:"Reemplazando industrias intensivas en mano de obra con sistemas robóticos autónomos impulsados por IA.",
-energyTitle:"☀ Energía Avanzada",
-energyDesc:"Sistemas energéticos de próxima generación incluyendo fusión, hidrógeno y redes inteligentes.",
-spaceTitle:"🚀 Aeroespacial y Espacio",
-spaceDesc:"Componentes de alta precisión para aviación, satélites e infraestructura espacial.",
-aiTitle:"🧠 IA Industrial",
-aiDesc:"Optimización de precios, eficiencia de producción y cadenas de suministro globales mediante IA.",
-footer:"Red del Grupo PHK: PHK-BANK · PHK-BIO · PHK-UMB · PHK-POTECH <br> Contacto: info@phkpotech.com <br> © PHK-POTECH. Todos los derechos reservados."
-}
-
-};
-
-function setLang(lang){
-
-document.querySelectorAll(".lang-btn").forEach(btn=>btn.classList.remove("active"));
-event.target.classList.add("active");
-
-document.getElementById("subtitle").innerHTML = content[lang].subtitle;
-document.getElementById("whoTitle").innerHTML = content[lang].whoTitle;
-document.getElementById("whoDesc").innerHTML = content[lang].whoDesc;
-document.getElementById("robotTitle").innerHTML = content[lang].robotTitle;
-document.getElementById("robotDesc").innerHTML = content[lang].robotDesc;
-document.getElementById("energyTitle").innerHTML = content[lang].energyTitle;
-document.getElementById("energyDesc").innerHTML = content[lang].energyDesc;
-document.getElementById("spaceTitle").innerHTML = content[lang].spaceTitle;
-document.getElementById("spaceDesc").innerHTML = content[lang].spaceDesc;
-document.getElementById("aiTitle").innerHTML = content[lang].aiTitle;
-document.getElementById("aiDesc").innerHTML = content[lang].aiDesc;
-document.getElementById("footer").innerHTML = content[lang].footer;
+</body>
+</html>
