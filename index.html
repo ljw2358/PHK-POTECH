@@ -3,148 +3,144 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PHK-POTECH</title>
+<title>PHK-POTECH | Beyond Steel. Beyond Automation.</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-body{
-    margin:0;
-    font-family: 'Arial', sans-serif;
-    background:#070d2d;
-    color:white;
-    text-align:center;
+* {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body {background:#050b2d;color:white;overflow-x:hidden;}
+section {padding:100px 10%;text-align:center;}
+h1 {font-size:48px;font-weight:800;margin-bottom:20px;}
+h2 {font-size:36px;margin-bottom:30px;font-weight:700;}
+p {font-size:18px;line-height:1.8;max-width:900px;margin:0 auto 25px auto;color:#d6d6d6;}
+.hero {min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#02061f,#0b1450);}
+.hero h1 {font-size:56px;}
+.hero p {font-size:22px;margin-top:20px;}
+.lang-buttons {margin-top:50px;display:flex;flex-wrap:wrap;gap:20px;justify-content:center;}
+.lang-buttons button {
+padding:14px 40px;
+border-radius:40px;
+border:2px solid white;
+background:transparent;
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
 }
-
-.container{
-    padding:80px 20px;
+.lang-buttons button:hover {background:white;color:#050b2d;}
+.divider {height:1px;background:#333;margin:0 10%;}
+.card-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;margin-top:60px;}
+.card {
+background:#0c1445;
+padding:40px;
+border-radius:20px;
+transition:0.4s;
 }
-
-h1{
-    font-size:48px;
-    margin-bottom:30px;
-    letter-spacing:2px;
-}
-
-.tagline{
-    font-size:20px;
-    line-height:1.6;
-    max-width:700px;
-    margin:0 auto 50px;
-    opacity:0.9;
-}
-
-.lang-buttons{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:15px;
-}
-
-.lang-buttons button{
-    padding:12px 25px;
-    border-radius:30px;
-    border:1px solid white;
-    background:transparent;
-    color:white;
-    cursor:pointer;
-    font-size:16px;
-    transition:0.3s;
-}
-
-.lang-buttons button:hover{
-    background:white;
-    color:#070d2d;
-}
-
-.section{
-    padding:80px 20px;
-    border-top:1px solid rgba(255,255,255,0.2);
-}
-
-h2{
-    font-size:36px;
-    margin-bottom:20px;
-}
+.card:hover {transform:translateY(-10px);background:#121c60;}
+.card h3 {font-size:22px;margin-bottom:15px;color:#ffffff;}
+.footer {padding:60px 10%;background:#02061f;font-size:14px;color:#aaa;text-align:center;}
+.highlight {color:#00f0ff;}
 </style>
 </head>
 
 <body>
 
-<div class="container">
-    <h1 id="title">PHK-POTECH</h1>
+<!-- HERO -->
+<section class="hero">
+<h1>Beyond Steel. Beyond Automation.</h1>
+<p>We design the next industrial civilization.</p>
 
-    <div class="tagline" id="tagline">
-        Engineering the Future of Industry, Energy, and Space.<br>
-        Beyond steel. Beyond automation.<br>
-        We design the next industrial civilization.
-    </div>
+<div class="lang-buttons">
+<button onclick="setLang('en')">English</button>
+<button onclick="setLang('ko')">한국어</button>
+<button onclick="setLang('zh')">中文</button>
+<button onclick="setLang('ar')">العربية</button>
+<button onclick="setLang('es')">Español</button>
+</div>
+</section>
 
-    <div class="lang-buttons">
-        <button onclick="setLanguage('en')">English</button>
-        <button onclick="setLanguage('ko')">한국어</button>
-        <button onclick="setLanguage('zh')">中文</button>
-        <button onclick="setLanguage('ar')">العربية</button>
-        <button onclick="setLanguage('es')">Español</button>
-    </div>
+<div class="divider"></div>
+
+<!-- WHO WE ARE -->
+<section id="who">
+<h2 id="whoTitle">Who We Are</h2>
+<p id="whoText">
+PHK-POTECH is a next-generation industrial innovation group integrating robotics, artificial sun energy systems, smart steel technologies, and space-driven infrastructure design.  
+We are not simply a manufacturing company. We are architects of industrial evolution.
+</p>
+
+<div class="card-grid">
+<div class="card">
+<h3>Advanced Robotics</h3>
+<p>Autonomous humanoid systems replacing 3D labor sectors — Dangerous, Dirty, and Difficult — redefining global productivity.</p>
 </div>
 
-<div class="section">
-    <h2 id="who">Who We Are</h2>
-    <p id="whoText">
-        PHK-POTECH is a next-generation industrial innovation group
-        focusing on robotics, artificial sun energy, smart steel,
-        and space-driven infrastructure.
-    </p>
+<div class="card">
+<h3>Artificial Sun Energy</h3>
+<p>Fusion-aligned energy paradigm aiming at permanent clean power independence for nations and industries.</p>
+</div>
+
+<div class="card">
+<h3>Smart Steel Infrastructure</h3>
+<p>AI-optimized material science enhancing durability, efficiency, and global cost competitiveness.</p>
+</div>
+
+<div class="card">
+<h3>Space-Oriented Expansion</h3>
+<p>Designing infrastructure adaptable to orbital logistics and next-generation planetary civilization.</p>
+</div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- VISION -->
+<section>
+<h2>Our Vision</h2>
+<p>
+To eliminate industrial limitations through intelligent automation and limitless clean energy.  
+To build a civilization where labor shortage, energy crisis, and productivity constraints no longer exist.
+</p>
+
+<p class="highlight">
+PHK-POTECH is not competing in today’s market.  
+We are engineering tomorrow’s dominance.
+</p>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+PHK-POTECH © 2026 | Next Industrial Civilization Initiative
 </div>
 
 <script>
-const translations = {
-    en: {
-        tagline: `Engineering the Future of Industry, Energy, and Space.<br>
-                  Beyond steel. Beyond automation.<br>
-                  We design the next industrial civilization.`,
-        who: "Who We Are",
-        whoText: "PHK-POTECH is a next-generation industrial innovation group focusing on robotics, artificial sun energy, smart steel, and space-driven infrastructure."
-    },
-    ko: {
-        tagline: `산업·에너지·우주의 미래를 설계합니다.<br>
-                  철강을 넘어, 자동화를 넘어.<br>
-                  우리는 다음 산업 문명을 디자인합니다.`,
-        who: "우리는 누구인가",
-        whoText: "PHK-POTECH는 로봇, 인공태양 에너지, 스마트 철강, 우주 인프라를 중심으로 하는 차세대 산업 혁신 그룹입니다."
-    },
-    zh: {
-        tagline: `设计工业、能源与太空的未来。<br>
-                  超越钢铁，超越自动化。<br>
-                  我们正在设计下一个工业文明。`,
-        who: "我们是谁",
-        whoText: "PHK-POTECH 是一家专注于机器人、人工太阳能源、智能钢铁和太空基础设施的下一代工业创新集团。"
-    },
-    ar: {
-        tagline: `نصمم مستقبل الصناعة والطاقة والفضاء.<br>
-                  ما بعد الفولاذ، ما بعد الأتمتة.<br>
-                  نحن نصمم الحضارة الصناعية القادمة.`,
-        who: "من نحن",
-        whoText: "PHK-POTECH هي مجموعة ابتكار صناعي من الجيل القادم تركز على الروبوتات والطاقة الشمسية الاصطناعية والصلب الذكي والبنية التحتية الفضائية."
-    },
-    es: {
-        tagline: `Diseñamos el futuro de la industria, la energía y el espacio.<br>
-                  Más allá del acero. Más allá de la automatización.<br>
-                  Diseñamos la próxima civilización industrial.`,
-        who: "Quiénes Somos",
-        whoText: "PHK-POTECH es un grupo de innovación industrial de próxima generación enfocado en robótica, energía de sol artificial, acero inteligente e infraestructura espacial."
-    }
-};
-
-function setLanguage(lang){
-    document.getElementById("tagline").innerHTML = translations[lang].tagline;
-    document.getElementById("who").innerText = translations[lang].who;
-    document.getElementById("whoText").innerText = translations[lang].whoText;
-
-    if(lang === "ar"){
-        document.body.dir = "rtl";
-    } else {
-        document.body.dir = "ltr";
-    }
+function setLang(lang) {
+if(lang === 'ko') {
+document.getElementById("whoTitle").innerText = "우리는 누구인가";
+document.getElementById("whoText").innerText =
+"PHK-POTECH은 로보틱스, 인공태양 에너지, 스마트 철강, 우주 기반 인프라를 통합하는 차세대 산업혁신 그룹입니다. 우리는 단순한 제조기업이 아닙니다. 산업 문명의 진화를 설계하는 집단입니다.";
+}
+if(lang === 'zh') {
+document.getElementById("whoTitle").innerText = "我们是谁";
+document.getElementById("whoText").innerText =
+"PHK-POTECH 是融合机器人技术、人工太阳能源、智能钢铁技术和太空基础设施设计的下一代工业创新集团。我们不仅仅是制造企业，我们是工业文明的设计者。";
+}
+if(lang === 'ar') {
+document.getElementById("whoTitle").innerText = "من نحن";
+document.getElementById("whoText").innerText =
+"PHK-POTECH هي مجموعة ابتكار صناعي من الجيل القادم تجمع بين الروبوتات وطاقة الشمس الاصطناعية والفولاذ الذكي والبنية التحتية الفضائية. نحن نصمم تطور الحضارة الصناعية.";
+}
+if(lang === 'es') {
+document.getElementById("whoTitle").innerText = "Quiénes Somos";
+document.getElementById("whoText").innerText =
+"PHK-POTECH es un grupo de innovación industrial de nueva generación que integra robótica, energía de sol artificial, acero inteligente e infraestructura espacial. Diseñamos la evolución industrial.";
+}
+if(lang === 'en') {
+document.getElementById("whoTitle").innerText = "Who We Are";
+document.getElementById("whoText").innerText =
+"PHK-POTECH is a next-generation industrial innovation group integrating robotics, artificial sun energy systems, smart steel technologies, and space-driven infrastructure design. We are architects of industrial evolution.";
+}
 }
 </script>
 
