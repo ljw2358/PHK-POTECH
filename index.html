@@ -3,553 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HK WORLD BANK | GLOBAL MAINNET SYSTEM</title>
+    <title>HK WORLD BANK | LIQUIDITY & ASSET MANAGEMENT</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Noto+Sans+KR:wght@300;400;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- [1. Variable Settings] --- */
         :root {
-            --primary: #FF6B00; /* HK Group Orange */
-            --secondary: #FFD700; /* Pi Yellow */
-            --bg-deep: #050505;
-            --bg-card: #121212;
-            --text-main: #FFFFFF;
-            --text-dim: #A0A0A0;
-            --accent-green: #00FF41; /* Matrix Green */
-            --glass: rgba(255, 255, 255, 0.05);
-            --border-line: rgba(255, 107, 0, 0.3);
+            --hk-orange: #FF6B00;
+            --pi-yellow: #FFD700;
+            --gvc-green: #00FF41;
+            --deep-dark: #020202;
+            --card-bg: rgba(20, 20, 20, 0.98);
+            --pool-blue: #00D1FF; /* 유동성 풀 전역 컬러 */
+            --border: rgba(255, 107, 0, 0.4);
         }
 
-        /* --- [2. General Styles] --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary) var(--bg-deep);
-        }
-
+        /* --- [1. 기본 스타일] --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background-color: var(--bg-deep);
-            color: var(--text-main);
+            background-color: var(--deep-dark);
+            color: white;
             font-family: 'Noto Sans KR', sans-serif;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        h1, h2, .font-orbitron {
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 2px;
-        }
+        #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.2; }
 
-        /* --- [3. Background Animation] --- */
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.4;
-        }
-
-        /* --- [4. Header & Language Engine] --- */
+        /* --- [2. 헤더 강화] --- */
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background: rgba(0, 0, 0, 0.8);
-            border-bottom: 1px solid var(--border-line);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 25px 60px;
+            background: rgba(0,0,0,0.9);
+            border-bottom: 2px solid var(--hk-orange);
+            position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(20px);
         }
 
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-area img {
-            height: 40px;
-            filter: drop-shadow(0 0 5px var(--primary));
-        }
-
-        .logo-text {
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--primary);
-        }
-
-        .lang-selector {
-            position: relative;
-            display: inline-block;
-        }
-
-        .lang-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--primary);
-            color: var(--text-main);
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
-        }
-
-        .lang-btn:hover {
-            background: var(--primary);
-        }
-
-        .lang-dropdown {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 110%;
-            background: #1a1a1a;
-            min-width: 160px;
-            border: 1px solid var(--primary);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .lang-dropdown a {
-            color: white;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            transition: 0.2s;
-        }
-
-        .lang-dropdown a:hover {
-            background: var(--primary);
-        }
-
-        /* --- [5. Main Dashboard Layout] --- */
-        .container {
-            max-width: 1400px;
-            margin: 40px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-        }
-
-        /* Asset Card Section */
-        .asset-section {
-            background: var(--bg-card);
-            border-radius: 15px;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--border-line);
-            box-shadow: 0 0 30px rgba(255, 107, 0, 0.1);
-        }
-
-        .asset-label {
-            font-size: 14px;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .balance-main {
-            font-size: 5rem;
-            font-weight: 900;
-            color: var(--secondary);
-            margin: 20px 0;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .balance-gvc {
-            font-size: 1.8rem;
-            color: var(--accent-green);
+        .main-logo-text {
             font-family: 'Orbitron', sans-serif;
-            margin-bottom: 30px;
+            font-size: 38px;
+            font-weight: 900;
+            color: var(--hk-orange);
+            letter-spacing: 4px;
+            text-shadow: 0 0 15px rgba(255, 107, 0, 0.5);
         }
 
-        /* Action Buttons */
+        /* --- [3. 메인 레이아웃] --- */
+        .dashboard {
+            max-width: 1700px; margin: 40px auto; padding: 0 40px;
+            display: grid; grid-template-columns: 1fr 400px; gap: 40px;
+        }
+
+        .card {
+            background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border);
+            padding: 35px; margin-bottom: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        /* --- [4. 유동성 풀(Liquidity Pool) 특화 디자인] --- */
+        .pool-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 15px;
+        }
+
+        .pool-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+        }
+
+        .pool-item {
+            background: rgba(0, 209, 255, 0.05); border: 1px solid var(--pool-blue);
+            padding: 20px; border-radius: 15px; position: relative;
+        }
+
+        .pool-stats { font-size: 24px; font-family: 'Orbitron'; color: var(--pool-blue); margin-top: 10px; }
+        .apr-tag {
+            position: absolute; top: 15px; right: 15px;
+            background: var(--pool-blue); color: black; font-weight: 900;
+            padding: 2px 10px; border-radius: 4px; font-size: 12px;
+        }
+
+        /* --- [5. 자산 밸런스 섹션] --- */
+        .pi-balance {
+            font-family: 'Orbitron', sans-serif; font-size: 4rem;
+            color: var(--pi-yellow); margin: 15px 0; font-weight: 900;
+        }
+
+        .gvc-value {
+            font-family: 'Roboto Mono'; font-size: 2rem; color: var(--gvc-green); margin-bottom: 30px;
+        }
+
+        /* --- [6. 버튼 인터페이스] --- */
         .action-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-top: 30px;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;
+        }
+        .btn-action {
+            background: rgba(255,255,255,0.03); border: 1px solid #333;
+            padding: 20px 10px; border-radius: 12px; text-align: center;
+            cursor: pointer; transition: 0.3s; font-size: 14px;
+        }
+        .btn-action:hover {
+            border-color: var(--hk-orange); background: rgba(255,107,0,0.15);
+            transform: scale(1.05);
+        }
+        .btn-action i { display: block; font-size: 24px; margin-bottom: 10px; color: var(--hk-orange); }
+
+        /* --- [7. 사이드바 & 정보] --- */
+        .side-title { 
+            font-size: 18px; color: var(--hk-orange); font-weight: 900; margin-bottom: 20px; 
+            display: flex; align-items: center; gap: 10px;
         }
 
-        .action-btn {
-            background: var(--glass);
-            border: 1px solid #333;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.3s;
+        .info-box {
+            background: #111; padding: 15px; border-radius: 10px; margin-bottom: 15px;
+            border-left: 4px solid var(--hk-orange); font-size: 13px;
         }
 
-        .action-btn:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-            transform: translateY(-5px);
+        /* --- [8. 애니메이션 요소] --- */
+        @keyframes flow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .live-bar {
+            height: 4px; width: 100%; 
+            background: linear-gradient(90deg, var(--hk-orange), var(--pi-yellow), var(--gvc-green));
+            background-size: 200% 200%; animation: flow 3s linear infinite;
         }
 
-        .action-btn i {
-            font-size: 24px;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        /* --- [6. Sidebar & SNS] --- */
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .sidebar-card {
-            background: var(--bg-card);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid #222;
-        }
-
-        .card-title {
-            font-size: 18px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--primary);
-            padding-left: 10px;
-        }
-
-        /* Social Media Icons */
-        .sns-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .sns-link {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.02);
-            text-decoration: none;
-            color: var(--text-main);
-            transition: 0.3s;
-            border: 1px solid transparent;
-        }
-
-        .sns-link:hover {
-            background: rgba(255, 107, 0, 0.1);
-            border-color: var(--primary);
-        }
-
-        .sns-link.yt i { color: #FF0000; font-size: 24px; }
-        .sns-link.tt i { color: #FFFFFF; font-size: 24px; }
-
-        /* --- [7. Real-time Console Log] --- */
-        .console-box {
-            background: #000;
-            border-radius: 8px;
-            height: 200px;
-            padding: 15px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 12px;
-            color: var(--accent-green);
-            overflow-y: auto;
-            border: 1px solid #333;
-        }
-
-        .log-entry { margin-bottom: 5px; }
-        .log-time { color: var(--primary); margin-right: 10px; }
-
-        /* --- [8. Footer Status Bar] --- */
-        footer {
-            margin-top: 50px;
-            padding: 20px 40px;
-            background: #000;
-            border-top: 1px solid #222;
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            color: #555;
-        }
-
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent-green);
-            border-radius: 50%;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.7); }
-            70% { transform: scale(1.2); opacity: 0.5; box-shadow: 0 0 0 10px rgba(0, 255, 65, 0); }
-            100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(0, 255, 65, 0); }
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 992px) {
-            .container { grid-template-columns: 1fr; }
-            .balance-main { font-size: 3rem; }
-        }
     </style>
 </head>
 <body>
 
-    <canvas id="bg-canvas"></canvas>
+<canvas id="bg-canvas"></canvas>
 
-    <header>
-        <div class="logo-area">
-            <div class="logo-text">HK WORLD BANK</div>
+<header>
+    <div class="main-logo-text">HK WORLD BANK</div>
+    
+    <div style="display: flex; gap: 30px; align-items: center;">
+        <div style="text-align: right;">
+            <div style="font-size: 11px; color: var(--hk-orange);">GLOBAL SERVER NODE</div>
+            <div style="font-family: 'Roboto Mono'; color: var(--gvc-green);">ULSAN_HQ_ACTIVE</div>
         </div>
-        
-        <nav style="display: flex; gap: 30px; align-items: center;">
-            <div class="status-indicator">
-                <span class="pulse-dot"></span>
-                <span style="color: var(--accent-green);">SYSTEM ONLINE</span>
+        <div class="info-box" style="margin:0; padding: 5px 15px;">
+            <i class="fa-solid fa-envelope"></i> info@hkwb.com
+        </div>
+    </div>
+</header>
+
+<main class="dashboard">
+    <div class="main-content">
+        <section class="card" style="border-color: var(--pool-blue);">
+            <div class="pool-header">
+                <h2 class="font-orbitron" style="color: var(--pool-blue);"><i class="fa-solid fa-water-ladder"></i> LIQUIDITY POOL</h2>
+                <div style="font-size: 13px; color: #777;">Real-time Automated Market Maker</div>
             </div>
             
-            <div class="lang-selector">
-                <button class="lang-btn" onclick="toggleLang()">
-                    <i class="fa-solid fa-globe"></i>
-                    <span id="current-lang">한국어 (KR)</span>
-                    <i class="fa-solid fa-chevron-down"></i>
+            <div class="pool-grid">
+                <div class="pool-item">
+                    <span class="apr-tag">APR 24.5%</span>
+                    <div style="font-size: 14px; color: #aaa;">PI / GVC Pool Share</div>
+                    <div class="pool-stats">12,450.88 LP</div>
+                    <div style="font-size: 11px; margin-top: 10px; color: var(--gvc-green);">+ 0.45 Pi Earned Today</div>
+                </div>
+                <div class="pool-item">
+                    <span class="apr-tag">APR 18.2%</span>
+                    <div style="font-size: 14px; color: #aaa;">Total Value Locked (TVL)</div>
+                    <div class="pool-stats">$ 894.2M</div>
+                    <div style="font-size: 11px; margin-top: 10px; color: var(--pool-blue);">Security: 100% Verified</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 25px; display: flex; gap: 15px;">
+                <button class="btn-action" style="flex:1; border-color: var(--pool-blue); color: var(--pool-blue);">
+                    <i class="fa-solid fa-plus-circle" style="color: var(--pool-blue);"></i> 유동성 공급 (Add)
                 </button>
-                <div class="lang-dropdown" id="lang-menu">
-                    <a href="javascript:void(0)" onclick="changeLang('KR')">🇰🇷 한국어 (KR)</a>
-                    <a href="javascript:void(0)" onclick="changeLang('EN')">🇺🇸 English (US)</a>
-                    <a href="javascript:void(0)" onclick="changeLang('CN')">🇨🇳 简体中文 (CN)</a>
-                    <a href="javascript:void(0)" onclick="changeLang('JP')">🇯🇵 日本語 (JP)</a>
-                </div>
+                <button class="btn-action" style="flex:1;">
+                    <i class="fa-solid fa-minus-circle"></i> 유동성 제거 (Remove)
+                </button>
             </div>
-        </nav>
-    </header>
+        </section>
 
-    <main class="container">
-        <div class="main-content">
-            <section class="asset-section">
-                <div class="asset-label">
-                    <i class="fa-solid fa-wallet"></i>
-                    REAL-TIME WALLET TOTAL ASSETS
-                </div>
-                
-                <div class="balance-main" id="pi-counter">400.0000 Pi</div>
-                <div class="balance-gvc" id="gvc-counter">≈ $ 12,566,360.00 (GVC)</div>
+        <section class="card">
+            <div class="pool-header">
+                <h2 class="font-orbitron"><i class="fa-solid fa-vault"></i> MAIN ASSET LEDGER</h2>
+                <div style="font-size: 13px; color: #777;">Chairman Lee Jaewan Secure Access</div>
+            </div>
 
-                <div class="action-grid">
-                    <div class="action-btn">
-                        <i class="fa-solid fa-credit-card"></i>
-                        <span>결제 (Pay)</span>
-                    </div>
-                    <div class="action-btn">
-                        <i class="fa-solid fa-paper-plane"></i>
-                        <span>송금 (Send)</span>
-                    </div>
-                    <div class="action-btn">
-                        <i class="fa-solid fa-vault"></i>
-                        <span>예치 (Stake)</span>
-                    </div>
-                    <div class="action-btn">
-                        <i class="fa-solid fa-gift"></i>
-                        <span>리워드 (Reward)</span>
-                    </div>
-                </div>
-                
-                <div class="action-grid" style="margin-top: 15px;">
-                    <div class="action-btn">
-                        <i class="fa-solid fa-hand-holding-dollar"></i>
-                        <span>기본소득 (UBI)</span>
-                    </div>
-                    <div class="action-btn">
-                        <i class="fa-solid fa-headset"></i>
-                        <span>고객센터</span>
-                    </div>
-                    <div class="action-btn">
-                        <i class="fa-solid fa-arrows-rotate"></i>
-                        <span>DEX 스왑</span>
-                    </div>
-                    <div class="action-btn" style="background: var(--primary);">
-                        <i class="fa-solid fa-building-shield"></i>
-                        <span>본사 연동</span>
-                    </div>
-                </div>
-            </section>
+            <div class="pi-balance">400.0000 <span style="font-size: 1.5rem;">Pi</span></div>
+            <div class="gvc-value">≈ $ 12,566,360.00 (GVC)</div>
+            
+            <div class="live-bar"></div>
 
-            <section class="sidebar-card" style="margin-top: 30px;">
-                <div class="card-title">HEADQUARTERS CONNECTIVITY LOG</div>
-                <div class="console-box" id="console-log">
-                    <div class="log-entry"><span class="log-time">[09:00:01]</span> System initialized.</div>
-                    <div class="log-entry"><span class="log-time">[09:00:02]</span> Connecting to Pi Mainnet nodes...</div>
-                    <div class="log-entry"><span class="log-time">[09:00:05]</span> HK GROUP High-Security protocol enabled.</div>
-                </div>
-            </section>
+            <div class="action-grid" style="margin-top: 30px;">
+                <div class="btn-action"><i class="fa-solid fa-credit-card"></i>결제</div>
+                <div class="btn-action"><i class="fa-solid fa-paper-plane"></i>송금</div>
+                <div class="btn-action" style="border-color: var(--pi-yellow);"><i class="fa-solid fa-coins" style="color: var(--pi-yellow);"></i>스테이킹</div>
+                <div class="btn-action"><i class="fa-solid fa-gift"></i>리워드</div>
+                <div class="btn-action"><i class="fa-solid fa-hand-holding-dollar"></i>기본소득</div>
+                <div class="btn-action"><i class="fa-solid fa-arrows-rotate"></i>DEX 스왑</div>
+                <div class="btn-action"><i class="fa-solid fa-headset"></i>고객센터</div>
+                <div class="btn-action" style="background: var(--hk-orange); color: white;"><i class="fa-solid fa-link" style="color: white;"></i>본사 연동</div>
+            </div>
+        </section>
+    </div>
+
+    <aside class="sidebar">
+        <div class="card" style="padding: 20px;">
+            <div class="side-title"><i class="fa-solid fa-share-nodes"></i> NETWORKS</div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <a href="https://www.youtube.com/@Hyekong2025" target="_blank" style="text-decoration:none; color:white;">
+                    <div class="info-box" style="margin:0; cursor:pointer;">
+                        <i class="fa-brands fa-youtube" style="color:#f00; font-size:18px;"></i> YouTube: @Hyekong2025
+                    </div>
+                </a>
+                <a href="https://www.tiktok.com/@hyekong2025" target="_blank" style="text-decoration:none; color:white;">
+                    <div class="info-box" style="margin:0; cursor:pointer;">
+                        <i class="fa-brands fa-tiktok" style="font-size:18px;"></i> TikTok: @hyekong2025
+                    </div>
+                </a>
+            </div>
         </div>
 
-        <aside class="sidebar">
-            <div class="sidebar-card">
-                <div class="card-title">OFFICIAL CHANNELS</div>
-                <div class="sns-list">
-                    <a href="https://www.youtube.com/@Hyekong2025" target="_blank" class="sns-link yt">
-                        <i class="fa-brands fa-youtube"></i>
-                        <div>
-                            <div style="font-weight: bold;">YouTube</div>
-                            <div style="font-size: 12px; color: var(--text-dim);">@Hyekong2025</div>
-                        </div>
-                    </a>
-                    <a href="https://www.tiktok.com/@hyekong2025" target="_blank" class="sns-link tt">
-                        <i class="fa-brands fa-tiktok"></i>
-                        <div>
-                            <div style="font-weight: bold;">TikTok</div>
-                            <div style="font-size: 12px; color: var(--text-dim);">@hyekong2025</div>
-                        </div>
-                    </a>
-                </div>
+        <div class="card" style="padding: 20px;">
+            <div class="side-title"><i class="fa-solid fa-globe"></i> LANGUAGES</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 12px;">
+                <div class="btn-action" style="padding: 8px;">🇰🇷 한국어</div>
+                <div class="btn-action" style="padding: 8px;">🇺🇸 English</div>
+                <div class="btn-action" style="padding: 8px;">🇨🇳 中文</div>
+                <div class="btn-action" style="padding: 8px;">🇯🇵 日本語</div>
+                <div class="btn-action" style="padding: 8px;">🇻🇳 Tiếng Việt</div>
+                <div class="btn-action" style="padding: 8px;">🇷🇺 Русский</div>
+                <div class="btn-action" style="padding: 8px;">🇩🇪 Deutsch</div>
+                <div class="btn-action" style="padding: 8px;">🇫🇷 Français</div>
             </div>
-
-            <div class="sidebar-card">
-                <div class="card-title">GLOBAL MARKET STATUS</div>
-                <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-                    <tr style="border-bottom: 1px solid #333;">
-                        <td style="padding: 10px 0;">Pi Consensus</td>
-                        <td style="text-align: right; color: var(--secondary);">$ 314,159</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #333;">
-                        <td style="padding: 10px 0;">GVC Index</td>
-                        <td style="text-align: right; color: var(--accent-green);">Live Active</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 10px 0;">HK Group Stock</td>
-                        <td style="text-align: right; color: var(--primary);">Premium High</td>
-                    </tr>
-                </table>
-            </div>
-
-            <div class="sidebar-card" style="background: linear-gradient(145deg, #1e1e1e, #000);">
-                <div class="card-title" style="color: var(--primary);">SECURITY STATUS</div>
-                <div style="text-align: center; padding: 20px;">
-                    <i class="fa-solid fa-shield-halved" style="font-size: 50px; color: var(--primary); margin-bottom: 15px;"></i>
-                    <p style="font-size: 12px;">256-bit AES Encryption Active</p>
-                    <p style="font-size: 12px; color: var(--accent-green);">Founder: Lee Jaewan (Hyekong)</p>
-                </div>
-            </div>
-        </aside>
-    </main>
-
-    <footer>
-        <div>© 2026 HK GROUP. All Rights Reserved.</div>
-        <div style="display: flex; gap: 30px;">
-            <span>API Version: 3.4.0-Stable</span>
-            <span>Ulsan Main Node: Connected</span>
-            <span id="live-timer">2026-03-12 09:00:00</span>
         </div>
-    </footer>
 
-    <script>
-        // Matrix Background Animation
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        <div class="card" style="padding: 20px; background: #000; border-color: var(--gvc-green);">
+            <div class="side-title" style="color: var(--gvc-green);"><i class="fa-solid fa-terminal"></i> SECURITY LOG</div>
+            <div id="log-box" style="height: 150px; overflow-y: hidden; font-family: 'Roboto Mono'; font-size: 11px; color: var(--gvc-green);">
+                <div>> HKWB ACCESS GRANTED...</div>
+                <div>> LIQUIDITY POOL SYNCING...</div>
+            </div>
+        </div>
+    </aside>
+</main>
 
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789PIHKGROUP";
-        const fontSize = 16;
-        const columns = canvas.width / fontSize;
-        const drops = [];
-        for (let i = 0; i < columns; i++) drops[i] = 1;
+<footer>
+    <div style="display: flex; justify-content: center; gap: 50px; color: #444; margin-bottom: 15px;">
+        <span>IP: 192.168.0.1 (SECURED)</span>
+        <span>LOCATION: ULSAN HQ</span>
+        <span>FOUNDER: HYEKONG</span>
+    </div>
+    <p>© 2026 HK GROUP | HK WORLD BANK. ALL RIGHTS RESERVED. EMAIL: info@hkwb.com</p>
+</footer>
 
-        function drawBackground() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "#FF6B00";
-            ctx.font = fontSize + "px Orbitron";
-            for (let i = 0; i < drops.length; i++) {
-                const text = letters.charAt(Math.floor(Math.random() * letters.length));
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-                drops[i]++;
-            }
-        }
-        setInterval(drawBackground, 50);
+<script>
+    // Matrix Background Effect
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const chars = "HKWB01PIPOOLS";
+    const drops = Array(Math.floor(canvas.width/20)).fill(1);
+    function drawMatrix() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#FF6B00";
+        ctx.font = "15px Orbitron";
+        drops.forEach((y, i) => {
+            const text = chars[Math.floor(Math.random()*chars.length)];
+            ctx.fillText(text, i*20, y*20);
+            if(y*20 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+            drops[i]++;
+        });
+    }
+    setInterval(drawMatrix, 50);
 
-        // Language Dropdown Toggle
-        function toggleLang() {
-            const menu = document.getElementById('lang-menu');
-            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-        }
+    // Dynamic Logs
+    const logBox = document.getElementById('log-box');
+    function addLog(msg) {
+        const div = document.createElement('div');
+        div.innerText = `> ${new Date().toLocaleTimeString()}: ${msg}`;
+        logBox.prepend(div);
+        if(logBox.childNodes.length > 10) logBox.removeChild(logBox.lastChild);
+    }
+    setInterval(() => {
+        const lines = ["Liquidity added", "Swap completed", "Bridge syncing", "Node verification success", "Pool rebalanced"];
+        addLog(lines[Math.floor(Math.random()*lines.length)]);
+    }, 4000);
+</script>
 
-        function changeLang(code) {
-            const langMap = {
-                'KR': '한국어 (KR)',
-                'EN': 'English (US)',
-                'CN': '简体中文 (CN)',
-                'JP': '日本語 (JP)'
-            };
-            document.getElementById('current-lang').innerText = langMap[code];
-            document.getElementById('lang-menu').style.display = 'none';
-            addLog(`Language changed to ${langMap[code]}`);
-        }
-
-        // Real-time Console Logging
-        const consoleBox = document.getElementById('console-log');
-        function addLog(message) {
-            const now = new Date();
-            const timeStr = `[${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}]`;
-            const entry = document.createElement('div');
-            entry.className = 'log-entry';
-            entry.innerHTML = `<span class="log-time">${timeStr}</span> ${message}`;
-            consoleBox.prepend(entry);
-        }
-
-        // Live Clock
-        setInterval(() => {
-            const now = new Date();
-            document.getElementById('live-timer').innerText = now.toLocaleString();
-        }, 1000);
-
-        // Simulated Headquarter Syncing
-        setInterval(() => {
-            const types = [
-                "Syncing assets with HK Group HQ...",
-                "Pi Network node validation success.",
-                "GVC Consensus value updated.",
-                "Security handshake verified.",
-                "Backup node established in Ulsan."
-            ];
-            addLog(types[Math.floor(Math.random() * types.length)]);
-        }, 8000);
-
-        // Initial Data Loading Effect
-        window.onload = () => {
-            addLog("System startup complete.");
-            addLog("HK WORLD BANK v1.0 Active.");
-            addLog("Welcome back, Hyekong Chairman.");
-        };
-
-        // Close dropdown when clicking outside
-        window.onclick = (event) => {
-            if (!event.target.matches('.lang-btn') && !event.target.parentElement.matches('.lang-btn')) {
-                document.getElementById('lang-menu').style.display = 'none';
-            }
-        }
-    </script>
 </body>
 </html>
