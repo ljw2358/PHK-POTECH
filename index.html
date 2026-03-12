@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HK WORLD BANK - 글로벌 노드</title>
+    <title>HK WORLD BANK - GLOBAL NODE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -21,34 +21,43 @@
             color: #ffffff;
             font-family: 'Pretendard', sans-serif;
             margin: 0;
-            padding: 15px;
-            overflow-x: hidden;
+            padding: 20px;
+            display: flex;
+            justify-content: center; /* PC에서 중앙 정렬 */
         }
 
-        /* 헤더 섹션 */
+        .container {
+            width: 100%;
+            max-width: 1200px; /* PC에서 너무 퍼지지 않게 제한 */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* 헤더 */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 20px;
-            flex-wrap: wrap; /* 모바일 대응 */
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .brand-logo h1 {
             color: var(--primary-orange);
-            font-size: 2.2rem;
-            line-height: 1;
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 0.9;
             margin: 0;
             letter-spacing: 1px;
         }
 
         .node-status {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--neon-green);
-            margin-top: 8px;
+            margin-top: 10px;
+            font-weight: bold;
         }
 
-        /* 우상단 연락처 및 언어 */
         .top-right {
             display: flex;
             flex-direction: column;
@@ -75,148 +84,143 @@
             cursor: pointer;
         }
 
-        /* 카드 공통 */
+        /* 메인 레이아웃: PC에서는 가로(2컬럼), 모바일은 세로 */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr; /* PC 기본 2컬럼 */
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .main-content { grid-template-columns: 1fr; } /* 모바일 세로 전환 */
+        }
+
         .card {
             background: var(--card-bg);
             border-radius: 15px;
-            padding: 20px;
+            padding: 25px;
             border: 1px solid var(--border-color);
-            margin-bottom: 15px;
         }
 
         /* 유동성 풀 */
-        .pool-title { color: var(--cyan-blue); font-weight: bold; font-size: 1.1rem; margin-bottom: 15px; }
-        .pool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
-        .pool-item { border: 1px solid rgba(0,209,255,0.2); padding: 15px; border-radius: 10px; }
+        .pool-title { color: var(--cyan-blue); font-weight: bold; font-size: 1.2rem; margin-bottom: 20px; }
+        .pool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .pool-item { border: 1px solid rgba(0,209,255,0.2); padding: 20px; border-radius: 12px; }
 
         /* 주요 자산 원장 */
         .ledger-header { display: flex; justify-content: space-between; align-items: flex-start; }
-        .main-balance { font-size: clamp(3rem, 10vw, 4.5rem); color: var(--pi-yellow); font-weight: 800; margin: 25px 0 5px 0; font-family: 'monospace'; }
-        .gcv-valuation { color: var(--neon-green); font-size: clamp(1.2rem, 5vw, 2rem); font-weight: bold; border-bottom: 2px solid var(--neon-green); display: inline-block; margin-bottom: 25px; }
+        .main-balance { font-size: clamp(3rem, 8vw, 5rem); color: var(--pi-yellow); font-weight: 800; margin: 30px 0 5px 0; font-family: 'monospace'; }
+        .gcv-valuation { color: var(--neon-green); font-size: clamp(1.2rem, 4vw, 2.2rem); font-weight: bold; border-bottom: 3px solid var(--neon-green); display: inline-block; margin-bottom: 30px; }
 
         /* 메뉴 버튼 그리드 */
         .menu-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-        @media (max-width: 480px) { .menu-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 500px) { .menu-grid { grid-template-columns: repeat(2, 1fr); } }
 
-        .menu-item { background: #1a1a1a; padding: 15px 5px; border-radius: 12px; text-align: center; font-size: 0.75rem; display: flex; flex-direction: column; gap: 8px; border: 1px solid transparent; }
-        .menu-item i { color: var(--primary-orange); font-size: 1.3rem; }
+        .menu-item { background: #1a1a1a; padding: 15px 5px; border-radius: 12px; text-align: center; font-size: 0.8rem; display: flex; flex-direction: column; gap: 8px; border: 1px solid transparent; cursor: pointer; }
+        .menu-item i { color: var(--primary-orange); font-size: 1.5rem; }
         .menu-item.active { border: 1px solid var(--primary-orange); }
-        .menu-item.main-action { background: var(--primary-orange); }
+        .menu-item.main-action { background: var(--primary-orange); grid-column: span 2; }
         .menu-item.main-action i { color: white; }
 
-        /* 소셜 링크 - 맨 아래 고정 */
+        /* 보안 로그 (PC에서 우측에 보임) */
+        .security-log { font-family: 'monospace'; font-size: 0.8rem; color: var(--neon-green); line-height: 1.5; }
+
+        /* 푸터 */
         .footer-social {
             margin-top: 20px;
-            padding: 20px 0;
+            padding: 30px;
             border-top: 1px solid #222;
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 50px;
             flex-wrap: wrap;
         }
 
-        .social-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1rem;
-        }
+        .social-link { display: flex; align-items: center; gap: 12px; color: #ffffff; text-decoration: none; font-size: 1.1rem; font-weight: bold; }
+        .social-link i { font-size: 2rem; }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <div class="brand-logo">
-        <h1>HK<br>WORLD<br>BANK</h1>
-        <div class="node-status">글로벌 서버 노드: <span style="font-weight:bold;">울산_HQ_활성화</span></div>
-    </div>
-
-    <div class="top-right">
-        <div class="contact-box">
-            <i class="fas fa-envelope" style="color:var(--primary-orange)"></i> info@hkwb.com
+<div class="container">
+    <div class="header">
+        <div class="brand-logo">
+            <h1>HK<br>WORLD<br>BANK</h1>
+            <div class="node-status">GLOBAL SERVER NODE: <span style="text-decoration:underline;">ULSAN_HQ_ACTIVE</span></div>
         </div>
-        <select class="lang-select">
-            <option value="ko">🇰🇷 한국어 (기본)</option>
-            <option value="en">🇺🇸 English</option>
-            <option value="zh">🇨🇳 中文</option>
-            <option value="ja">🇯🇵 日本語</option>
-            <option value="vi">🇻🇳 Tiếng Việt</option>
-            <option value="de">🇩🇪 Deutsch</option>
-            <option value="fr">🇫🇷 Français</option>
-            <option value="ru">🇷🇺 Русский</option>
-            <option value="es">🇪🇸 Español</option>
-            <option value="it">🇮🇹 Italiano</option>
-            <option value="tr">🇹🇷 Türkçe</option>
-            <option value="th">🇹🇭 ไทย</option>
-            <option value="id">🇮🇩 Indonesia</option>
-            <option value="ph">🇵🇭 Filipino</option>
-            <option value="hi">🇮🇳 हिन्दी</option>
-            <option value="ar">🇸🇦 العربية</option>
-            <option value="pt">🇧🇷 Português</option>
-            <option value="ms">🇲🇾 Melayu</option>
-            <option value="nl">🇳🇱 Nederlands</option>
-            <option value="pl">🇵🇱 Polski</option>
-            <option value="sv">🇸🇪 Svenska</option>
-            <option value="uk">🇺🇦 Українська</option>
-            <option value="fa">🇮🇷 فارسی</option>
-            <option value="cs">🇨🇿 Čeština</option>
-            <option value="el">🇬🇷 Ελληνικά</option>
-            <option value="hu">🇭🇺 Magyar</option>
-            <option value="ro">🇷🇴 Română</option>
-            <option value="fi">🇫🇮 Suomi</option>
-            <option value="no">🇳🇴 Norsk</option>
-            <option value="da">🇩🇰 Dansk</option>
-        </select>
-    </div>
-</div>
 
-<div class="main-layout">
-    <div class="card">
-        <div class="pool-title"><i class="fas fa-water"></i> 유동성 풀 (LIQUIDITY POOL)</div>
-        <div class="pool-grid">
-            <div class="pool-item">
-                <div style="font-size:0.8rem; color:#888;">PI / GCV <span style="color:var(--cyan-blue); font-weight:bold;">24.5%</span></div>
-                <div style="font-size:1.5rem; margin-top:10px; font-weight:bold;">12,450.88 LP</div>
+        <div class="top-right">
+            <div class="contact-box">
+                <i class="fas fa-envelope" style="color:var(--primary-orange)"></i> info@hkwb.com
             </div>
-            <div class="pool-item">
-                <div style="font-size:0.8rem; color:#888;">총 예치 자산 <span style="color:var(--cyan-blue); font-weight:bold;">18.2%</span></div>
-                <div style="font-size:1.5rem; margin-top:10px; color:var(--cyan-blue); font-weight:bold;">$ 894.2M</div>
+            <select class="lang-select">
+                <option value="ko">🇰🇷 한국어</option>
+                <option value="en">🇺🇸 English</option>
+                <option value="zh">🇨🇳 中文</option>
+                <option value="ja">🇯🇵 日本語</option>
+                <option value="vi">🇻🇳 Tiếng Việt</option>
+                <option value="de">🇩🇪 Deutsch</option>
+                <option value="fr">🇫🇷 Français</option>
+                <option value="ru">🇷🇺 Русский</option>
+                <option value="es">🇪🇸 Español</option>
+                <option value="it">🇮🇹 Italiano</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="card">
+            <div class="ledger-header">
+                <div style="font-size:1.4rem; font-weight:bold; color:var(--pi-yellow);"><i class="fas fa-database"></i> MAIN ASSET LEDGER</div>
+                <div style="text-align:right; font-size:0.8rem; color:var(--neon-green)">● SECURE ACCESS</div>
+            </div>
+
+            <div class="main-balance">400.0000</div>
+            <div style="color:var(--pi-yellow); font-weight:bold; font-size:1.5rem; margin-bottom:15px;">Pi</div>
+            <div class="gcv-valuation">≈ $ 12,566,360.00 (GCV)</div>
+
+            <div class="menu-grid">
+                <div class="menu-item"><i class="fas fa-wallet"></i>결제</div>
+                <div class="menu-item"><i class="fas fa-paper-plane"></i>송금</div>
+                <div class="menu-item active"><i class="fas fa-coins"></i>스테이킹</div>
+                <div class="menu-item"><i class="fas fa-gift"></i>리워드</div>
+                <div class="menu-item"><i class="fas fa-hand-holding-heart"></i>기본소득</div>
+                <div class="menu-item"><i class="fas fa-sync-alt"></i>DEX 스왑</div>
+                <div class="menu-item main-action"><i class="fas fa-link"></i>본사 연동</div>
             </div>
         </div>
+
+        <div class="side-layout" style="display:flex; flex-direction:column; gap:20px;">
+            <div class="card">
+                <div class="pool-title"><i class="fas fa-water"></i> LIQUIDITY POOL</div>
+                <div class="pool-grid">
+                    <div class="pool-item">
+                        <div style="font-size:0.9rem; color:#888;">PI / GCV <span style="background:var(--cyan-blue); color:black; padding:2px 6px; border-radius:4px; font-size:0.7rem; font-weight:bold;">APR 24.5%</span></div>
+                        <div style="font-size:1.8rem; margin-top:12px; font-weight:bold;">12,450.88 LP</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="color:var(--neon-green); font-size:0.9rem; margin-bottom:15px; font-weight:bold;"><i class="fas fa-terminal"></i> SECURITY LOG</div>
+                <div class="security-log">
+                    > 오전 11:00:12: Liquidity added<br>
+                    > 오전 11:00:08: Bridge syncing<br>
+                    > 오전 11:00:04: Node verification success<br>
+                    > 오전 11:00:00: 시스템 정상 작동 중...
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="card">
-        <div class="ledger-header">
-            <div style="font-size:1.2rem; font-weight:bold; color:var(--pi-yellow);"><i class="fas fa-database"></i> 주요 자산 원장</div>
-            <div style="text-align:right; font-size:0.75rem; color:var(--neon-green)">● 보안 접속 중</div>
-        </div>
-
-        <div class="main-balance">400.0000</div>
-        <div style="color:var(--pi-yellow); font-weight:bold; font-size:1.2rem; margin-bottom:10px;">Pi</div>
-        <div class="gcv-valuation">≈ $ 12,566,360.00 (GCV)</div>
-
-        <div class="menu-grid">
-            <div class="menu-item"><i class="fas fa-wallet"></i>결제</div>
-            <div class="menu-item"><i class="fas fa-paper-plane"></i>송금</div>
-            <div class="menu-item active"><i class="fas fa-coins"></i>스테이킹</div>
-            <div class="menu-item"><i class="fas fa-gift"></i>리워드</div>
-            <div class="menu-item"><i class="fas fa-hand-holding-heart"></i>기본소득</div>
-            <div class="menu-item"><i class="fas fa-sync-alt"></i>DEX 스왑</div>
-            <div class="menu-item"><i class="fas fa-headset"></i>고객센터</div>
-            <div class="menu-item main-action"><i class="fas fa-link"></i>본사 연동</div>
-        </div>
-    </div>
-</div>
-
-<div class="footer-social">
-    <a href="https://www.youtube.com/@Hyekong2025" target="_blank" class="social-link">
-        <i class="fab fa-youtube" style="color:#FF0000; font-size:1.5rem;"></i> 유튜브
-    </a>
-    <a href="https://www.tiktok.com/@hyekong2025" target="_blank" class="social-link">
-        <i class="fab fa-tiktok" style="color:#ffffff; font-size:1.5rem;"></i> 틱톡
-    </a>
+    <footer class="footer-social">
+        <a href="https://www.youtube.com/@Hyekong2025" target="_blank" class="social-link">
+            <i class="fab fa-youtube" style="color:#FF0000;"></i> YouTube: @Hyekong2025
+        </a>
+        <a href="https://www.tiktok.com/@hyekong2025" target="_blank" class="social-link">
+            <i class="fab fa-tiktok" style="color:#ffffff;"></i> TikTok: @hyekong2025
+        </a>
+    </footer>
 </div>
 
 </body>
