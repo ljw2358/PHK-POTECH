@@ -4,214 +4,351 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HK WORLD BANK - GLOBAL NODE</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary-orange: #FF8C00;
-            --bg-dark: #0D0D0D;
-            --card-bg: #1A1A1A;
-            --text-gray: #AAAAAA;
-            --neon-green: #39FF14;
+            --bg-dark: #050505;
+            --card-bg: #111111;
+            --border-color: #222222;
             --pi-yellow: #FFD700;
+            --neon-green: #39FF14;
+            --cyan-blue: #00D1FF;
         }
 
         body {
             background-color: var(--bg-dark);
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 15px;
+            overflow-x: hidden;
         }
 
+        /* 헤더 섹션 */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            border-bottom: 2px solid var(--primary-orange);
-            padding-bottom: 10px;
             margin-bottom: 20px;
         }
 
-        .brand h1 {
+        .brand-logo h1 {
             color: var(--primary-orange);
+            font-size: 2.2rem;
+            line-height: 0.9;
             margin: 0;
-            font-size: 2rem;
-            line-height: 1;
+            letter-spacing: 1px;
         }
 
         .node-status {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--neon-green);
-            margin-top: 5px;
+            margin-top: 8px;
+            letter-spacing: 0.5px;
         }
 
-        .contact-info {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 5px 10px;
-            border-radius: 5px;
+        .contact-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 12px;
+            border-radius: 4px;
             font-size: 0.8rem;
+            border: 1px solid #333;
         }
 
-        .main-container {
+        /* 메인 컨테이너 레이아웃 */
+        .main-layout {
             display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 20px;
+            grid-template-columns: 1fr 320px;
+            gap: 15px;
         }
 
         .card {
             background: var(--card-bg);
-            border-radius: 15px;
-            padding: 20px;
-            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 18px;
+            border: 1px solid var(--border-color);
+            position: relative;
         }
 
-        /* 30개국 언어 섹션 */
-        .language-grid {
+        /* 유동성 풀 섹션 */
+        .pool-header {
+            color: var(--cyan-blue);
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pool-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5px;
-            max-height: 200px;
-            overflow-y: auto;
-            font-size: 0.8rem;
-            padding-right: 5px;
+            gap: 12px;
         }
-        .lang-item {
-            padding: 5px;
-            background: #222;
-            border-radius: 4px;
-            text-align: center;
-            cursor: pointer;
-        }
-        .lang-item:hover { background: var(--primary-orange); }
 
-        /* 자산 섹션 - 오타 수정 완료 */
-        .asset-title {
-            color: var(--pi-yellow);
-            font-size: 1.5rem;
+        .pool-item {
+            border: 1px solid rgba(0, 209, 255, 0.3);
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        .apr-badge {
+            background: var(--cyan-blue);
+            color: black;
+            font-size: 0.7rem;
             font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 5px;
+        }
+
+        /* 메인 자산 원장 (오타 수정됨: LEDGER) */
+        .ledger-section {
+            margin-top: 15px;
+        }
+
+        .ledger-header {
             display: flex;
             justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .ledger-title {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
             align-items: center;
+            gap: 8px;
         }
-        .chairman-tag { font-size: 0.7rem; color: var(--text-gray); }
 
-        .big-number {
-            font-size: 3.5rem;
+        .chairman-info {
+            text-align: right;
+            font-size: 0.7rem;
+            color: #888;
+            line-height: 1.4;
+        }
+
+        .main-balance {
+            font-size: 3.8rem;
             color: var(--pi-yellow);
-            margin: 20px 0 5px 0;
-            font-family: 'Courier New', Courier, monospace;
+            font-weight: 800;
+            margin: 25px 0 5px 0;
+            font-family: 'monospace';
         }
 
-        .gcv-value {
+        .currency-label {
+            color: var(--pi-yellow);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        /* GCV 표기 (오타 수정됨: GCV) */
+        .gcv-valuation {
             color: var(--neon-green);
             font-size: 1.8rem;
+            font-weight: bold;
+            border-bottom: 2px solid var(--neon-green);
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 25px;
         }
 
-        /* 버튼 그리드 */
-        .button-grid {
+        /* 하단 버튼 그리드 */
+        .menu-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
-            margin-top: 20px;
         }
-        .action-btn {
-            background: #252525;
-            border: none;
+
+        .menu-item {
+            background: #1a1a1a;
             padding: 15px 5px;
-            border-radius: 10px;
-            color: white;
-            font-size: 0.7rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: 0.2s;
             display: flex;
             flex-direction: column;
+            gap: 8px;
+            border: 1px solid transparent;
+        }
+
+        .menu-item i {
+            font-size: 1.3rem;
+            color: var(--primary-orange);
+        }
+
+        .menu-item:active { background: #333; }
+
+        .menu-item.highlight {
+            border: 1px solid var(--primary-orange);
+        }
+
+        .menu-item.main-action {
+            background: var(--primary-orange);
+        }
+        .menu-item.main-action i { color: white; }
+
+        /* 사이드바 영역 */
+        .side-col {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .side-title {
+            color: var(--primary-orange);
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+            display: flex;
             align-items: center;
             gap: 8px;
-            cursor: pointer;
         }
-        .action-btn i { font-size: 1.2rem; color: var(--primary-orange); }
-        .action-btn.active { background: var(--primary-orange); color: white; }
-        .action-btn.active i { color: white; }
 
+        /* 30개국 언어 그리드 */
+        .lang-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            max-height: 250px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .lang-container::-webkit-scrollbar { width: 4px; }
+        .lang-container::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; }
+
+        .lang-chip {
+            background: #1a1a1a;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            text-align: left;
+            cursor: pointer;
+            border: 1px solid #222;
+        }
+
+        .lang-chip:hover { background: #252525; border-color: #444; }
+
+        /* 소셜 네트워크 */
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            color: #ddd;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
 
 <div class="header">
-    <div class="brand">
+    <div class="brand-logo">
         <h1>HK<br>WORLD<br>BANK</h1>
         <div class="node-status">GLOBAL SERVER NODE: <span style="font-weight:bold;">ULSAN_HQ_ACTIVE</span></div>
     </div>
-    <div class="contact-info">
-        <i class="fas fa-envelope"></i> info@hkwb.com
+    <div class="contact-box">
+        <i class="fas fa-envelope" style="color:var(--primary-orange)"></i> info@hkwb.com
     </div>
 </div>
 
-<div class="main-container">
-    <div class="left-col">
-        <div class="card" style="margin-bottom: 20px;">
-            <h3 style="color:#00D1FF; margin-top:0;"><i class="fas fa-water"></i> LIQUIDITY POOL</h3>
-            <div style="display:flex; gap:15px;">
-                <div style="flex:1; border:1px solid #00D1FF; padding:10px; border-radius:10px;">
-                    <div style="font-size:0.8rem;">PI / GCV <span style="background:#00D1FF; color:black; padding:2px 5px; border-radius:3px; font-weight:bold;">APR 24.5%</span></div>
-                    <div style="font-size:1.5rem; margin:10px 0;">12,450.88 LP</div>
+<div class="main-layout">
+    <div class="main-col">
+        <div class="card">
+            <div class="pool-header">
+                <i class="fas fa-wave-square"></i> LIQUIDITY POOL
+            </div>
+            <div class="pool-grid">
+                <div class="pool-item">
+                    <div style="font-size:0.75rem; color:#888;">PI / <span style="color:white; font-weight:bold;">GCV</span> <span class="apr-badge">APR 24.5%</span></div>
+                    <div style="font-size:1.4rem; margin-top:8px; font-weight:bold;">12,450.88 LP</div>
+                    <div style="font-size:0.65rem; color:var(--neon-green); margin-top:5px;">+ 0.45 Pi Earned Today</div>
                 </div>
-                <div style="flex:1; border:1px solid #00D1FF; padding:10px; border-radius:10px;">
-                    <div style="font-size:0.8rem;">Total Value (TVL) <span style="background:#00D1FF; color:black; padding:2px 5px; border-radius:3px; font-weight:bold;">APR 18.2%</span></div>
-                    <div style="font-size:1.5rem; margin:10px 0; color:#00D1FF;">$ 894.2M</div>
+                <div class="pool-item">
+                    <div style="font-size:0.75rem; color:#888;">Total Value (TVL) <span class="apr-badge">APR 18.2%</span></div>
+                    <div style="font-size:1.4rem; margin-top:8px; font-weight:bold; color:var(--cyan-blue);">$ 894.2M</div>
+                    <div style="font-size:0.65rem; color:#888; margin-top:5px;">Security: 100% Verified</div>
                 </div>
             </div>
         </div>
 
-        <div class="card">
-            <div class="asset-title">
-                <span><i class="fas fa-wallet"></i> MAIN ASSET LEDGER</span>
-                <span class="chairman-tag">Chairman Lee Jaewan <br> Secure Access</span>
+        <div class="card" style="margin-top:15px;">
+            <div class="ledger-header">
+                <div class="ledger-title">
+                    <i class="fas fa-database" style="color:var(--pi-yellow)"></i> MAIN ASSET LEDGER
+                </div>
+                <div class="chairman-info">
+                    Chairman Lee Jaewan<br>
+                    <span style="color:var(--neon-green)">● Secure Access</span>
+                </div>
             </div>
-            
-            <div class="big-number">400.0000</div>
-            <div style="color:var(--pi-yellow); font-weight:bold; margin-bottom:10px;">Pi</div>
-            
-            <div class="gcv-value">≈ $ 12,566,360.00 (GCV)</div>
 
-            <div class="button-grid">
-                <div class="action-btn"><i class="fas fa-credit-card"></i>결제</div>
-                <div class="action-btn"><i class="fas fa-paper-plane"></i>송금</div>
-                <div class="action-btn active"><i class="fas fa-coins"></i>스테이킹</div>
-                <div class="action-btn"><i class="fas fa-gift"></i>리워드</div>
-                <div class="action-btn"><i class="fas fa-hand-holding-usd"></i>기본소득</div>
-                <div class="action-btn"><i class="fas fa-sync-alt"></i>DEX 스왑</div>
-                <div class="action-btn"><i class="fas fa-headset"></i>고객센터</div>
-                <div class="action-btn" style="background:var(--primary-orange);"><i class="fas fa-link" style="color:white;"></i>본사 연동</div>
+            <div class="main-balance">400.0000</div>
+            <div class="currency-label">Pi</div>
+            
+            <div class="gcv-valuation">≈ $ 12,566,360.00 (GCV)</div>
+
+            <div class="menu-grid">
+                <div class="menu-item"><i class="fas fa-wallet"></i>결제</div>
+                <div class="menu-item"><i class="fas fa-paper-plane"></i>송금</div>
+                <div class="menu-item highlight"><i class="fas fa-coins"></i>스테이킹</div>
+                <div class="menu-item"><i class="fas fa-gift"></i>리워드</div>
+                <div class="menu-item"><i class="fas fa-hand-holding-heart"></i>기본소득</div>
+                <div class="menu-item"><i class="fas fa-exchange-alt"></i>DEX 스왑</div>
+                <div class="menu-item"><i class="fas fa-headset"></i>고객센터</div>
+                <div class="menu-item main-action"><i class="fas fa-link"></i>본사 연동</div>
             </div>
         </div>
     </div>
 
-    <div class="right-col">
-        <div class="card" style="margin-bottom:20px;">
-            <h4 style="margin-top:0; color:var(--primary-orange);"><i class="fas fa-share-alt"></i> NETWORKS</h4>
-            <div style="font-size:0.9rem;">
-                <p><i class="fab fa-youtube" style="color:red;"></i> YouTube: @Hyekong2025</p>
-                <p><i class="fab fa-tiktok"></i> TikTok: @hyekong2025</p>
-            </div>
+    <div class="side-col">
+        <div class="card">
+            <div class="side-title"><i class="fas fa-network-wired"></i> NETWORKS</div>
+            <a href="#" class="social-link"><i class="fab fa-youtube" style="color:#FF0000; font-size:1.2rem;"></i> YouTube: @Hyekong2025</a>
+            <a href="#" class="social-link"><i class="fab fa-tiktok" style="color:#ffffff; font-size:1.2rem;"></i> TikTok: @hyekong2025</a>
         </div>
 
-        <div class="card">
-            <h4 style="margin-top:0; color:var(--primary-orange);"><i class="fas fa-globe"></i> LANGUAGES (30)</h4>
-            <div class="language-grid">
-                <div class="lang-item">🇰🇷 한국어</div><div class="lang-item">🇺🇸 English</div>
-                <div class="lang-item">🇨🇳 中文</div><div class="lang-item">🇯🇵 日本語</div>
-                <div class="lang-item">🇻🇳 Tiếng Việt</div><div class="lang-item">🇩🇪 Deutsch</div>
-                <div class="lang-item">🇫🇷 Français</div><div class="lang-item">🇷🇺 Русский</div>
-                <div class="lang-item">🇪🇸 Español</div><div class="lang-item">🇮🇹 Italiano</div>
-                <div class="lang-item">🇹🇭 ไทย</div><div class="lang-item">🇮🇩 Indonesia</div>
-                <div class="lang-item">🇮🇳 हिन्दी</div><div class="lang-item">🇵🇭 Tagalog</div>
-                <div class="lang-item">🇹🇷 Türkçe</div><div class="lang-item">🇸🇦 العربية</div>
-                <div class="lang-item">🇧🇷 Português</div><div class="lang-item">🇲🇾 Melayu</div>
-                <div class="lang-item">🇳🇱 Nederlands</div><div class="lang-item">🇵🇱 Polski</div>
-                <div class="lang-item">🇸🇪 Svenska</div><div class="lang-item">🇺🇦 Українська</div>
-                <div class="lang-item">🇮🇷 فارسی</div><div class="lang-item">🇨🇿 Čeština</div>
-                <div class="lang-item">🇬🇷 Ελληνικά</div><div class="lang-item">🇭🇺 Magyar</div>
-                <div class="lang-item">🇷🇴 Română</div><div class="lang-item">🇫🇮 Suomi</div>
-                <div class="lang-item">🇳🇴 Norsk</div><div class="lang-item">🇩🇰 Dansk</div>
+        <div class="card" style="flex-grow: 1;">
+            <div class="side-title"><i class="fas fa-language"></i> LANGUAGES (30)</div>
+            <div class="lang-container">
+                <div class="lang-chip">🇰🇷 한국어</div>
+                <div class="lang-chip">🇺🇸 English</div>
+                <div class="lang-chip">🇨🇳 中文 (简体)</div>
+                <div class="lang-chip">🇯🇵 日本語</div>
+                <div class="lang-chip">🇻🇳 Tiếng Việt</div>
+                <div class="lang-chip">🇩🇪 Deutsch</div>
+                <div class="lang-chip">🇫🇷 Français</div>
+                <div class="lang-chip">🇷🇺 Русский</div>
+                <div class="lang-chip">🇪🇸 Español</div>
+                <div class="lang-chip">🇮🇹 Italiano</div>
+                <div class="lang-chip">🇹🇷 Türkçe</div>
+                <div class="lang-chip">🇹🇭 ไทย</div>
+                <div class="lang-chip">🇮🇩 Bahasa Indonesia</div>
+                <div class="lang-chip">🇵🇭 Filipino</div>
+                <div class="lang-chip">🇮🇳 हिन्दी</div>
+                <div class="lang-chip">🇸🇦 العربية</div>
+                <div class="lang-chip">🇵🇹 Português</div>
+                <div class="lang-chip">🇲🇾 Bahasa Melayu</div>
+                <div class="lang-chip">🇳🇱 Nederlands</div>
+                <div class="lang-chip">🇵內 Polski</div>
+                <div class="lang-chip">🇸🇪 Svenska</div>
+                <div class="lang-chip">🇺🇦 Українська</div>
+                <div class="lang-chip">🇮🇷 فارسی</div>
+                <div class="lang-chip">🇨🇿 Čeština</div>
+                <div class="lang-chip">🇬🇷 Ελληνικά</div>
+                <div class="lang-chip">🇭🇺 Magyar</div>
+                <div class="lang-chip">🇷🇴 Română</div>
+                <div class="lang-chip">🇫🇮 Suomi</div>
+                <div class="lang-chip">🇳🇴 Norsk</div>
+                <div class="lang-chip">🇩🇰 Dansk</div>
             </div>
         </div>
     </div>
