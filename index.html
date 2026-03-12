@@ -65,18 +65,17 @@
             border: 1px solid #333;
         }
 
-        /* 언어 선택 - 한글만 표시 (클릭 시 전체 선택 가능하게 설계) */
+        /* 언어 선택창 - 30개국 리스트 포함 */
         .lang-select {
-            appearance: none;
             background: #1a1a1a;
             border: 1px solid var(--primary-orange);
-            padding: 10px 20px;
+            padding: 10px 15px;
             border-radius: 5px;
             color: white;
             font-size: 0.9rem;
             cursor: pointer;
-            width: 180px;
-            text-align: center;
+            width: 220px;
+            outline: none;
         }
 
         .card {
@@ -99,13 +98,13 @@
 
         /* 메뉴 버튼 */
         .menu-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-        .menu-item { background: #1a1a1a; padding: 20px 5px; border-radius: 12px; text-align: center; font-size: 0.85rem; display: flex; flex-direction: column; gap: 10px; border: 1px solid transparent; cursor: pointer; }
+        .menu-item { background: #1a1a1a; padding: 20px 5px; border-radius: 12px; text-align: center; font-size: 0.85rem; display: flex; flex-direction: column; gap: 10px; border: 1px solid transparent; }
         .menu-item i { color: var(--primary-orange); font-size: 1.5rem; }
         .menu-item.active { border: 1px solid var(--primary-orange); }
         .menu-item.main-action { background: var(--primary-orange); }
         .menu-item.main-action i { color: white; }
 
-        /* 푸터 - 소셜 링크 맨 아래 고정 */
+        /* 푸터 - 소셜 링크 */
         .footer-social {
             margin-top: auto;
             padding: 30px;
@@ -113,7 +112,6 @@
             display: flex;
             justify-content: center;
             gap: 60px;
-            background: #050505;
         }
 
         .social-link {
@@ -125,8 +123,7 @@
             font-size: 1.2rem;
             font-weight: bold;
         }
-        .social-link i { font-size: 2rem; }
-        .social-link:hover { color: var(--primary-orange); }
+        .social-link i { font-size: 2.2rem; }
     </style>
 </head>
 <body>
@@ -142,36 +139,36 @@
             <i class="fas fa-envelope" style="color:var(--primary-orange)"></i> info@hkwb.com
         </div>
         <select class="lang-select">
-            <option>🇰🇷 한국어</option>
-            <option>🇺🇸 English</option>
-            <option>🇨🇳 中文</option>
-            <option>🇯🇵 日本語</option>
-            <option>🇻🇳 Tiếng Việt</option>
-            <option>🇩🇪 Deutsch</option>
-            <option>🇫🇷 Français</option>
-            <option>🇷🇺 Русский</option>
-            <option>🇪🇸 Español</option>
-            <option>🇮🇹 Italiano</option>
-            <option>🇹🇷 Türkçe</option>
-            <option>🇹🇭 ไทย</option>
-            <option>🇮🇩 Indonesia</option>
-            <option>🇵🇭 Filipino</option>
-            <option>🇮🇳 हिन्दी</option>
-            <option>🇸🇦 العربية</option>
-            <option>🇵🇹 Português</option>
-            <option>🇲🇾 Melayu</option>
-            <option>🇳🇱 Nederlands</option>
-            <option>🇵內 Polski</option>
-            <option>🇸🇪 Svenska</option>
-            <option>🇺🇦 Українська</option>
-            <option>🇮🇷 فارسی</option>
-            <option>🇨🇿 Čeština</option>
-            <option>🇬🇷 Ελληνικά</option>
-            <option>🇭🇺 Magyar</option>
-            <option>🇷🇴 Română</option>
-            <option>🇫🇮 Suomi</option>
-            <option>🇳🇴 Norsk</option>
-            <option>🇩🇰 Dansk</option>
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="zh">🇨🇳 中文</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="vi">🇻🇳 Tiếng Việt</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="tr">🇹🇷 Türkçe</option>
+            <option value="th">🇹🇭 ไทย</option>
+            <option value="id">🇮🇩 Indonesia</option>
+            <option value="ph">🇵🇭 Filipino</option>
+            <option value="hi">🇮🇳 हिन्दी</option>
+            <option value="ar">🇸🇦 العربية</option>
+            <option value="pt">🇧🇷 Português</option>
+            <option value="ms">🇲🇾 Melayu</option>
+            <option value="nl">🇳🇱 Nederlands</option>
+            <option value="pl">🇵🇱 Polski</option>
+            <option value="sv">🇸🇪 Svenska</option>
+            <option value="uk">🇺🇦 Українська</option>
+            <option value="fa">🇮🇷 فارسی</option>
+            <option value="cs">🇨🇿 Čeština</option>
+            <option value="el">🇬🇷 Ελληνικά</option>
+            <option value="hu">🇭🇺 Magyar</option>
+            <option value="ro">🇷🇴 Română</option>
+            <option value="fi">🇫🇮 Suomi</option>
+            <option value="no">🇳🇴 Norsk</option>
+            <option value="da">🇩🇰 Dansk</option>
         </select>
     </div>
 </div>
@@ -216,10 +213,10 @@
 
 <footer class="footer-social">
     <a href="https://www.youtube.com/@Hyekong2025" target="_blank" class="social-link">
-        <i class="fab fa-youtube" style="color:#FF0000;"></i> YouTube: @Hyekong2025
+        <i class="fab fa-youtube" style="color:#FF0000;"></i> 유튜브: @Hyekong2025
     </a>
     <a href="https://www.tiktok.com/@hyekong2025" target="_blank" class="social-link">
-        <i class="fab fa-tiktok" style="color:#ffffff;"></i> TikTok: @hyekong2025
+        <i class="fab fa-tiktok" style="color:#ffffff;"></i> 틱톡: @hyekong2025
     </a>
 </footer>
 
