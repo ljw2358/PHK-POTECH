@@ -3,277 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>HK-WorldBank Global Sovereign Platform</title>
-    
+    <title>HK-WorldBank Sovereign Master</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
-    
     <style>
-        /* [1. Global Sovereign Design System] */
+        /* [1-150줄: 최첨단 소버린 디자인 시스템] */
         :root {
             --gold: #D4AF37; --gold-l: #F9DF7B; --gold-d: #AA8A2E;
-            --bg: #000000; --panel: #0a0a0a; --panel-l: #161616;
-            --text: #ffffff; --text-dim: #777777; --safe: #00FF41;
-            --danger: #FF3B30;
+            --bg: #000000; --panel: #0d0d0d; --card: #151515;
+            --text: #ffffff; --safe: #00FF41; --glow: rgba(212, 175, 55, 0.3);
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', 'Pretendard', sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', 'Pretendard', sans-serif; -webkit-font-smoothing: antialiased; }
         body { background: var(--bg); color: var(--text); overflow-x: hidden; scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
 
-        /* [2. Professional Header & Auth Status] */
-        header {
-            height: 100px; background: rgba(0,0,0,0.95); border-bottom: 2px solid var(--gold);
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0 4%; position: sticky; top: 0; z-index: 9999;
-        }
-        .logo-box { display: flex; flex-direction: column; }
-        .logo-box h1 { color: var(--gold); font-size: 24px; letter-spacing: 5px; font-weight: 900; }
-        .status-tag { font-size: 10px; color: var(--safe); font-weight: bold; border: 1px solid var(--safe); padding: 2px 8px; border-radius: 4px; margin-top: 5px; width: fit-content; }
-
-        /* [3. Massive 50 Languages Marquee] */
-        .marquee-container { background: var(--gold); color: #000; padding: 12px 0; font-weight: 900; font-size: 14px; overflow: hidden; border-bottom: 2px solid #000; }
-        .marquee-wrap { display: flex; white-space: nowrap; animation: megaScroll 120s linear infinite; }
-        @keyframes megaScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .lang-unit { padding: 0 40px; }
-
-        /* [4. Sovereign Security Gate] */
+        /* [로그인 화면: 형님이 찍으신 그 화면 최적화] */
         #gatekeeper {
             position: fixed; inset: 0; background: #000; z-index: 99999;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            display: flex; align-items: center; justify-content: center;
         }
-        .auth-panel {
-            width: 90%; max-width: 450px; padding: 50px; background: #111;
+        .auth-card {
+            width: 88%; max-width: 420px; padding: 50px 30px; background: var(--panel);
             border: 2px solid var(--gold); border-radius: 40px; text-align: center;
-            box-shadow: 0 0 100px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 60px var(--glow); transition: 0.5s;
         }
-        .auth-panel input {
-            width: 100%; padding: 18px; margin: 30px 0; background: #000;
-            border: 1px solid #333; color: var(--gold); border-radius: 15px; text-align: center; font-size: 1.2rem;
+        .auth-card i.main-icon { font-size: 80px; color: var(--gold); margin-bottom: 25px; display: block; }
+        .auth-card h2 { color: var(--gold); letter-spacing: 5px; font-weight: 900; margin-bottom: 40px; font-size: 22px; }
+        .auth-card input {
+            width: 100%; padding: 20px; margin-bottom: 25px; background: #000;
+            border: 1px solid #333; color: var(--gold); border-radius: 15px; text-align: center; font-size: 1.1rem; outline: none;
         }
-        .auth-btn {
-            width: 100%; padding: 18px; background: var(--gold); color: #000;
-            border: none; border-radius: 15px; font-weight: 900; cursor: pointer; font-size: 1.1rem;
+        .auth-card input:focus { border-color: var(--gold); box-shadow: 0 0 15px var(--glow); }
+        .btn-activate {
+            width: 100%; padding: 20px; background: var(--gold); color: #000;
+            border: none; border-radius: 15px; font-weight: 950; cursor: pointer; font-size: 1.2rem;
+            text-transform: uppercase; transition: 0.3s;
         }
+        .btn-activate:hover { background: var(--gold-l); transform: scale(1.02); }
 
-        /* [5. Asset Dashboard & Counter] */
-        .hero { padding: 120px 5%; text-align: center; background: radial-gradient(circle at top, #1a1a1a 0%, #000 100%); position: relative; }
-        .hero::after { content: ""; position: absolute; bottom: 0; left: 50%; width: 1px; height: 100px; background: var(--gold); }
-        .asset-title { color: var(--gold); font-size: 14px; letter-spacing: 10px; text-transform: uppercase; margin-bottom: 30px; }
-        .main-counter { font-size: clamp(3rem, 12vw, 7.5rem); font-weight: 950; color: #fff; line-height: 1; margin: 40px 0; text-shadow: 0 0 50px rgba(212,175,55,0.4); }
-
-        /* [6. Advanced Component Grid] */
-        .master-grid {
-            max-width: 1600px; margin: 80px auto; padding: 0 30px;
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+        /* [메인 앱 레이아웃] */
+        header {
+            height: 110px; background: rgba(0,0,0,0.98); border-bottom: 2px solid var(--gold);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; position: sticky; top: 0; z-index: 1000;
         }
-        .component { background: var(--panel-l); border-radius: 40px; padding: 45px; border: 1px solid #222; transition: 0.5s; }
-        .component:hover { border-color: var(--gold); transform: translateY(-10px); }
-        .comp-title { color: var(--gold); font-size: 1.5rem; font-weight: 800; margin-bottom: 40px; border-left: 5px solid var(--gold); padding-left: 20px; }
+        .logo-group h1 { color: var(--gold); font-size: 22px; letter-spacing: 4px; font-weight: 900; }
+        .logo-group p { font-size: 10px; color: var(--safe); font-weight: bold; margin-top: 5px; }
 
-        /* [7. Social Media Matrix] */
-        .media-matrix { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        .media-card {
-            background: #000; padding: 30px; border-radius: 25px; text-decoration: none;
-            display: flex; align-items: center; gap: 25px; border: 1px solid #222;
-        }
-        .media-card i { font-size: 3.5rem; }
-        .yt-c { color: #FF0000; }
-        .tt-c { color: #fff; text-shadow: 2px 2px #00f2ea, -2px -2px #ff0050; }
-        .media-info b { font-size: 1.3rem; color: #fff; display: block; }
-        .media-info span { font-size: 0.9rem; color: #666; }
+        .marquee-bar { background: var(--gold); color: #000; padding: 15px 0; font-weight: 900; font-size: 13px; overflow: hidden; }
+        .marquee-inner { display: flex; white-space: nowrap; animation: megaMove 150s linear infinite; }
+        @keyframes megaMove { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* [8. Sovereign Contact Footer] */
+        /* [자산 카운터 섹션] */
+        .dashboard { padding: 120px 5% 60px; text-align: center; background: radial-gradient(circle at top, #151515 0%, #000 100%); }
+        .asset-title { color: var(--gold); font-size: 14px; letter-spacing: 12px; margin-bottom: 35px; opacity: 0.8; }
+        .asset-value { font-size: clamp(2.8rem, 12vw, 7.5rem); font-weight: 950; color: #fff; margin-bottom: 30px; text-shadow: 0 0 40px var(--glow); }
+
+        /* [메인 컨텐츠 그리드] */
+        .content-grid { max-width: 1600px; margin: 60px auto; padding: 0 25px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .card-box { background: var(--card); border-radius: 35px; padding: 45px; border: 1px solid #222; position: relative; overflow: hidden; }
+        .card-box::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+        .card-box h3 { color: var(--gold); font-size: 1.4rem; font-weight: 800; margin-bottom: 35px; border-left: 5px solid var(--gold); padding-left: 20px; }
+
+        /* [사업 상세 리포트 테이블] */
+        .report-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
+        .report-table td { padding: 15px 0; border-bottom: 1px solid #222; color: #888; }
+        .report-table td:last-child { text-align: right; color: var(--gold); font-weight: bold; }
+
+        /* [푸터 및 이메일] */
         footer { background: #000; border-top: 2px solid var(--gold); padding: 150px 20px; text-align: center; }
-        .grand-email {
-            font-size: clamp(1.8rem, 7vw, 3.5rem); color: var(--gold); text-decoration: none;
-            border: 4px solid var(--gold); padding: 30px 80px; border-radius: 200px;
-            font-weight: 900; transition: 0.6s; display: inline-block;
+        .big-email {
+            font-size: clamp(1.5rem, 6vw, 3rem); color: var(--gold); text-decoration: none;
+            border: 3px solid var(--gold); padding: 25px 70px; border-radius: 100px;
+            font-weight: 900; transition: 0.5s; display: inline-block; margin-bottom: 60px;
         }
-        .grand-email:hover { background: var(--gold); color: #000; box-shadow: 0 0 80px var(--gold); }
-        .legal-info { margin-top: 100px; color: #444; font-size: 13px; line-height: 2.5; }
+        .big-email:hover { background: var(--gold); color: #000; box-shadow: 0 0 60px var(--gold); }
+        .copyright { color: #333; font-size: 12px; line-height: 2; font-weight: bold; }
 
-        /* [9. Responsive Overrides] */
-        @media (max-width: 1200px) { .master-grid { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 768px) {
-            .master-grid { grid-template-columns: 1fr; padding: 0 20px; }
-            .main-counter { font-size: 3.5rem; }
-            header { height: 80px; }
-        }
+        /* [반응형 최적화] */
+        @media (max-width: 1200px) { .content-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } header { height: 90px; } .asset-value { font-size: 3.2rem; } }
     </style>
 </head>
 <body>
 
 <div id="gatekeeper">
-    <div class="auth-panel animate__animated animate__fadeIn">
-        <i class="fas fa-fingerprint" style="font-size: 4rem; color: var(--gold); margin-bottom: 20px;"></i>
-        <h2 style="color:var(--gold); letter-spacing:3px;">HK-SOVEREIGN AUTH</h2>
-        <input type="password" id="accessCode" placeholder="ENTER MASTER KEY">
-        <button class="auth-btn" onclick="verifyAccess()">ACTIVATE PLATFORM</button>
-        <div style="margin-top: 30px; color: #333; font-size: 10px;">ENCRYPTED BY HK-WORLD QUANTUM CLOUD</div>
+    <div class="auth-card animate__animated animate__zoomIn">
+        <i class="fas fa-fingerprint main-icon"></i>
+        <h2>HK-SOVEREIGN AUTH</h2>
+        <input type="password" id="masterKey" placeholder="ENTER ACCESS CODE" autofocus>
+        <button class="btn-activate" onclick="launchPlatform()">ACTIVATE PLATFORM</button>
+        <p style="margin-top:25px; color:#444; font-size:11px; font-weight:bold; letter-spacing:2px;">ENCRYPTED BY HK-WORLD QUANTUM CLOUD</p>
     </div>
 </div>
 
-<header>
-    <div class="logo-box">
-        <h1>HK-WorldBank</h1>
-        <div class="status-tag">50 LANGUAGES ENABLED</div>
-    </div>
-    <div style="color:var(--gold); font-weight:900; font-size:1.1rem;">
-        CHAIRMAN HYEKONG <i class="fas fa-crown"></i>
-    </div>
-</header>
-
-<div class="marquee-container">
-    <div class="marquee-wrap" id="megaTicker">
+<div id="mainContent" style="display:none;">
+    <header>
+        <div class="logo-group">
+            <h1>HK-WorldBank</h1>
+            <p><i class="fas fa-shield-virus"></i> QUANTUM SECURITY LAYER ACTIVE</p>
         </div>
+        <div style="text-align:right;">
+            <b style="color:var(--gold); display:block; font-size:16px;">혜공 형님</b>
+            <small style="color:#555;">CHAIRMAN OF HK-HOLDINGS</small>
+        </div>
+    </header>
+
+    <div class="marquee-bar">
+        <div class="marquee-inner" id="megaMarquee"></div>
+    </div>
+
+    <main>
+        <section class="dashboard">
+            <p class="asset-title" id="txt_global_val">GLOBAL CONGLOMERATE ASSET VALUATION</p>
+            <div class="asset-value" id="valNum">0</div>
+            <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+                <div style="background:#111; padding:15px 30px; border-radius:15px; border:1px solid #333;">
+                    <span style="display:block; font-size:11px; color:#555;">PI-NETWORK</span>
+                    <b style="color:var(--safe)">SYNCED</b>
+                </div>
+                <div style="background:#111; padding:15px 30px; border-radius:15px; border:1px solid #333;">
+                    <span style="display:block; font-size:11px; color:#555;">AI-ROBOTICS</span>
+                    <b style="color:var(--safe)">OPERATIONAL</b>
+                </div>
+            </div>
+        </section>
+
+        <div class="content-grid">
+            <div class="card-box">
+                <h3>Media Matrix</h3>
+                <div style="display:grid; grid-template-columns:1fr; gap:15px;">
+                    <a href="https://youtube.com/@hkhodings" target="_blank" style="background:#000; display:flex; align-items:center; padding:25px; border-radius:20px; text-decoration:none; border:1px solid #222;">
+                        <i class="fab fa-youtube" style="color:#f00; font-size:40px; margin-right:20px;"></i>
+                        <div><b style="color:#fff; display:block;">HK YouTube</b><small style="color:#666;">Official Channel</small></div>
+                    </a>
+                    <a href="https://tiktok.com/@hkhodings" target="_blank" style="background:#000; display:flex; align-items:center; padding:25px; border-radius:20px; text-decoration:none; border:1px solid #222;">
+                        <i class="fab fa-tiktok" style="color:#fff; font-size:40px; margin-right:20px;"></i>
+                        <div><b style="color:#fff; display:block;">HK TikTok</b><small style="color:#666;">Short-form Tech</small></div>
+                    </a>
+                </div>
+                <div style="margin-top:30px; border-top:1px solid #222; padding-top:20px;">
+                    <p style="font-size:13px; color:#555; line-height:1.8;">• HK-Robotics: AI Neural Sync Complete<br>• Fusion Reactor: Plasma Stability 100%</p>
+                </div>
+            </div>
+
+            <div class="card-box">
+                <h3>Asset Report</h3>
+                <table class="report-table">
+                    <tr><td>Humanoid Robotics</td><td>42.5%</td></tr>
+                    <tr><td>Nuclear Fusion</td><td>28.3%</td></tr>
+                    <tr><td>UBI Foundation</td><td>15.2%</td></tr>
+                    <tr><td>Space Industry</td><td>9.0%</td></tr>
+                    <tr><td>Bio-Technology</td><td>5.0%</td></tr>
+                </table>
+                <canvas id="assetDoughnut" style="margin-top:20px; max-height:150px;"></canvas>
+            </div>
+
+            <div class="card-box">
+                <h3>Network Nodes</h3>
+                <div style="font-size:13px; font-family:monospace; padding:20px; background:#000; border-radius:15px; border:1px solid #222;">
+                    <p style="color:var(--safe)">[ONLINE] ULSAN_HUB_01</p>
+                    <p style="color:var(--safe)">[ONLINE] GYEONGJU_NODE_07</p>
+                    <p style="color:var(--safe)">[ONLINE] POHANG_CLUSTER_03</p>
+                    <p style="color:var(--gold)">[STABLE] SILICON_VALLEY_OFFICE</p>
+                    <p style="color:var(--safe)">[ONLINE] GLOBAL_QUANTUM_LINK</p>
+                </div>
+                <canvas id="lineChart" style="margin-top:20px; max-height:130px;"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p style="color:#444; letter-spacing:15px; margin-bottom:50px; font-weight:bold;">STRATEGIC PARTNERSHIP</p>
+        <a href="mailto:info@hkwb.com" class="big-email">info@hkwb.com</a>
+        <div class="copyright">
+            <b>HK-WorldBank (HKWB) Strategic Center</b><br>
+            A High-Tech Subsidiary of HK-Holdings Global Group<br>
+            Lead HQ: Ulsan Metropolitan City, Republic of Korea<br>
+            <p style="margin-top:40px; opacity:0.3;">© 2026 HK-HOLDINGS. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
 </div>
-
-<main id="appBody" style="display:none;">
-    <section class="hero">
-        <p class="asset-title">Global Industrial Asset Control</p>
-        <div class="main-counter" id="valCounter">0</div>
-        <p style="color:var(--gold); font-weight:800; font-size:1.4rem; letter-spacing:5px;">KRW CAPITAL RESERVE</p>
-        
-        <div style="margin-top:60px; display:flex; justify-content:center; gap:30px; flex-wrap:wrap;">
-            <div class="status-chip" style="background:#111; padding:20px 40px; border-radius:20px; border:1px solid #333;">
-                <span style="display:block; font-size:12px; color:#666;">PI-NETWORK</span>
-                <b style="color:var(--safe)">CONNECTED</b>
-            </div>
-            <div class="status-chip" style="background:#111; padding:20px 40px; border-radius:20px; border:1px solid #333;">
-                <span style="display:block; font-size:12px; color:#666;">QUANTUM CORE</span>
-                <b style="color:var(--safe)">STABLE</b>
-            </div>
-        </div>
-    </section>
-
-    <div class="master-grid">
-        <div class="component">
-            <h3 class="comp-title">Media Hub</h3>
-            <div class="media-matrix">
-                <a href="https://youtube.com/@hkhodings" target="_blank" class="media-card">
-                    <i class="fab fa-youtube yt-c"></i>
-                    <div class="media-info">
-                        <b>HK Official YouTube</b>
-                        <span>Industrial Innovation News</span>
-                    </div>
-                </a>
-                <a href="https://tiktok.com/@hkhodings" target="_blank" class="media-card">
-                    <i class="fab fa-tiktok tt-c"></i>
-                    <div class="media-info">
-                        <b>Global TikTok</b>
-                        <span>Short-form Tech Highlights</span>
-                    </div>
-                </a>
-            </div>
-            <div style="margin-top: 40px; padding: 25px; background: #000; border-radius: 20px; font-size: 13px; color: #888; line-height: 2;">
-                • HK-Robotics: Version 7.0 Alpha Released<br>
-                • Fusion Reactor: Plasma Stability 99.9%<br>
-                • UBI Foundation: Q1 Distribution Complete
-            </div>
-        </div>
-
-        <div class="component">
-            <h3 class="comp-title">Portfolio Index</h3>
-            <canvas id="pieChart" style="max-height: 250px;"></canvas>
-            <div style="margin-top: 40px;">
-                <div style="display:flex; justify-content:space-between; margin-bottom:15px; border-bottom:1px solid #222; padding-bottom:10px;">
-                    <span>Humanoid Robotics</span><b style="color:var(--gold)">45%</b>
-                </div>
-                <div style="display:flex; justify-content:space-between; margin-bottom:15px; border-bottom:1px solid #222; padding-bottom:10px;">
-                    <span>Nuclear Fusion</span><b style="color:var(--gold)">35%</b>
-                </div>
-                <div style="display:flex; justify-content:space-between;">
-                    <span>Space & Biotech</span><b style="color:var(--gold)">20%</b>
-                </div>
-            </div>
-        </div>
-
-        <div class="component">
-            <h3 class="comp-title">Global Network</h3>
-            <div style="height: 180px; margin-bottom: 30px;">
-                <canvas id="lineChart"></canvas>
-            </div>
-            <div class="node-logs" style="font-size: 13px; font-family: monospace;">
-                <p style="color:var(--safe)">[OK] ULSAN HUB - SYNC COMPLETE</p>
-                <p style="color:var(--safe)">[OK] GYEONGJU NODE - ONLINE</p>
-                <p style="color:var(--safe)">[OK] POHANG CLUSTER - ACTIVE</p>
-                <p style="color:var(--gold)">[WARN] US BRANCH - LATENCY 12ms</p>
-                <p style="color:var(--safe)">[OK] EU QUANTUM - STABLE</p>
-            </div>
-        </div>
-    </div>
-</main>
-
-<footer>
-    <p style="color:#555; letter-spacing:15px; margin-bottom:60px; font-weight:bold;">STRATEGIC INQUIRY</p>
-    <a href="mailto:info@hkwb.com" class="grand-email">info@hkwb.com</a>
-    <div class="legal-info">
-        <b>HK-WorldBank (HKWB) | Sovereign Management Platform</b><br>
-        A High-Tech Subsidiary of HK-Holdings Global Group<br>
-        Lead Headquarters: Ulsan Metropolitan City, Republic of Korea<br>
-        <p style="margin-top: 60px; opacity: 0.3;">© 2026 HK-HOLDINGS. PROTECTED BY BLOCKCHAIN AUTHENTICATION.</p>
-    </div>
-</footer>
 
 <script>
-    /* [HK-WorldBank Master Engine - 800+ Lines Capacity] */
-    
-    // 50 Languages Data Sheet
+    // 50개국 언어 데이터 시트 (이게 들어가야 진짜 묵직합니다)
     const L50 = ["한국어", "English", "日本語", "简体中文", "Tiếng Việt", "Deutsch", "Français", "Español", "Italiano", "Русский", "Português", "Türkçe", "हिन्दी", "العربية", "Bahasa Indonesia", "Polski", "Nederlands", "Svenska", "ไทย", "Filipino", "Українська", "Čeština", "Ελληνικά", "Română", "Magyar", "Dansk", "Suomi", "Norsk", "Català", "עברית", "Bahasa Melayu", "Slovenčina", "Български", "Lietuvių", "Latviešu", "Eesti", "Hrvatski", "Srpski", "Slovenščina", "Қазақ тілі", "Oʻzbekcha", "Azərbaycan", "ქართული", "Հայերեն", "اردو", "پارسی", "বাংলা", "தமிழ்", "తెలుగు", "ಕನ್ನಡ"];
 
-    function verifyAccess() {
-        const key = document.getElementById('accessCode').value;
-        if(key === "1234") { // 형님, 실제 비밀번호로 나중에 수정하세요!
-            document.getElementById('gatekeeper').style.display = 'none';
-            document.getElementById('appBody').style.display = 'block';
-            initSovereignApp();
+    function launchPlatform() {
+        const pass = document.getElementById('masterKey').value;
+        if(pass === "1234") { // 형님, 임시 비밀번호입니다!
+            const gate = document.getElementById('gatekeeper');
+            gate.style.transition = "1s ease-in-out";
+            gate.style.opacity = "0";
+            gate.style.transform = "scale(1.5)";
+            setTimeout(() => {
+                gate.style.display = "none";
+                document.getElementById('mainContent').style.display = "block";
+                initMasterSystem();
+            }, 1000);
         } else {
             alert("ACCESS DENIED: SECURE PROTOCOL VIOLATION");
+            document.getElementById('masterKey').value = "";
         }
     }
 
-    function initSovereignApp() {
-        // Build 50 Languages Ticker
-        const ticker = document.getElementById('megaTicker');
-        const content = L50.map(l => `<span class="lang-unit">${l.toUpperCase()} SYSTEM ONLINE •</span>`).join('');
-        ticker.innerHTML = content + content;
+    function initMasterSystem() {
+        // 50개 언어 마키 생성
+        const marquee = document.getElementById('megaMarquee');
+        const content = L50.map(l => `<span style="padding:0 50px;">${l.toUpperCase()} SYSTEM ACTIVE •</span>`).join('');
+        marquee.innerHTML = content + content;
 
-        runAssetCounter();
-        initVisuals();
+        startCounting();
+        drawCharts();
     }
 
-    function runAssetCounter() {
+    function startCounting() {
         const target = 118000000000000;
-        let start = 0;
+        let current = 0;
         const duration = 5000;
         const startTime = performance.now();
 
-        function update(now) {
-            const progress = Math.min((now - startTime) / duration, 1);
+        function step(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
             const val = Math.floor(progress * target);
-            document.getElementById('valCounter').innerText = "₩ " + new Intl.NumberFormat().format(val);
-            if(progress < 1) requestAnimationFrame(update);
+            document.getElementById('valNum').innerText = "₩ " + new Intl.NumberFormat().format(val);
+            if (progress < 1) requestAnimationFrame(step);
         }
-        requestAnimationFrame(update);
+        requestAnimationFrame(step);
     }
 
-    function initVisuals() {
-        // Pie Chart
-        new Chart(document.getElementById('pieChart').getContext('2d'), {
+    function drawCharts() {
+        const ctx1 = document.getElementById('assetDoughnut').getContext('2d');
+        new Chart(ctx1, {
             type: 'doughnut',
             data: {
-                labels: ['Robotics', 'Fusion', 'UBI', 'Space', 'Bio'],
-                datasets: [{ data: [45, 35, 10, 5, 5], backgroundColor: ['#D4AF37', '#888', '#555', '#333', '#222'], borderWidth: 0 }]
+                labels: ['Robot', 'Fusion', 'UBI', 'Space', 'Bio'],
+                datasets: [{
+                    data: [42, 28, 15, 10, 5],
+                    backgroundColor: ['#D4AF37', '#888', '#555', '#333', '#222'],
+                    borderWidth: 0
+                }]
             },
             options: { cutout: '80%', plugins: { legend: { display: false } } }
         });
 
-        // Line Chart
-        new Chart(document.getElementById('lineChart').getContext('2d'), {
+        const ctx2 = document.getElementById('lineChart').getContext('2d');
+        new Chart(ctx2, {
             type: 'line',
             data: {
-                labels: ['00:00', '06:00', '12:00', '18:00', '24:00'],
-                datasets: [{ label: 'Traffic', data: [30, 80, 45, 95, 70], borderColor: '#D4AF37', fill: true, backgroundColor: 'rgba(212,175,55,0.05)', tension: 0.4, pointRadius: 0 }]
+                labels: ['00', '06', '12', '18', '24'],
+                datasets: [{
+                    data: [20, 45, 100, 60, 85],
+                    borderColor: '#D4AF37',
+                    borderWidth: 2,
+                    fill: true,
+                    backgroundColor: 'rgba(212,175,55,0.05)',
+                    tension: 0.4,
+                    pointRadius: 0
+                }]
             },
             options: { scales: { x: { display: false }, y: { display: false } }, plugins: { legend: { display: false } } }
         });
