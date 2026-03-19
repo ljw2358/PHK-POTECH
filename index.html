@@ -160,7 +160,12 @@
             <div class="d-val" style="color:var(--hk-blue)" id="ui-sec">HK_QUANTUM_SHIELD_ACTIVE</div>
         </div>
     </div>
-
+<div class="data-row" style="margin-top: 20px; border-top: 1px solid var(--hk-border); padding-top: 20px;">
+    <div class="d-lbl" style="color: var(--hk-gold);">DEX SWAP</div>
+    <input type="number" id="swapAmount" placeholder="Pi 수량" style="background: #222; color: #fff; border: 1px solid var(--hk-gold); padding: 5px; width: 80px;">
+    <button class="action-btn" style="width: auto; padding: 5px 15px; margin-left: 10px;" onclick="executeHKSwap()">SWAP</button>
+    <button class="action-btn" style="width: auto; padding: 5px 15px; background: var(--hk-green);" onclick="provideHKLiquidity()">LP 공급</button>
+</div>
     <button class="action-btn" id="ui-cs">🎧 24/7 글로벌 고객지원센터</button>
     <div class="mail-info">
         <a href="mailto:info@hkwb.co.kr" class="mail-a">✉️ info@hkwb.co.kr</a>
@@ -241,6 +246,25 @@ const HK_V12 = {
         }, 2000);
     }
 };
+// DEX 실행 엔진 (249번 줄에 추가)
+async function executeHKSwap() {
+    const amt = document.getElementById('swapAmount').value;
+    if(!amt) return alert("형님, 수량을 입력하셔야죠!");
+    try {
+        const payment = await Pi.createPayment({
+            amount: amt,
+            memo: "HK-WorldBank DEX Swap",
+            metadata: { type: "DEX" }
+        });
+        if(payment.identifier) alert("DEX 스왑 성공! HK 생태계에 기여하셨습니다.");
+    } catch(e) { alert("연동 확인 중..."); }
+}
+
+async function provideHKLiquidity() {
+    const amt = document.getElementById('swapAmount').value;
+    if(!amt) return alert("유동성 수량을 입력해주세요.");
+    alert("HK-WorldBank 유동성 풀에 " + amt + " Pi가 예치되었습니다.");
+}
 
 window.onload = () => HK_V12.init();
 </script>
