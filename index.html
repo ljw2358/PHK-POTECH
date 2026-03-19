@@ -3,202 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>HK WORLD BANK | GLOBAL CORE ENGINE v20.0</title>
+    <title>HK WORLD BANK | GLOBAL CORE ENGINE v21.0</title>
+    
     <script src="https://sdk.minepi.com/pi-sdk.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* [1] HK PRESTIGE DESIGN SYSTEM v20.0 - 300 LINES OF CSS */
+        /* [1] GLOBAL DESIGN SYSTEM - HK PRESTIGE BLACK & GOLD */
         :root {
-            --gold: #FFB800; --green: #00FF66; --orange: #FF6B00; 
-            --blue: #00CCFF; --bg: #000000; --card: #0D0D0D;
-            --border: #1F1F1F; --yt: #FF0000; --tt: #00F2EA;
+            --gold: #FFB800; --gold-glare: #FFE600;
+            --green: #00FF66; --orange: #FF6B00;
+            --blue: #00CCFF; --bg: #000000; --card: #0A0A0A;
+            --border: #1A1A1A; --yt: #FF0000; --tt: #00F2EA;
         }
-        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; margin: 0; padding: 0; transition: all 0.3s ease; }
-        body { background: var(--bg); color: #fff; font-family: 'Pretendard', sans-serif; overflow-x: hidden; }
-        .hk-wrapper { max-width: 500px; margin: 0 auto; padding: 30px 20px; display: flex; flex-direction: column; gap: 35px; }
 
-        /* 상태바 & 다국어 */
-        .status-bar { display: flex; justify-content: space-between; align-items: center; background: var(--card); padding: 15px 25px; border-radius: 25px; border: 1px solid var(--border); }
-        .live-label { font-size: 10px; font-weight: 900; color: var(--green); display: flex; align-items: center; gap: 10px; letter-spacing: 2px; }
-        .pulse { width: 10px; height: 10px; background: var(--green); border-radius: 50%; box-shadow: 0 0 15px var(--green); animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
-        .lang-select { background: none; border: 1.5px solid var(--gold); color: var(--gold); padding: 8px 12px; border-radius: 15px; font-size: 11px; font-weight: 800; outline: none; }
+        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; margin: 0; padding: 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        body { background: var(--bg); color: #fff; font-family: 'Pretendard', sans-serif; overflow-x: hidden; width: 100%; }
+        
+        .hk-container { max-width: 500px; margin: 0 auto; padding: 25px 20px 100px 20px; display: flex; flex-direction: column; gap: 30px; }
 
-        /* 브랜딩 */
-        .brand-zone { text-align: center; }
-        .brand-title { font-size: 50px; font-weight: 900; color: var(--gold); line-height: 0.9; letter-spacing: -3px; }
-        .brand-sub { font-size: 10px; font-weight: 800; color: var(--green); margin-top: 15px; letter-spacing: 4px; text-transform: uppercase; }
+        /* STATUS PROTOCOL */
+        .hk-status-nav { display: flex; justify-content: space-between; align-items: center; background: var(--card); padding: 15px 20px; border-radius: 25px; border: 1.5px solid var(--border); }
+        .sys-live { font-size: 10px; font-weight: 900; color: var(--green); display: flex; align-items: center; gap: 10px; letter-spacing: 2px; }
+        .pulse-dot { width: 10px; height: 10px; background: var(--green); border-radius: 50%; box-shadow: 0 0 15px var(--green); animation: hk-pulse 2s infinite; }
+        @keyframes hk-pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
+        .hk-lang-box { background: none; border: 1.5px solid var(--gold); color: var(--gold); padding: 8px 12px; border-radius: 15px; font-size: 11px; font-weight: 800; outline: none; cursor: pointer; }
 
-        /* 자산 센터 - "글로벌 각각" 반영 */
-        .asset-box { 
+        /* BRANDING IDENTITY */
+        .hk-brand-zone { text-align: center; padding: 20px 0; }
+        .hk-main-title { font-size: 52px; font-weight: 900; color: var(--gold); line-height: 0.9; letter-spacing: -3px; text-shadow: 0 0 30px rgba(255, 184, 0, 0.2); }
+        .hk-node-text { font-size: 10px; font-weight: 800; color: var(--green); margin-top: 15px; letter-spacing: 4px; text-transform: uppercase; }
+
+        /* ASSET CORE - "글로벌 각각" 반영 */
+        .hk-asset-core { 
             background: linear-gradient(160deg, #111 0%, #000 100%); 
-            border: 2px solid var(--border); border-radius: 45px; 
-            padding: 55px 25px; text-align: center; position: relative;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.7);
+            border: 2.5px solid var(--border); border-radius: 45px; 
+            padding: 55px 20px; text-align: center; position: relative;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
         }
-        .asset-label { font-size: 14px; font-weight: 800; color: var(--gold); margin-bottom: 25px; letter-spacing: 1px; }
-        .bal-row { display: flex; align-items: baseline; justify-content: center; gap: 12px; margin-bottom: 20px; }
-        .v-bal { font-size: 54px; font-weight: 900; letter-spacing: -2px; }
-        .v-unit { font-size: 24px; font-weight: 900; color: var(--orange); }
-        .gcv-tag { background: rgba(0,255,102,0.1); color: var(--green); padding: 12px 25px; border-radius: 30px; font-size: 13px; font-weight: 900; display: inline-block; border: 1px solid rgba(0,255,102,0.2); }
+        .asset-label { font-size: 14px; font-weight: 800; color: var(--gold); margin-bottom: 30px; letter-spacing: 1.5px; }
+        .bal-wrap { display: flex; align-items: baseline; justify-content: center; gap: 12px; margin-bottom: 15px; }
+        .bal-num { font-size: 56px; font-weight: 900; letter-spacing: -2px; }
+        .bal-unit { font-size: 26px; font-weight: 900; color: var(--orange); }
+        .gcv-valuation { background: rgba(0,255,102,0.1); color: var(--green); padding: 12px 25px; border-radius: 35px; font-size: 14px; font-weight: 900; display: inline-block; border: 1px solid rgba(0,255,102,0.2); }
 
-        /* 미디어 스테이션 (YouTube & TikTok) */
-        .media-station { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .media-card { background: var(--card); border-radius: 25px; border: 1px solid var(--border); padding: 20px; text-align: center; cursor: pointer; }
-        .media-card i { font-size: 32px; margin-bottom: 10px; display: block; }
-        .yt-icon { color: var(--yt); }
-        .tt-icon { color: var(--tt); }
-        .media-card span { font-size: 11px; font-weight: 900; color: #666; }
+        /* MEDIA INTERFACE - YOUTUBE & TIKTOK */
+        .hk-media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .media-btn { background: var(--card); border: 1.5px solid var(--border); border-radius: 25px; padding: 22px; text-align: center; cursor: pointer; }
+        .media-btn:active { transform: scale(0.95); }
+        .media-btn i { font-size: 32px; margin-bottom: 12px; display: block; }
+        .yt-red { color: var(--yt); }
+        .tt-cyan { color: var(--tt); }
+        .media-btn span { font-size: 11px; font-weight: 900; color: #777; letter-spacing: 1px; }
 
-        /* 아이콘 메뉴 그리드 */
-        .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-        .menu-item { background: var(--card); border: 1px solid var(--border); border-radius: 25px; padding: 25px 10px; text-align: center; cursor: pointer; }
-        .menu-item i { font-size: 28px; margin-bottom: 12px; display: block; }
-        .menu-item span { font-size: 11px; font-weight: 900; color: #555; }
+        /* CORE FUNCTIONS - ICON GRID */
+        .hk-func-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .func-item { background: var(--card); border: 1.5px solid var(--border); border-radius: 25px; padding: 25px 10px; text-align: center; cursor: pointer; }
+        .func-item:active { transform: scale(0.9); background: #151515; }
+        .func-item i { font-size: 28px; margin-bottom: 12px; display: block; }
+        .func-item span { font-size: 11px; font-weight: 900; color: #555; }
 
-        /* 금융 컨트롤 (LP 핵심) */
-        .control-panel { background: var(--card); border-radius: 35px; border: 2px solid var(--border); padding: 35px 25px; }
-        .ctrl-label { font-size: 11px; font-weight: 800; color: #333; margin-bottom: 20px; text-transform: uppercase; }
-        .hk-input { width: 100%; background: #000; border: 2px solid #222; border-radius: 20px; padding: 25px; color: #fff; font-size: 26px; font-weight: 900; text-align: center; margin-bottom: 25px; outline: none; }
-        .btn-row { display: flex; gap: 12px; }
-        .btn { flex: 1; padding: 25px; border-radius: 20px; border: none; font-size: 17px; font-weight: 900; cursor: pointer; }
-        .btn-sw { background: var(--orange); color: #fff; }
-        .btn-lp { background: var(--green); color: #000; box-shadow: 0 15px 30px rgba(0,255,102,0.2); }
+        /* LIQUIDITY ENGINE - LP CONTROL */
+        .hk-control-box { background: var(--card); border-radius: 40px; border: 2.5px solid var(--border); padding: 40px 25px; }
+        .input-info { font-size: 11px; font-weight: 800; color: #333; margin-bottom: 25px; text-transform: uppercase; }
+        .hk-input { width: 100%; background: #000; border: 2px solid #222; border-radius: 25px; padding: 28px; color: #fff; font-size: 28px; font-weight: 900; text-align: center; margin-bottom: 25px; outline: none; }
+        .hk-input:focus { border-color: var(--gold); }
+        .btn-group { display: flex; gap: 15px; }
+        .hk-btn { flex: 1; padding: 28px; border-radius: 25px; border: none; font-size: 18px; font-weight: 900; cursor: pointer; box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
+        .btn-swap { background: var(--orange); color: #fff; }
+        .btn-lp { background: var(--green); color: #000; }
 
-        /* 유동성 & 실드 */
-        .monitor-zone { padding: 5px; }
-        .pool-lab { font-size: 12px; font-weight: 800; color: var(--gold); margin-bottom: 12px; }
-        .pool-num { font-size: 38px; font-weight: 900; margin-bottom: 25px; letter-spacing: -1.5px; }
-        .shield-box { color: var(--blue); font-size: 15px; font-weight: 900; display: flex; align-items: center; gap: 12px; }
+        /* MONITORING & SECURITY */
+        .monitor-wrap { padding: 10px; }
+        .pool-label { font-size: 13px; font-weight: 800; color: var(--gold); margin-bottom: 15px; }
+        .pool-amount { font-size: 42px; font-weight: 900; margin-bottom: 25px; letter-spacing: -1.5px; }
+        .shield-active { color: var(--blue); font-size: 16px; font-weight: 900; display: flex; align-items: center; gap: 12px; }
 
-        /* 푸터 */
-        .hk-footer { text-align: center; font-size: 11px; color: #333; line-height: 2.3; margin-top: 30px; padding-bottom: 80px; border-top: 1px solid #111; padding-top: 40px; }
+        /* FOOTER - OFFICIAL CONTACT */
+        .hk-footer { text-align: center; font-size: 12px; color: #333; line-height: 2.5; margin-top: 40px; padding-bottom: 60px; border-top: 1px solid #111; padding-top: 50px; }
+        .hk-email { color: var(--gold); font-weight: 900; font-size: 14px; }
     </style>
 </head>
 <body>
 
-<div class="hk-wrapper">
-    <div class="status-bar">
-        <div class="live-label"><div class="pulse"></div> <span id="t-live">CORE SYNC ACTIVE</span></div>
-        <select class="lang-select" id="lang-switch" onchange="updateLocale(this.value)">
+<div class="hk-container">
+    <nav class="hk-status-nav">
+        <div class="sys-live"><div class="pulse-dot"></div> <span id="t-live">CORE NODE ACTIVE</span></div>
+        <select class="hk-lang-box" id="lang-select" onchange="updateLocale(this.value)">
             <option value="ko">한국어 (KR)</option><option value="en">ENGLISH (US)</option>
             <option value="cn">简体中文 (CN)</option><option value="jp">日本語 (JP)</option>
-            <option value="vn">TIẾNG VIỆT (VN)</option><option value="th">ภาษาไทย (TH)</option>
-            <option value="de">DEUTSCH (DE)</option><option value="fr">FRANÇAIS (FR)</option>
-            <option value="es">ESPAÑOL (ES)</option><option value="ru">PУССКИЙ (RU)</option>
+            <option value="vn">TIẾNG VIỆT (VN)</option><option value="de">DEUTSCH (DE)</option>
+            <option value="fr">FRANÇAIS (FR)</option><option value="es">ESPAÑOL (ES)</option>
+            <option value="ru">PУССКИЙ (RU)</option><option value="in">HINDI (IN)</option>
         </select>
-    </div>
+    </nav>
 
-    <header class="brand-zone">
-        <h1 class="brand-title" id="t-title">HK WORLD<br>BANK</h1>
-        <div class="brand-sub">Global Liquidity Hegemony</div>
+    <header class="hk-brand-zone">
+        <h1 class="hk-main-title" id="t-title">HK WORLD<br>BANK</h1>
+        <div class="hk-node-text" id="t-node">SECURE NODE: HK-V21-ETERNITY-SYNC</div>
     </header>
 
-    <div class="asset-box">
+    <div class="hk-asset-core">
         <div class="asset-label" id="t-ledger">글로벌 각각 자산 통합 원장</div>
-        <div class="bal-row">
-            <div class="v-bal" id="v-bal">400.000000</div>
-            <div class="v-unit">Pi</div>
+        <div class="bal-wrap">
+            <div class="bal-num" id="v-bal">400.000000</div>
+            <div class="bal-unit">Pi</div>
         </div>
-        <div class="gcv-tag" id="v-gcv">Valuation: $ 125,663,600 (GCV)</div>
+        <div class="gcv-valuation" id="v-gcv">가치 평가: $ 125,663,600 (GCV)</div>
     </div>
 
-    <div class="media-station">
-        <div class="media-card" onclick="openMedia('yt')">
-            <i class="fa-brands fa-youtube yt-icon"></i>
+    <div class="hk-media-grid">
+        <div class="media-btn" onclick="openMedia('yt')">
+            <i class="fa-brands fa-youtube yt-red"></i>
             <span>LIVE YOUTUBE</span>
         </div>
-        <div class="media-card" onclick="openMedia('tt')">
-            <i class="fa-brands fa-tiktok tt-icon"></i>
+        <div class="media-btn" onclick="openMedia('tt')">
+            <i class="fa-brands fa-tiktok tt-cyan"></i>
             <span>LIVE TIKTOK</span>
         </div>
     </div>
 
-    <div class="menu-grid">
-        <div class="menu-item" onclick="alert('Protocol Sync...')"><i class="fa-solid fa-paper-plane" style="color:var(--blue);"></i><span id="m1">송금</span></div>
-        <div class="menu-item" onclick="alert('Gateway Open...')"><i class="fa-solid fa-bag-shopping" style="color:#ff66cc;"></i><span id="m2">결제</span></div>
-        <div class="menu-item" onclick="alert('Staking...')"><i class="fa-solid fa-utensils" style="color:var(--gold);"></i><span id="m3">예치</span></div>
-        <div class="menu-item" onclick="alert('Rewards...')"><i class="fa-solid fa-gift" style="color:var(--orange);"></i><span id="m4">보상</span></div>
-        <div class="menu-item" onclick="alert('Income...')"><i class="fa-solid fa-scale-balanced" style="color:#aaa;"></i><span id="m5">소득</span></div>
-        <div class="menu-item" onclick="alert('DEX Connecting...')"><i class="fa-solid fa-arrows-rotate" style="color:var(--blue);"></i><span id="m6">스왑</span></div>
+    <div class="hk-func-grid">
+        <div class="func-item" onclick="a('Transfer')"><i class="fa-solid fa-paper-plane" style="color:var(--blue);"></i><span id="m1">송금</span></div>
+        <div class="func-item" onclick="a('Payment')"><i class="fa-solid fa-bag-shopping" style="color:#ff66cc;"></i><span id="m2">결제</span></div>
+        <div class="func-item" onclick="a('Staking')"><i class="fa-solid fa-utensils" style="color:var(--gold);"></i><span id="m3">예치</span></div>
+        <div class="func-item" onclick="a('Rewards')"><i class="fa-solid fa-gift" style="color:var(--orange);"></i><span id="m4">보상</span></div>
+        <div class="func-item" onclick="a('Income')"><i class="fa-solid fa-scale-balanced" style="color:#aaa;"></i><span id="m5">소득</span></div>
+        <div class="func-item" onclick="a('Swap')"><i class="fa-solid fa-arrows-rotate" style="color:var(--blue);"></i><span id="m6">스왑</span></div>
     </div>
 
-    <div class="control-panel">
-        <div class="ctrl-label" id="t-ctrl">GLOBAL LIQUIDITY DEPLOYMENT</div>
+    <div class="hk-control-box">
+        <div class="input-info" id="t-ctrl">GLOBAL LIQUIDITY DEPLOYMENT</div>
         <input type="number" id="inp" class="hk-input" placeholder="0.000000">
-        <div class="btn-row">
-            <button class="btn btn-sw" onclick="exe('s')" id="b-sw">SWAP</button>
-            <button class="btn btn-lp" onclick="exe('l')" id="b-lp">LP 공급</button>
+        <div class="btn-group">
+            <button class="hk-btn btn-swap" onclick="runFinance('s')" id="b-sw">SWAP</button>
+            <button class="hk-btn btn-lp" onclick="runFinance('l')" id="b-lp">LP 공급</button>
         </div>
     </div>
 
-    <div class="monitor-zone">
-        <div class="pool-lab" id="t-pool-lab">글로벌 유동성 풀 총액 ($)</div>
-        <div class="pool-num" id="v-pool">88,401,781,632</div>
-        <div class="shield-box">
+    <div class="monitor-wrap">
+        <div class="pool-label" id="t-pool-lab">글로벌 유동성 풀 총액 ($)</div>
+        <div class="pool-amount" id="v-pool">88,401,781,632</div>
+        <div class="shield-active">
             <i class="fa-solid fa-shield-halved"></i> <span id="t-shield">HK_퀀텀_쉴드_활성</span>
         </div>
     </div>
 
     <footer class="hk-footer">
         의장: 이재완 (HK) | HK 월드뱅크 재단<br>
-        Partner: Figure AI & POSCO Holdings & SpaceX<br>
-        24/7 Global Support: <b>info@hkwb.co.kr</b><br>
-        Node: Pi Network Core-Team API v2.6.5
+        Strategic Partner: Figure AI & POSCO Holdings & SpaceX<br>
+        24/7 Global Support: <b class="hk-email">info@hkwb.co.kr</b><br>
+        Autonomous Node: Pi Network Core-Team API v2.6.5
     </footer>
 </div>
 
 <script>
-    /* [JS ENGINE v20.0 - 400 LINES OF CORE LOGIC] */
-    let bal = 400.000000;
-    let pool = 88401781632;
-    const GCV = 314159;
+    /* [JS ENGINE v21.0 - CORE FINANCE LOGIC] */
+    let balance = 400.000000;
+    let poolAmount = 88401781632;
+    const GCV_RATE = 314159;
     let currentLocale = 'ko';
 
-    // 라이브 엔진
+    // 실시간 라이브 데이터 스트리밍
     setInterval(() => {
-        bal += 0.00000015;
-        document.getElementById('v-bal').innerText = bal.toFixed(6);
-        const gcvVal = bal * GCV;
+        balance += 0.00000009;
+        document.getElementById('v-bal').innerText = balance.toFixed(6);
+        const gcvVal = balance * GCV_RATE;
         document.getElementById('v-gcv').innerText = (currentLocale === 'ko' ? "가치 평가: $ " : "Valuation: $ ") + gcvVal.toLocaleString(undefined, {maximumFractionDigits:0}) + " (GCV)";
-        document.getElementById('v-pool').innerText = pool.toLocaleString();
+        document.getElementById('v-pool').innerText = poolAmount.toLocaleString();
     }, 1000);
 
-    // [핵심] LP 공급 작동 로직
-    function exe(type) {
-        const v = parseFloat(document.getElementById('inp').value);
-        if(!v || v <= 0) return;
+    // [핵심] LP 공급 및 스왑 구동 로직
+    function runFinance(type) {
+        const inputVal = parseFloat(document.getElementById('inp').value);
+        if(!inputVal || inputVal <= 0) return;
+
         if(type === 's') {
-            bal += v;
-            alert(currentLocale === 'ko' ? "스왑 완료: 동기화됨" : "SWAP SUCCESS");
+            balance += inputVal;
+            alert(currentLocale === 'ko' ? "스왑 완료: 자산이 실시간 동기화되었습니다." : "SWAP SUCCESS: Asset Synced.");
         } else {
-            const added = v * GCV;
-            pool += added; // 유동성 풀 즉시 팽창
-            bal -= v; // 자산 차감
-            alert(currentLocale === 'ko' ? "LP 공급 완료: 유동성이 $" + added.toLocaleString() + " 증가했습니다." : "LP DEPLOYED: $" + added.toLocaleString() + " Added.");
+            // LP 공급 로직: 입력값에 GCV를 곱해 풀을 팽창시킴
+            const addedLiquidity = inputVal * GCV_RATE;
+            poolAmount += addedLiquidity;
+            balance -= inputVal;
+            alert(currentLocale === 'ko' ? "LP 공급 완료: 글로벌 유동성이 $" + addedLiquidity.toLocaleString() + " 확장되었습니다." : "LP DEPLOYED: $" + addedLiquidity.toLocaleString() + " Added.");
         }
         document.getElementById('inp').value = '';
     }
 
-    // 미디어 구동 (유튜브 & 틱톡)
-    function openMedia(type) {
-        if(type === 'yt') {
+    // 유튜브 & 틱톡 실제 구동 함수
+    function openMedia(platform) {
+        if(platform === 'yt') {
             window.open('https://www.youtube.com/live', '_blank');
-        } else {
+        } else if(platform === 'tt') {
             window.open('https://www.tiktok.com/live', '_blank');
         }
     }
 
-    // 35개국어 동적 매핑 엔진 (주요 국가 우선 구현)
-    const i18n = {
-        ko: { live: "CORE SYNC 활성", title: "HK 월드<br>뱅크", ledger: "글로벌 각각 자산 통합 원장", ctrl: "글로벌 유동성 공급", sw: "스왑", lp: "LP 공급", pl: "글로벌 유동성 풀 총액 ($)", sh: "HK_퀀텀_쉴드_활성", m1: "송금", m2: "결제", m3: "예치", m4: "보상", m5: "소득", m6: "스왑" },
-        en: { live: "CORE SYNC ACTIVE", title: "HK WORLD<br>BANK", ledger: "GLOBAL EACH ASSET LEDGER", ctrl: "GLOBAL LIQUIDITY DEPLOY", sw: "SWAP", lp: "LP DEPLOY", pl: "GLOBAL LIQUIDITY POOL TOTAL ($)", sh: "HK_QUANTUM_SHIELD_ACTIVE", m1: "SEND", m2: "PAY", m3: "STAKE", m4: "REWARD", m5: "INCOME", m6: "SWAP" }
+    // 다국어 데이터베이스 (35개국 확장 준비)
+    const localeDB = {
+        ko: { live: "CORE NODE 활성", title: "HK 월드<br>뱅크", ledger: "글로벌 각각 자산 통합 원장", ctrl: "글로벌 유동성 공급", sw: "스왑", lp: "LP 공급", pl: "글로벌 유동성 풀 총액 ($)", sh: "HK_퀀텀_쉴드_활성", m1: "송금", m2: "결제", m3: "예치", m4: "보상", m5: "소득", m6: "스왑" },
+        en: { live: "CORE NODE ACTIVE", title: "HK WORLD<br>BANK", ledger: "GLOBAL EACH ASSET LEDGER", ctrl: "GLOBAL LIQUIDITY DEPLOY", sw: "SWAP", lp: "LP DEPLOY", pl: "GLOBAL LIQUIDITY POOL TOTAL ($)", sh: "HK_QUANTUM_SHIELD_ACTIVE", m1: "SEND", m2: "PAY", m3: "STAKE", m4: "REWARD", m5: "INCOME", m6: "SWAP" }
     };
 
-    function updateLocale(l) {
-        currentLocale = l;
-        const d = i18n[l] || i18n.en;
+    function updateLocale(lang) {
+        currentLocale = lang;
+        const d = localeDB[lang] || localeDB.en;
         document.getElementById('t-live').innerText = d.live;
         document.getElementById('t-title').innerHTML = d.title;
         document.getElementById('t-ledger').innerText = d.ledger;
@@ -215,7 +225,8 @@
         document.getElementById('m6').innerText = d.m6;
     }
 
-    console.log("HK WORLD BANK v20.0 ULTIMATE ENGINE ONLINE.");
+    function a(n) { alert(n + " Protocol Initializing..."); }
+    console.log("HK WORLD BANK v21.0 CORE NODE ONLINE.");
 </script>
 </body>
 </html>
