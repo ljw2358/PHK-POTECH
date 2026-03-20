@@ -3,159 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>HK WORLD BANK | GLOBAL SUPREMACY</title>
+    <title>HK WORLD BANK | GLOBAL CORE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --gold: #FFD700; --pi: #FF8C00; --neon: #00FF7F; --red: #FF4500; --bg: #000; --card: #111; }
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        :root { --gold: #FFD700; --pi: #FF8C00; --neon: #00FF7F; --red: #FF4500; --bg: #000; }
         body { background: var(--bg); color: #fff; font-family: 'Pretendard', sans-serif; margin: 0; padding: 0; }
-        .container { width: 100%; max-width: 480px; margin: 0 auto; min-height: 100vh; position: relative; padding-bottom: 70px; }
+        .main { width: 100%; max-width: 480px; margin: 0 auto; min-height: 100vh; position: relative; padding-bottom: 80px; }
+        
+        /* 상단 바 */
+        .nav { display: flex; justify-content: space-between; align-items: center; padding: 20px; }
+        .node { color: var(--neon); font-size: 11px; font-weight: 900; }
+        .l-trig { border: 2.5px solid var(--gold); color: var(--gold); padding: 8px 18px; border-radius: 12px; font-size: 14px; font-weight: 950; cursor: pointer; background: rgba(255,215,0,0.1); }
 
-        /* 상단 언어 제어바 */
-        .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 20px; }
-        .node-st { color: var(--neon); font-size: 11px; font-weight: 900; letter-spacing: 1px; }
-        .lang-trigger { border: 2.5px solid var(--gold); color: var(--gold); padding: 8px 18px; border-radius: 12px; font-size: 14px; font-weight: 950; cursor: pointer; background: rgba(255,215,0,0.15); }
+        /* 헤더 & 자산 */
+        .hdr { text-align: center; padding: 15px 0 30px; }
+        .logo { font-size: 44px; font-weight: 950; color: var(--gold); margin: 0; }
+        .card { background: linear-gradient(155deg, #151515, #000); border: 2px solid #222; border-radius: 40px; margin: 0 20px; padding: 45px 20px; text-align: center; position: relative; }
+        .apr { position: absolute; top: 22px; right: 28px; color: var(--neon); font-weight: 950; }
+        .bal { font-size: 58px; font-weight: 950; margin: 25px 0; }
+        .gcv { display: inline-block; border: 3.5px solid var(--neon); border-radius: 28px; padding: 18px 38px; color: var(--neon); font-weight: 950; font-size: 21px; }
 
-        /* 브랜드 헤더 */
-        .brand-header { text-align: center; padding: 15px 0 35px; }
-        .brand-logo { font-size: 44px; font-weight: 950; color: var(--gold); margin: 0; text-shadow: 0 0 15px rgba(255,215,0,0.4); }
+        /* 6대 아이콘 */
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 40px 25px; }
+        .item { text-align: center; }
+        .icon { width: 80px; height: 80px; background: rgba(255,255,255,0.08); border-radius: 25px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; }
+        .item span { font-weight: 800; font-size: 15px; }
 
-        /* 자산 요약 메인 */
-        .asset-card { background: linear-gradient(155deg, #1a1a1a 0%, #000 100%); border: 2px solid #252525; border-radius: 40px; margin: 0 20px; padding: 45px 20px; text-align: center; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
-        .apr-val { position: absolute; top: 22px; right: 28px; color: var(--neon); font-weight: 950; font-size: 17px; }
-        .asset-txt { color: var(--gold); font-size: 19px; font-weight: 900; margin-bottom: 12px; }
-        .bal-val { font-size: 58px; font-weight: 950; margin: 25px 0; }
-        .gcv-box { display: inline-block; border: 3.5px solid var(--neon); border-radius: 28px; padding: 18px 38px; color: var(--neon); font-weight: 950; font-size: 21px; line-height: 1.4; box-shadow: 0 0 20px rgba(0,255,127,0.2); }
-
-        /* 6대 핵심 서비스 그리드 */
-        .srv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; padding: 45px 25px; }
-        .srv-item { text-align: center; transition: 0.2s; }
-        .icon-hex { width: 82px; height: 82px; background: rgba(255,255,255,0.09); border-radius: 28px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; }
-        .icon-hex i { font-size: 34px; }
-        .srv-name { font-weight: 800; font-size: 16px; }
-
-        /* 유동성 풀 데이터 */
-        .liq-section { border-left: 7px solid var(--gold); margin: 0 28px 40px; padding-left: 22px; }
-        .st-1 { color: var(--pi); font-weight: 950; font-size: 18px; }
-        .st-2 { color: var(--gold); font-weight: 950; font-size: 17px; margin: 6px 0; }
-        .st-v { font-size: 32px; font-weight: 950; letter-spacing: 0.5px; }
-        .st-3 { color: #00ccff; font-weight: 950; margin-top: 10px; font-size: 17px; }
-
-        /* 핵심 액션 버튼 트리오 */
-        .act-group { display: flex; gap: 12px; padding: 0 20px; margin-bottom: 45px; }
-        .btn-m { flex: 1; height: 78px; border-radius: 22px; border: none; font-size: 19px; font-weight: 950; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; }
-        .btn-m:active { transform: scale(0.95); }
-        .b-pi { background: #000; border: 3.5px solid var(--gold); color: #fff; }
+        /* 하단 유동성 & 버튼 */
+        .liq { border-left: 6px solid var(--gold); margin: 0 25px 35px; padding-left: 20px; }
+        .btns { display: flex; gap: 10px; padding: 0 20px; margin-bottom: 40px; }
+        .btn { flex: 1; height: 75px; border-radius: 20px; border: none; font-size: 18px; font-weight: 950; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .b-pi { background: #000; border: 3px solid var(--gold); color: #fff; }
         .b-sw { background: var(--pi); color: #fff; }
         .b-lp { background: var(--neon); color: #000; }
 
-        /* 고객지원 및 소셜 */
-        .cs-cta { width: calc(100% - 40px); height: 88px; background: var(--red); color: #fff; border-radius: 28px; border: none; margin: 0 20px 35px; font-size: 22px; font-weight: 950; display: flex; align-items: center; justify-content: center; gap: 18px; box-shadow: 0 12px 25px rgba(255, 69, 0, 0.4); }
-        .sns-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; padding: 0 20px; }
-        .sns-box { background: #0d0d0d; border-radius: 28px; padding: 28px; border: 2px solid #1a1a1a; text-align: center; text-decoration: none; color: #fff; }
-        .sns-box i { font-size: 42px; margin-bottom: 12px; display: block; }
+        /* SNS */
+        .cs { width: calc(100% - 40px); height: 85px; background: var(--red); color: #fff; border-radius: 25px; border: none; margin: 0 20px 30px; font-size: 21px; font-weight: 950; display: flex; align-items: center; justify-content: center; gap: 15px; }
+        .sns { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 20px; }
+        .sns-a { background: #0d0d0d; border-radius: 25px; padding: 25px; border: 2px solid #1a1a1a; text-align: center; text-decoration: none; color: #fff; }
 
-        /* 20개국어 매머드 모달 */
-        #lPop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); display: none; justify-content: center; align-items: center; z-index: 99999; backdrop-filter: blur(5px); }
-        .pop-card { background: #ffffff; color: #000000; width: 92%; max-height: 85vh; border-radius: 45px; padding: 40px; overflow-y: auto; }
-        .pop-item { display: flex; align-items: center; gap: 22px; padding: 22px 0; border-bottom: 2.5px solid #f5f5f5; font-weight: 950; font-size: 21px; cursor: pointer; }
-        .p-radio { width: 28px; height: 28px; border-radius: 50%; border: 3.5px solid #ddd; position: relative; }
-        .p-radio.act { border-color: #007bff; background: #007bff; }
-
-        .f-txt { text-align: center; padding: 60px 0; color: #555; font-size: 14px; font-weight: 900; line-height: 2; }
+        /* 언어 팝업 */
+        #p-pop { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.98); display:none; justify-content:center; align-items:center; z-index:999; }
+        .p-box { background:#fff; color:#000; width:92%; max-height:85vh; border-radius:40px; padding:35px; overflow-y:auto; }
+        .p-row { display:flex; align-items:center; padding:20px 0; border-bottom:1px solid #eee; font-weight:950; font-size:20px; cursor:pointer; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <nav class="top-nav">
-        <div class="node-st">🛰️ SECURE NODE: HK-V190-SUPREME</div>
-        <div class="lang-trigger" id="d-lang" onclick="tgL()">KR (한국어) ⌵</div>
+<div class="main">
+    <nav class="nav">
+        <div class="node">🛰️ SECURE NODE: HK-V190-SUPREME</div>
+        <div class="l-trig" id="curL" onclick="tgP()">KR (한국어) ⌵</div>
     </nav>
 
-    <header class="brand-header"><h1 class="brand-logo" id="d-bank">HK WORLD BANK</h1></header>
+    <header class="hdr"><h1 class="logo" id="t-bank">HK WORLD BANK</h1></header>
 
-    <section class="asset-card">
-        <div class="apr-val">APR 31.4%</div>
-        <div class="asset-txt" id="d-asset">메인 자산 통합 원장</div>
-        <div class="bal-val">400.0000 <span style="color:var(--pi); font-size:28px;">Pi</span></div>
-        <div class="gcv-box" id="d-gcv">가치 평가: $ 125,663,600<br>(GCV CONSENSUS)</div>
+    <section class="card">
+        <div class="apr">APR 31.4%</div>
+        <div style="color:var(--gold); font-weight:900;" id="t-asset">메인 자산 통합 원장</div>
+        <div class="bal">400.0000 <span style="color:var(--pi); font-size:26px;">Pi</span></div>
+        <div class="gcv" id="t-gcv">가치 평가: $ 125,663,600<br>(GCV CONSENSUS)</div>
     </section>
 
-    <section class="srv-grid" id="srvGrid"></section>
+    <section class="grid" id="m-grid"></section>
 
-    <section class="liq-section">
-        <div class="st-1" id="d-st1">STAKING APR 31.4%</div>
-        <div class="st-2" id="d-st2">유동성 풀 $</div>
-        <div class="st-v">88,401,773,756</div>
-        <div class="st-3" id="d-st3">HK_퀀텀_쉴드_보안_활성</div>
+    <section class="liq">
+        <div style="color:var(--pi); font-weight:950;" id="t-st1">STAKING APR 31.4%</div>
+        <div style="color:var(--gold); font-weight:950; margin:5px 0;" id="t-st2">유동성 풀 $</div>
+        <div style="font-size:30px; font-weight:950;">88,401,773,756</div>
+        <div style="color:#00ccff; font-weight:950; margin-top:8px;" id="t-st3">HK_퀀텀_쉴드_보안_활성</div>
     </section>
 
-    <div class="act-group">
-        <button class="btn-m b-pi" id="d-b1">Pi 수량</button>
-        <button class="btn-m b-sw" id="d-b2">SWAP</button>
-        <button class="btn-m b-lp" id="d-b3">LP 공급</button>
+    <div class="btns">
+        <button class="btn b-pi" id="t-b1">Pi 수량</button>
+        <button class="btn b-sw" id="t-b2">SWAP</button>
+        <button class="btn b-lp" id="t-b3">LP 공급</button>
     </div>
 
-    <button class="cs-cta" id="d-cs"><i class="fa-solid fa-headset"></i> 24/7 고객지원센터</button>
+    <button class="cs" id="t-cs"><i class="fa-solid fa-headset"></i> 24/7 고객지원센터</button>
 
-    <div class="sns-wrap">
-        <a href="#" class="sns-box"><i class="fa-brands fa-youtube" style="color:#f00;"></i><div style="font-weight:950; margin-top:12px;">hyekong2025</div><small style="color:#666;">YouTube</small></a>
-        <a href="#" class="sns-box"><i class="fa-brands fa-tiktok"></i><div style="font-weight:950; margin-top:12px;">hyekong2025</div><small style="color:#666;">TikTok</small></a>
+    <div class="sns">
+        <a href="#" class="sns-a"><i class="fa-brands fa-youtube" style="color:#f00; font-size:35px;"></i><div style="font-weight:950; margin-top:10px;">hyekong2025</div><small style="color:#666;">YouTube</small></a>
+        <a href="#" class="sns-a"><i class="fa-brands fa-tiktok" style="font-size:35px;"></i><div style="font-weight:950; margin-top:10px;">hyekong2025</div><small style="color:#666;">TikTok</small></a>
     </div>
 
-    <footer class="f-txt">© 2026 HK GROUP GLOBAL HEGEMONY.<br>CHAIRMAN LEE JAEWAN. ALL RIGHTS RESERVED.</footer>
+    <footer style="text-align:center; padding:60px 0; color:#444; font-size:12px; font-weight:900;">© 2026 HK GROUP GLOBAL HEGEMONY.</footer>
 </div>
 
-<div id="lPop"><div class="pop-card" id="lList"></div></div>
+<div id="p-pop"><div class="p-box" id="p-list"></div></div>
 
 <script>
-    /* 국정원 보안 돌파용 20개국어 마스터 엔진 */
-    const MASTER_DB = {
+    /* [보안 돌파용 20개국어 마스터 데이터] */
+    const DB = {
         ko: { n:"KR (한국어)", bank:"HK WORLD BANK", asset:"메인 자산 통합 원장", gcv:"가치 평가: $ 125,663,600", menu:["송금","결제","예치","보상","소득","스왑"], btns:["Pi 수량","SWAP","LP 공급"], cs:"24/7 고객지원센터", st:["STAKING APR 31.4%","유동성 풀 $","HK_퀀텀_쉴드_보안_활성"] },
         ua: { n:"UA (Українська)", bank:"HK СВІТОВИЙ БАНК", asset:"ГОЛОВНИЙ РЕЄСТР АКТИВІВ", gcv:"ОЦІНКА: $ 125,663,600", menu:["ПЕРЕКАЗ","ОПЛАТА","ДЕПОЗИТ","НАГОРОДА","ДОХІД","ОБМІН"], btns:["К-сть Pi","SWAP","LP ПОСТАВКА"], cs:"ЦІЛОДОБОВА ПІДТРИМКА", st:["СТЕЙКІНГ 31.4%","ПУЛ ЛІКВІДНОСТІ $","HK_КВАНТОВИЙ_ЩИТ"] },
         ar: { n:"AR (العربية)", bank:"HK مصرف العالم", asset:"دفتر الأصول الرئيسي", gcv:"التقييم: $ 125,663,600", menu:["إرسال","دفع","تخزين","مكافأة","دخل","تبادل"], btns:["كمية Pi","SWAP","تزويد LP"], cs:"دعم عالمي 24/7", st:["تخزين 31.4%","مجمع السيولة $","HK_درع الكم"] },
-        in: { n:"IN (हिन्दी)", bank:"HK वर्ल्ड बैंक", asset:"मुख्य संपत्ति लेजर", gcv:"मूल्यांकन: $ 125,663,600", menu:["भेजें","भुगतान","जमा","इनाम","आय","स्वैप"], btns:["Pi मात्रा","SWAP","LP आपूर्ति"], cs:"24/7 वैश्विक सहायता", st:["स्टे킹 31.4%","लिक्विडिटी पूल $","HK_क्वांटम_शील्ड"] },
+        in: { n:"IN (हिन्दी)", bank:"HK वर्ल्ड बैंक", asset:"मुख्य संपत्ति लेजर", gcv:"मूल्यांकन: $ 125,663,600", menu:["भे진","भुगतान","जमा","इनाम","आय","स्वैप"], btns:["Pi मात्रा","SWAP","LP आपूर्ति"], cs:"24/7 वैश्विक सहायता", st:["स्टेकिंग 31.4%","लिक्विडिटी पूल $","HK_क्वांटम_शील्ड"] },
         vn: { n:"VN (Tiếng Việt)", bank:"HK NGÂN HÀNG THẾ GIỚI", asset:"SỔ CÁI TÀI SẢN CHÍNH", gcv:"ĐỊNH GIÁ: $ 125,663,600", menu:["GỬI","THANH TOÁN","GỬI TIẾT KIỆM","THƯỞNG","THU NHẬP","SWAP"], btns:["Số lượng Pi","SWAP","Cung cấp LP"], cs:"HỖ TRỢ TOÀN CẦU 24/7", st:["LÃI SUẤT 31.4%","BỂ THANH KHOẢN $","HK_GIÁP_LƯỢNG_TỬ"] },
-        us: { n:"US (English)", bank:"HK WORLD BANK", asset:"MAIN ASSET LEDGER", gcv:"VALUATION: $ 125,663,600", menu:["SEND","PAY","STAKE","REWARD","INCOME","SWAP"], btns:["Pi Qty","SWAP","LP Supply"], cs:"24/7 GLOBAL SUPPORT", st:["STAKING 31.4%","LIQUIDITY POOL $","HK_QUANTUM_SHIELD"] },
-        jp: { n:"JP (日本語)", bank:"HK世界銀行", asset:"主要資産統合台帳", gcv:"評価額: $ 125,663,600", menu:["送金","決済","預金","報酬","所得","スワップ"], btns:["Pi 数量","SWAP","LP供給"], cs:"24/7グローバルサポート", st:["ステーキング 31.4%","流動性プール $","HK_量子シールド"] },
-        cn: { n:"CN (简体)", bank:"HK世界银行", asset:"主要资产整合账本", gcv:"评估价值: $ 125,663,600", menu:["转账","支付","存款","奖励","收入","交换"], btns:["Pi 数量","SWAP","LP供应"], cs:"24/7全球客户支持", st:["质押 31.4%","流动性池 $","HK_量子屏蔽"] }
+        us: { n:"US (English)", bank:"HK WORLD BANK", asset:"MAIN ASSET LEDGER", gcv:"VALUATION: $ 125,663,600", menu:["SEND","PAY","STAKE","REWARD","INCOME","SWAP"], btns:["Pi Qty","SWAP","LP Supply"], cs:"24/7 GLOBAL SUPPORT", st:["STAKING 31.4%","LIQUIDITY POOL $","HK_QUANTUM_SHIELD"] }
     };
-    // 추가 국가들 기본값 US로 확장
-    ["es","pt","de","fr","it","ru","id","th","tr","ph","my","pl"].forEach(c => { MASTER_DB[c] = MASTER_DB.us; MASTER_DB[c].n = c.toUpperCase() + " (Global)"; });
+    ["es","pt","de","fr","it","ru","id","th","jp","cn","tr","ph","my","pl"].forEach(c => { DB[c] = DB.us; DB[c].n = c.toUpperCase() + " (Global)"; });
 
     const ICONS = [{i:"fa-paper-plane",c:"#4da6ff"},{i:"fa-shopping-bag",c:"#ff66cc"},{i:"fa-utensils",c:"#fff"},{i:"fa-gift",c:"var(--gold)"},{i:"fa-balance-scale",c:"#b3ff66"},{i:"fa-sync",c:"#9966ff"}];
 
-    function tgL() { const m = document.getElementById('lPop'); m.style.display = m.style.display==='flex'?'none':'flex'; }
+    function tgP() { const m = document.getElementById('p-pop'); m.style.display = m.style.display==='flex'?'none':'flex'; }
 
-    /* [초강력 변환 엔진] 클릭 즉시 데이터 치환 */
-    window.swapL = function(k) {
-        const d = MASTER_DB[k];
-        document.getElementById('d-lang').innerText = d.n + " ⌵";
-        document.getElementById('d-bank').innerText = d.bank;
-        document.getElementById('d-asset').innerText = d.asset;
-        document.getElementById('d-gcv').innerHTML = d.gcv + "<br>(GCV CONSENSUS)";
-        document.getElementById('d-b1').innerText = d.btns[0];
-        document.getElementById('d-b2').innerText = d.btns[1];
-        document.getElementById('d-b3').innerText = d.btns[2];
-        document.getElementById('d-cs').innerHTML = `<i class="fa-solid fa-headset"></i> ` + d.cs;
-        document.getElementById('d-st1').innerText = d.st[0];
-        document.getElementById('d-st2').innerText = d.st[1];
-        document.getElementById('d-st3').innerText = d.st[2];
+    /* [강제 치환 엔진 - 국정원 차단 돌파용] */
+    window.setL = function(k) {
+        console.log("HK-SECURITY: OVERRIDING LANGUAGE TO " + k);
+        const d = DB[k];
+        document.getElementById('curL').innerText = d.n + " ⌵";
+        document.getElementById('t-bank').innerText = d.bank;
+        document.getElementById('t-asset').innerText = d.asset;
+        document.getElementById('t-gcv').innerHTML = d.gcv + "<br>(GCV CONSENSUS)";
+        document.getElementById('t-b1').innerText = d.btns[0];
+        document.getElementById('t-b2').innerText = d.btns[1];
+        document.getElementById('t-b3').innerText = d.btns[2];
+        document.getElementById('t-cs').innerHTML = `<i class="fa-solid fa-headset"></i> ` + d.cs;
+        document.getElementById('t-st1').innerText = d.st[0];
+        document.getElementById('t-st2').innerText = d.st[1];
+        document.getElementById('t-st3').innerText = d.st[2];
 
-        const grid = document.getElementById('srvGrid'); grid.innerHTML = '';
+        const g = document.getElementById('m-grid'); g.innerHTML = '';
         d.menu.forEach((v, i) => {
-            grid.innerHTML += `<div class="srv-item"><div class="icon-hex"><i class="fa-solid ${ICONS[i].i}" style="color:${ICONS[i].c}"></i></div><span class="srv-name">${v}</span></div>`;
+            g.innerHTML += `<div class="item"><div class="icon"><i class="fa-solid ${ICONS[i].i}" style="color:${ICONS[i].c}"></i></div><span>${v}</span></div>`;
         });
-        tgL();
+        tgP();
     };
 
-    const list = document.getElementById('lList');
-    Object.keys(MASTER_DB).forEach(k => {
-        list.innerHTML += `<div class="pop-item" onclick="swapL('${k}')"><div class="p-radio ${k==='ko'?'act':''}"></div><span>${MASTER_DB[k].n}</span></div>`;
+    const list = document.getElementById('p-list');
+    Object.keys(DB).forEach(k => {
+        list.innerHTML += `<div class="p-row" onclick="setL('${k}')"><span>${DB[k].n}</span></div>`;
     });
 
-    window.onload = () => swapL('ko');
+    window.onload = () => setL('ko');
 </script>
 </body>
 </html>
