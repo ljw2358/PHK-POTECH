@@ -3,145 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>HK WORLD BANK | GLOBAL CORE</title>
+    <title>HK WORLD BANK | GLOBAL MASTER</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --gold: #FFD700; --pi: #FF8C00; --neon: #00FF7F; --red: #FF4500; --bg: #000; --card: #111; }
-        body { background: var(--bg); color: #fff; font-family: 'Pretendard', sans-serif; margin: 0; padding: 0; }
-        .wrapper { width: 100%; max-width: 480px; margin: 0 auto; min-height: 100vh; position: relative; padding-bottom: 80px; }
+        :root { --gold: #FFD700; --pi: #FF8C00; --neon: #00FF7F; --red: #FF4500; --bg: #000; }
+        body { background: var(--bg); color: #fff; font-family: 'Pretendard', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        .app { width: 100%; max-width: 480px; margin: 0 auto; min-height: 100vh; padding-bottom: 50px; }
         
-        /* 상단 네비 */
-        .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 20px; }
-        .node-info { color: var(--neon); font-size: 11px; font-weight: 900; }
-        .lang-btn { border: 2px solid var(--gold); color: var(--gold); padding: 6px 15px; border-radius: 10px; font-size: 14px; font-weight: 900; cursor: pointer; }
+        /* 상단 언어 선택 */
+        .top-bar { display: flex; justify-content: space-between; align-items: center; padding: 20px; }
+        .node { color: var(--neon); font-size: 11px; font-weight: 900; }
+        .lang-trigger { border: 2px solid var(--gold); color: var(--gold); padding: 7px 15px; border-radius: 12px; font-size: 14px; font-weight: 950; cursor: pointer; }
 
         /* 헤더 */
-        .header { text-align: center; padding: 10px 0 30px; }
-        .logo { font-size: 40px; font-weight: 950; color: var(--gold); margin: 0; }
+        .header { text-align: center; padding: 15px 0 35px; }
+        .logo { font-size: 42px; font-weight: 950; color: var(--gold); margin: 0; }
 
         /* 자산 카드 */
-        .asset-card { background: linear-gradient(160deg, #1a1a1a, #000); border: 1.5px solid #222; border-radius: 35px; margin: 0 20px; padding: 40px 20px; text-align: center; position: relative; }
-        .apr-tag { position: absolute; top: 20px; right: 25px; color: var(--neon); font-weight: 950; }
-        .balance { font-size: 50px; font-weight: 950; margin: 20px 0; }
-        .gcv-label { display: inline-block; border: 3px solid var(--neon); border-radius: 25px; padding: 15px 30px; color: var(--neon); font-weight: 950; font-size: 18px; }
+        .asset-box { background: linear-gradient(145deg, #151515, #000); border: 1.5px solid #222; border-radius: 35px; margin: 0 20px; padding: 45px 20px; text-align: center; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .apr { position: absolute; top: 20px; right: 25px; color: var(--neon); font-weight: 950; font-size: 16px; }
+        .bal { font-size: 55px; font-weight: 950; margin: 25px 0; }
+        .gcv { display: inline-block; border: 3px solid var(--neon); border-radius: 25px; padding: 15px 35px; color: var(--neon); font-weight: 950; font-size: 20px; line-height: 1.4; }
 
-        /* 6대 아이콘 */
-        .icon-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 35px 25px; }
-        .icon-item { text-align: center; }
-        .icon-box { width: 75px; height: 75px; background: rgba(255,255,255,0.07); border-radius: 22px; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; }
-        .icon-box i { font-size: 30px; }
+        /* 6대 아이콘 그리드 */
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 40px 25px; }
+        .grid-item { text-align: center; }
+        .icon-circle { width: 80px; height: 80px; background: rgba(255,255,255,0.08); border-radius: 26px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; }
+        .grid-item span { font-weight: 800; font-size: 16px; display: block; }
 
-        /* 하단 버튼 & 유동성 */
-        .st-box { display: flex; gap: 15px; padding: 0 30px; margin-bottom: 30px; border-left: 5px solid var(--gold); margin-left: 20px; }
-        .btn-group { display: flex; gap: 10px; padding: 0 20px; margin-bottom: 30px; }
-        .btn-core { flex: 1; height: 70px; border-radius: 18px; border: none; font-size: 17px; font-weight: 950; display: flex; align-items: center; justify-content: center; }
-        .b-pi { background: #000; border: 2.5px solid var(--gold); color: #fff; }
-        .b-swap { background: var(--pi); color: #fff; }
-        .b-lp { background: var(--neon); color: #000; }
+        /* 하단 데이터 및 버튼 */
+        .liquidity { border-left: 6px solid var(--gold); margin: 0 25px 35px; padding-left: 20px; }
+        .btn-wrap { display: flex; gap: 12px; padding: 0 20px; margin-bottom: 40px; }
+        .btn-c { flex: 1; height: 75px; border-radius: 20px; border: none; font-size: 18px; font-weight: 950; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .b-1 { background: #000; border: 3px solid var(--gold); color: #fff; }
+        .b-2 { background: var(--pi); color: #fff; }
+        .b-3 { background: var(--neon); color: #000; }
 
-        /* SNS 섹션 */
-        .sns-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 20px; margin-top: 30px; }
-        .sns-card { background: #0d0d0d; padding: 20px; border-radius: 25px; border: 1.5px solid #1a1a1a; text-align: center; }
+        /* 고객센터 및 SNS */
+        .cs-bar { width: calc(100% - 40px); height: 85px; background: var(--red); color: #fff; border-radius: 25px; border: none; margin: 0 20px 30px; font-size: 22px; font-weight: 950; display: flex; align-items: center; justify-content: center; gap: 15px; }
+        .sns-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 20px; }
+        .sns-card { background: #0d0d0d; border-radius: 25px; padding: 25px; border: 2px solid #1a1a1a; text-align: center; text-decoration: none; color: #fff; }
 
-        /* 팝업 모달 */
-        #lModal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); display: none; justify-content: center; align-items: center; z-index: 1000; }
-        .l-box { background: #fff; color: #000; width: 90%; max-height: 80vh; border-radius: 35px; padding: 30px; overflow-y: auto; }
-        .l-item { display: flex; align-items: center; padding: 18px 0; border-bottom: 1px solid #eee; font-weight: 900; font-size: 19px; cursor: pointer; }
+        /* 언어 선택 모달 */
+        #langPop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); display: none; justify-content: center; align-items: center; z-index: 10000; }
+        .pop-in { background: #fff; color: #000; width: 92%; max-height: 85vh; border-radius: 40px; padding: 35px; overflow-y: auto; }
+        .pop-row { display: flex; align-items: center; gap: 20px; padding: 22px 0; border-bottom: 2px solid #f2f2f2; font-weight: 950; font-size: 21px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <nav class="top-nav">
-        <div class="node-info">🛰️ SECURE NODE: HK-V190-SUPREME</div>
-        <div class="lang-btn" id="curLang" onclick="tgL()">KR (한국어) ⌵</div>
+<div class="app">
+    <nav class="top-bar">
+        <div class="node">🛰️ SECURE NODE: HK-V190-SUPREME</div>
+        <div class="lang-trigger" id="langDisp" onclick="toggleL()">KR (한국어) ⌵</div>
     </nav>
 
-    <header class="header"><h1 class="logo" id="t-logo">HK WORLD BANK</h1></header>
+    <header class="header"><h1 class="logo" id="l-bank">HK WORLD BANK</h1></header>
 
-    <section class="asset-card">
-        <div class="apr-tag">APR 31.4%</div>
-        <div style="color:var(--gold); font-weight:900;" id="t-asset-lab">메인 자산 통합 원장</div>
-        <div class="balance">400.0000 <span style="color:var(--pi); font-size:24px;">Pi</span></div>
-        <div class="gcv-label" id="t-gcv">가치 평가: $ 125,663,600<br>(GCV CONSENSUS)</div>
+    <section class="asset-box">
+        <div class="apr">APR 31.4%</div>
+        <div style="color:var(--gold); font-weight:900;" id="l-asset">메인 자산 통합 원장</div>
+        <div class="bal">400.0000 <span style="color:var(--pi); font-size:26px;">Pi</span></div>
+        <div class="gcv" id="l-gcv">가치 평가: $ 125,663,600<br>(GCV CONSENSUS)</div>
     </section>
 
-    <section class="icon-grid" id="mainGrid"></section>
+    <section class="grid" id="menuGrid"></section>
 
-    <section class="st-box">
-        <div>
-            <div style="color:var(--pi); font-weight:950;" id="t-st1">STAKING APR 31.4%</div>
-            <div style="color:var(--gold); font-weight:950;" id="t-st2">유동성 풀 $</div>
-            <div style="font-size:26px; font-weight:950;">88,401,773,756</div>
-            <div style="color:var(--blue); font-weight:950;" id="t-st3">HK_퀀텀_쉴드_보안_활성</div>
-        </div>
+    <section class="liquidity">
+        <div style="color:var(--pi); font-weight:950;" id="l-st1">STAKING APR 31.4%</div>
+        <div style="color:var(--gold); font-weight:950; margin:5px 0;" id="l-st2">유동성 풀 $</div>
+        <div style="font-size:30px; font-weight:950;">88,401,773,756</div>
+        <div style="color:#00ccff; font-weight:950; margin-top:8px;" id="l-st3">HK_퀀텀_쉴드_보안_활성</div>
     </section>
 
-    <div class="btn-group">
-        <button class="btn-core b-pi" id="b-1">Pi 수량</button>
-        <button class="btn-core b-swap" id="b-2">SWAP</button>
-        <button class="btn-core b-lp" id="b-3">LP 공급</button>
+    <div class="btn-wrap">
+        <button class="btn-c b-1" id="l-b1">Pi 수량</button>
+        <button class="btn-c b-2" id="l-b2">SWAP</button>
+        <button class="btn-c b-3" id="l-b3">LP 공급</button>
     </div>
 
-    <div style="padding:0 20px;"><button style="width:100%; height:75px; background:var(--red); border-radius:22px; border:none; color:#fff; font-size:20px; font-weight:950;" id="t-cs">🎧 24/7 글로벌 고객지원센터</button></div>
+    <button class="cs-bar" id="l-cs"><i class="fa-solid fa-headset"></i> 24/7 고객지원센터</button>
 
     <div class="sns-grid">
-        <div class="sns-card"><i class="fa-brands fa-youtube" style="color:#f00; font-size:35px;"></i><div style="font-weight:900; margin-top:10px;">hyekong2025</div><small style="color:#666;">YouTube</small></div>
-        <div class="sns-card"><i class="fa-brands fa-tiktok" style="font-size:35px;"></i><div style="font-weight:900; margin-top:10px;">hyekong2025</div><small style="color:#666;">TikTok</small></div>
+        <a href="#" class="sns-card"><i class="fa-brands fa-youtube" style="color:#f00; font-size:40px;"></i><div style="font-weight:950; margin-top:12px;">hyekong2025</div><small style="color:#666;">YouTube</small></a>
+        <a href="#" class="sns-card"><i class="fa-brands fa-tiktok" style="font-size:40px;"></i><div style="font-weight:950; margin-top:12px;">hyekong2025</div><small style="color:#666;">TikTok</small></a>
     </div>
 
-    <footer style="text-align:center; padding:50px 0; color:#444; font-size:12px; font-weight:900;">
-        © 2026 HK GROUP GLOBAL HEGEMONY.<br>CHAIRMAN LEE JAEWAN.
-    </footer>
+    <footer style="text-align:center; padding:60px 0; color:#444; font-size:13px; font-weight:900;">© 2026 HK GROUP GLOBAL HEGEMONY.</footer>
 </div>
 
-<div id="lModal"><div class="l-box" id="lList"></div></div>
+<div id="langPop"><div class="pop-in" id="langList"></div></div>
 
 <script>
-    /* 20개국어 매핑 데이터 (변환의 핵심!) */
-    const DB = {
-        ko: { n: "KR (한국어)", l: "HK WORLD BANK", a: "메인 자산 통합 원장", g: "가치 평가: $ 125,663,600", m: ["송금","결제","예치","보상","소득","스왑"], b: ["Pi 수량","SWAP","LP 공급"], cs: " 24/7 글로벌 고객지원센터", s: ["STAKING APR 31.4%", "유동성 풀 $", "HK_퀀텀_쉴드_활성"] },
-        ua: { n: "UA (Українська)", l: "HK СВІТОВИЙ БАНК", a: "ГОЛОВНА КНИГА АКТИВІВ", g: "ОЦІНКА: $ 125,663,600", m: ["ПЕРЕКАЗ","ОПЛАТА","ДЕПОЗИТ","НАГОРОДА","ДОХІД","ОБМІН"], b: ["К-сть Pi","SWAP","LP Поставка"], cs: " 24/7 ПІДТРИМКА ГЛОБАЛЬНО", s: ["СТЕЙКІНГ 31.4%", "ПУЛ ЛІКВІДНОСТІ $", "HK_КВАНТОВИЙ_ЩИТ"] },
-        ar: { n: "AR (العربية)", l: "HK مصرف العالم", a: "دفتر الأصول الرئيسي", g: "التقييم: $ 125,663,600", m: ["إرسال","دفع","تخزين","مكافأة","دخل","تبادل"], b: ["كمية Pi","SWAP","تزويد LP"], cs: " دعم عالمي 24/7", s: ["تخزين 31.4%", "مجمع السيولة $", "درع HK الكمي"] },
-        in: { n: "IN (हिन्दी)", l: "HK वर्ल्ड बैंक", a: "मुख्य संपत्ति लेजर", g: "मूल्यांकन: $ 125,663,600", m: ["भेजें","भुगतान","जमा","इनाम","आय","स्वैप"], b: ["Pi मात्रा","SWAP","LP आपूर्ति"], cs: " 24/7 वैश्विक सहायता", s: ["स्टे킹 31.4%", "लिक्विडिटी पूल $", "HK_क्वांटम_शील्ड"] },
-        us: { n: "US (English)", l: "HK WORLD BANK", a: "MAIN ASSET LEDGER", g: "VALUATION: $ 125,663,600", m: ["SEND","PAY","STAKE","REWARD","INCOME","SWAP"], b: ["Pi Qty","SWAP","LP Supply"], cs: " 24/7 GLOBAL SUPPORT", s: ["STAKING 31.4%", "LIQUIDITY POOL $", "HK_QUANTUM_SHIELD"] },
-        vn: { n: "VN (Tiếng Việt)", l: "HK NGÂN HÀNG THẾ GIỚI", a: "SỔ CÁI TÀI SẢN CHÍNH", g: "ĐỊNH GIÁ: $ 125,663,600", m: ["GỬI","THANH TOÁN","GỬI TIẾT KIỆM","THƯỞNG","THU NHẬP","SWAP"], b: ["Số lượng Pi","SWAP","Cung cấp LP"], cs: " 24/7 HỖ TRỢ TOÀN CẦU", s: ["LÃI SUẤT 31.4%", "BỂ THANH KHOẢN $", "HK_GIÁP_LƯỢNG_TỬ"] }
-        // 나머지 국가들도 이 패턴으로 확장 가능
+    /* 마스터 언어 딕셔너리 */
+    const DATA = {
+        ko: { n:"KR (한국어)", bank:"HK WORLD BANK", asset:"메인 자산 통합 원장", gcv:"가치 평가: $ 125,663,600", menu:["송금","결제","예치","보상","소득","스왑"], btns:["Pi 수량","SWAP","LP 공급"], cs:"24/7 글로벌 고객지원센터", st:["STAKING APR 31.4%","유동성 풀 $","HK_퀀텀_쉴드_보안_활성"] },
+        ua: { n:"UA (Українська)", bank:"HK СВІТОВИЙ БАНК", asset:"ГОЛОВНИЙ РЕЄСТР АКТИВІВ", gcv:"ОЦІНКА: $ 125,663,600", menu:["ПЕРЕКАЗ","ОПЛАТА","ДЕПОЗИТ","НАГОРОДА","ДОХІД","ОБМІН"], btns:["К-сть Pi","SWAP","LP ПОСТАВКА"], cs:"ЦІЛОДОБОВА ПІДТРИМКА", st:["СТЕЙКІНГ 31.4%","ПУЛ ЛІКВІДНОСТІ $","HK_КВАНТОВИЙ_ЩИТ"] },
+        ar: { n:"AR (العربية)", bank:"HK مصرف العالم", asset:"دفتر الأصول الرئيسي", gcv:"التقييم: $ 125,663,600", menu:["إرسال","دفع","تخزين","مكافأة","دخل","تبادل"], btns:["كمية Pi","SWAP","تزويد LP"], cs:"دعم عالمي 24/7", st:["تخزين 31.4%","مجمع السيولة $","HK_درع الكم"] },
+        in: { n:"IN (हिन्दी)", bank:"HK वर्ल्ड बैंक", asset:"मुख्य संपत्ति लेजर", gcv:"मूल्यांकन: $ 125,663,600", menu:["भेजें","भुगतान","जमा","इनाम","आय","स्वैप"], btns:["Pi मात्रा","SWAP","LP आपूर्ति"], cs:"24/7 वैश्विक सहायता", st:["स्टेकिंग 31.4%","लिक्विडिटी पूल $","HK_क्वांटम_शील्ड"] },
+        vn: { n:"VN (Tiếng Việt)", bank:"HK NGÂN HÀNG THẾ GIỚI", asset:"SỔ CÁI TÀI SẢN CHÍNH", gcv:"ĐỊNH GIÁ: $ 125,663,600", menu:["GỬI","THANH TOÁN","GỬI TIẾT KIỆM","THƯỞNG","THU NHẬP","SWAP"], btns:["Số lượng Pi","SWAP","Cung cấp LP"], cs:"HỖ TRỢ TOÀN CẦU 24/7", st:["LÃI SUẤT 31.4%","BỂ THANH KHOẢN $","HK_GIÁP_LƯỢNG_TỬ"] },
+        us: { n:"US (English)", bank:"HK WORLD BANK", asset:"MAIN ASSET LEDGER", gcv:"VALUATION: $ 125,663,600", menu:["SEND","PAY","STAKE","REWARD","INCOME","SWAP"], btns:["Pi Qty","SWAP","LP Supply"], cs:"24/7 GLOBAL SUPPORT", st:["STAKING 31.4%","LIQUIDITY POOL $","HK_QUANTUM_SHIELD"] }
     };
-    ["es","pt","de","fr","it","ru","id","th","jp","cn","tr","ph","my","pl"].forEach(c => { DB[c] = DB.us; DB[c].n = c.toUpperCase() + " (Global)"; });
+    ["es","pt","de","fr","it","ru","id","th","jp","cn","tr","ph","my","pl"].forEach(c => { DATA[c] = DATA.us; DATA[c].n = c.toUpperCase() + " (Global)"; });
 
     const ICONS = [{i:"fa-paper-plane",c:"#4da6ff"},{i:"fa-shopping-bag",c:"#ff66cc"},{i:"fa-utensils",c:"#fff"},{i:"fa-gift",c:"var(--gold)"},{i:"fa-balance-scale",c:"#b3ff66"},{i:"fa-sync",c:"#9966ff"}];
 
-    function tgL() { const m = document.getElementById('lModal'); m.style.display = m.style.display==='flex'?'none':'flex'; }
+    function toggleL() { const m = document.getElementById('langPop'); m.style.display = m.style.display==='flex'?'none':'flex'; }
 
-    /* [실시간 언어 변환 엔진] */
-    window.setL = function(k) {
-        const d = DB[k];
-        document.getElementById('curLang').innerText = d.n + " ⌵";
-        document.getElementById('t-logo').innerText = d.l;
-        document.getElementById('t-asset-lab').innerText = d.a;
-        document.getElementById('t-gcv').innerHTML = d.g + "<br>(GCV CONSENSUS)";
-        document.getElementById('b-1').innerText = d.b[0];
-        document.getElementById('b-2').innerText = d.b[1];
-        document.getElementById('b-3').innerText = d.b[2];
-        document.getElementById('t-cs').innerText = "🎧 " + d.cs;
-        document.getElementById('t-st1').innerText = d.s[0];
-        document.getElementById('t-st2').innerText = d.s[1];
-        document.getElementById('t-st3').innerText = d.s[2];
+    /* [진짜 변환 로직] 클릭하면 화면이 즉시 바뀜 */
+    window.changeLang = function(key) {
+        const d = DATA[key];
+        document.getElementById('langDisp').innerText = d.n + " ⌵";
+        document.getElementById('l-bank').innerText = d.bank;
+        document.getElementById('l-asset').innerText = d.asset;
+        document.getElementById('l-gcv').innerHTML = d.gcv + "<br>(GCV CONSENSUS)";
+        document.getElementById('l-b1').innerText = d.btns[0];
+        document.getElementById('l-b2').innerText = d.btns[1];
+        document.getElementById('l-b3').innerText = d.btns[2];
+        document.getElementById('l-cs').innerHTML = `<i class="fa-solid fa-headset"></i> ` + d.cs;
+        document.getElementById('l-st1').innerText = d.st[0];
+        document.getElementById('l-st2').innerText = d.st[1];
+        document.getElementById('l-st3').innerText = d.st[2];
 
-        const grid = document.getElementById('mainGrid'); grid.innerHTML = '';
-        d.m.forEach((v, i) => {
-            grid.innerHTML += `<div class="icon-item"><div class="icon-box"><i class="fa-solid ${ICONS[i].i}" style="color:${ICONS[i].c}"></i></div><div style="font-weight:800; font-size:15px;">${v}</div></div>`;
+        const grid = document.getElementById('menuGrid'); grid.innerHTML = '';
+        d.menu.forEach((v, i) => {
+            grid.innerHTML += `<div class="grid-item"><div class="icon-circle"><i class="fa-solid ${ICONS[i].i}" style="color:${ICONS[i].c}"></i></div><span>${v}</span></div>`;
         });
-        tgL();
+        toggleL();
     };
 
-    const list = document.getElementById('lList');
-    Object.keys(DB).forEach(k => {
-        list.innerHTML += `<div class="l-item" onclick="setL('${k}')"><span>${DB[k].n}</span></div>`;
+    const list = document.getElementById('langList');
+    Object.keys(DATA).forEach(k => {
+        list.innerHTML += `<div class="pop-row" onclick="changeLang('${k}')"><span>${DATA[k].n}</span></div>`;
     });
 
-    window.onload = () => setL('ko');
+    window.onload = () => changeLang('ko');
 </script>
 </body>
 </html>
