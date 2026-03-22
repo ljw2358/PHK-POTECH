@@ -3,56 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HK WorldBank Universal</title>
+    <title>HK WorldBank Central</title>
     <script src="https://sdk.minepi.com/pi-sdk.js"></script>
     <script>Pi.init({ version: "2.0", sandbox: false });</script>
     <style>
-        :root { --y: #f39c12; --g: #00ff00; --bg: #000; --c: #111; --r: #ff4747; --b: #00ccff; }
-        body { background: #1a1a1a; color: #fff; font-family: -apple-system, sans-serif; margin: 0; padding: 0; display: flex; justify-content: center; }
+        :root { --y: #f39c12; --g: #00ff00; --bg: #000; --c: #0d0d0d; --r: #ff4747; --b: #00ccff; }
         
-        /* PC에서도 모바일처럼 중앙 정렬 유지 */
-        .app-container { width: 100%; max-width: 450px; background: var(--bg); min-height: 100vh; padding: 15px; box-sizing: border-box; position: relative; box-shadow: 0 0 50px rgba(0,0,0,0.8); }
-
-        /* 오른쪽 퀵 언어 선택창 (형님 요청: 짧고 우측 배치) */
-        #langList { display: none; position: absolute; top: 60px; right: 15px; width: 140px; background: rgba(20, 20, 20, 0.98); z-index: 9999; border: 1.5px solid var(--y); border-radius: 12px; padding: 5px; }
-        .lang-item { padding: 10px; border-bottom: 1px solid #222; font-size: 13px; color: #fff; cursor: pointer; text-align: center; }
-        .lang-item:hover { background: var(--y); color: #000; }
+        /* PC 화면에서 전체를 가운데로 모으는 핵심 설정 */
+        body { background: #1a1a1a; color: #fff; font-family: -apple-system, sans-serif; margin: 0; padding: 0; display: flex; justify-content: center; min-height: 100vh; }
+        .main-wrapper { width: 100%; max-width: 480px; background: var(--bg); padding: 20px; box-sizing: border-box; position: relative; min-height: 100vh; box-shadow: 0 0 50px rgba(0,0,0,1); }
+        
+        /* 오른쪽 퀵 언어 선택창 */
+        #langList { display: none; position: absolute; top: 70px; right: 20px; width: 150px; background: rgba(13, 13, 13, 0.98); z-index: 9999; border: 1.5px solid var(--y); border-radius: 12px; padding: 5px; box-shadow: -5px 5px 15px rgba(0,0,0,0.5); }
+        .lang-item { padding: 12px; border-bottom: 1px solid #222; font-size: 14px; color: #ccc; cursor: pointer; text-align: center; }
+        .lang-item:hover { color: var(--y); background: #1a1a1a; }
         
         .h { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
-        .logo { font-size: 22px; font-weight: 900; color: var(--y); letter-spacing: -1px; }
-        .l-btn { color: var(--y); border: 1.5px solid var(--y); background: none; padding: 5px 10px; border-radius: 8px; font-size: 11px; font-weight: bold; cursor: pointer; }
+        .logo { font-size: 24px; font-weight: 900; color: var(--y); }
+        .l-btn { color: var(--y); border: 1.5px solid var(--y); background: none; padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: bold; cursor: pointer; }
+        .node { font-size: 12px; color: var(--g); text-align: left; margin: 15px 0 20px 5px; font-weight: bold; }
         
-        .node { font-size: 11px; color: var(--g); text-align: left; margin: 10px 0 20px 5px; font-weight: bold; }
+        .card { background: var(--c); border-radius: 25px; padding: 30px 15px; position: relative; margin-bottom: 25px; border: 1px solid #1a1a1a; text-align: center; }
+        .apr { color: var(--g); font-size: 14px; font-weight: bold; position: absolute; top: 20px; right: 20px; }
+        .t { color: var(--y); font-size: 16px; font-weight: bold; margin-bottom: 25px; }
+        .in-box { border-bottom: 3.5px solid var(--y); width: 85%; margin: 0 auto 30px auto; padding-bottom: 8px; display: flex; justify-content: center; align-items: baseline; }
+        .pi-in { background: transparent; border: none; color: #fff; font-size: 44px; font-weight: 900; width: 70%; text-align: right; outline: none; }
+        .gcv { font-size: 18px; color: var(--g); border: 2.5px solid var(--g); border-radius: 40px; padding: 18px; display: block; width: 95%; margin: 0 auto; font-weight: bold; background: transparent; cursor: pointer; }
         
-        .card { background: var(--c); border-radius: 25px; padding: 25px 15px; position: relative; margin-bottom: 25px; border: 1px solid #222; }
-        .apr { color: var(--g); font-size: 13px; font-weight: bold; position: absolute; top: 15px; right: 20px; }
-        .t { color: var(--y); font-size: 15px; font-weight: bold; text-align: center; margin-bottom: 20px; }
-        .in-box { border-bottom: 3px solid var(--y); width: 85%; margin: 0 auto 25px auto; padding-bottom: 5px; text-align: center; }
-        .pi-in { background: transparent; border: none; color: #fff; font-size: 42px; font-weight: 900; width: 70%; text-align: right; outline: none; }
-        .gcv { font-size: 17px; color: var(--g); border: 2px solid var(--g); border-radius: 40px; padding: 15px; display: block; width: 95%; margin: 0 auto; font-weight: bold; background: transparent; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 35px; }
+        .item { background: var(--c); border-radius: 20px; padding: 22px 5px; border: 1px solid #1a1a1a; font-size: 13px; font-weight: bold; text-align: center; }
+        .st-info { border-left: 5px solid var(--y); text-align: left; padding-left: 15px; margin-bottom: 30px; }
+        .lp-v { font-size: 34px; font-weight: 900; margin: 12px 0; }
         
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 30px; }
-        .item { background: var(--c); border-radius: 15px; padding: 18px 5px; border: 1px solid #222; font-size: 12px; font-weight: bold; color: #eee; }
-        .item i { font-size: 20px; display: block; margin-bottom: 8px; }
-
-        .st-info { border-left: 5px solid var(--y); text-align: left; padding-left: 15px; margin-bottom: 25px; }
-        .lp-v { font-size: 32px; font-weight: 900; margin: 10px 0; letter-spacing: 1px; }
+        .btn-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 25px; }
+        .b-btn { height: 50px; border-radius: 12px; color: #fff; font-size: 13px; font-weight: bold; border: none; }
+        .center-btn { width: 100%; height: 60px; background: var(--r); color: #fff; border: none; border-radius: 18px; font-size: 16px; font-weight: bold; margin-bottom: 30px; }
         
-        .btn-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
-        .b-btn { height: 45px; border-radius: 10px; color: #fff; font-size: 12px; font-weight: bold; border: none; }
-        .center-btn { width: 100%; height: 55px; background: var(--r); color: #fff; border: none; border-radius: 15px; font-size: 15px; font-weight: bold; margin-bottom: 25px; }
-        
-        .sns-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px; }
-        .sns-c { background: var(--c); border-radius: 20px; padding: 15px 5px; border: 1px solid #222; text-decoration: none; color: #fff; }
-        footer { font-size: 9px; color: #555; padding: 20px 0; border-top: 1px solid #222; line-height: 1.5; }
+        .sns-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+        .sns-c { background: var(--c); border-radius: 25px; padding: 20px 10px; border: 1px solid #1a1a1a; text-decoration: none; color: #fff; display: block; text-align: center; }
+        footer { font-size: 10px; color: #444; padding: 20px 0; border-top: 1px solid #111; line-height: 1.6; text-align: center; }
     </style>
 </head>
 <body>
 
-<div class="app-container">
+<div class="main-wrapper">
     <div id="langList">
         <div id="listItems"></div>
-        <div class="lang-item" onclick="closeLang()" style="color:var(--r); font-weight:bold;">[ 닫기 ]</div>
+        <div class="lang-item" onclick="closeLang()" style="color:var(--r); font-weight:900;">[ 닫기 ]</div>
     </div>
 
     <div class="h">
@@ -66,7 +63,7 @@
         <div id="ct" class="t">메인 자산 통합 원장</div>
         <div class="in-box">
             <input type="number" id="pi" class="pi-in" value="400.0000" step="0.0001">
-            <span style="color:var(--y); font-size:28px; font-weight:900;">Pi</span>
+            <span style="color:var(--y); font-size:32px; font-weight:900; margin-left:10px;">Pi</span>
         </div>
         <button id="gb" class="gcv">가치 평가: $ 125,663,600 (GCV)</button>
     </div>
@@ -81,15 +78,15 @@
     </div>
 
     <div class="st-info">
-        <span style="color:var(--y); font-weight:bold;">STAKING APR 31.4%</span><br>
-        <span id="lt" style="color:var(--y); font-size:12px;">유동성 풀 $</span>
+        <span id="st" style="color:var(--y); font-weight:bold;">STAKING APR 31.4%</span><br>
+        <span id="lt" style="color:#f39c12; font-size:13px; font-weight:bold;">유동성 풀 $</span>
         <div class="lp-v">88,401,773,756</div>
-        <div id="sh" style="color:var(--b); font-size:11px; font-weight:bold;">HK_퀀텀_쉴드_활성</div>
+        <div id="sh" style="color:var(--b); font-size:12px; font-weight:bold;">HK_퀀텀_쉴드_활성</div>
     </div>
 
     <div class="btn-row">
-        <button id="b1" class="b-btn" style="background:#333; border:1px solid var(--y);">Pi 수량</button>
-        <button id="b2" class="b-btn" style="background:var(--y);">SWAP</button>
+        <button id="b1" class="b-btn" style="background:#222; border:1px solid var(--y);">Pi 수량</button>
+        <button id="b2" class="b-btn" style="background:#f39c12;">SWAP</button>
         <button id="b3" class="b-btn" style="background:#27ae60;">LP 공급</button>
     </div>
 
@@ -97,12 +94,12 @@
 
     <div class="sns-grid">
         <a href="https://youtube.com/@hyekong2025" class="sns-c">
-            <span style="color:#ff0000; font-size:20px;">▶</span><br>
-            <span style="font-size:14px; font-weight:800;">hyekong2025</span>
+            <span style="color:#ff0000; font-size:24px;">▶</span><br>
+            <span style="font-size:15px; font-weight:800;">hyekong2025</span>
         </a>
         <a href="https://tiktok.com/@hyekong2025" class="sns-c">
-            <span style="color:#fff; font-size:20px;">♪</span><br>
-            <span style="font-size:14px; font-weight:800;">hyekong2025</span>
+            <span style="color:#fff; font-size:24px;">♪</span><br>
+            <span style="font-size:15px; font-weight:800;">hyekong2025</span>
         </a>
     </div>
 
@@ -114,11 +111,10 @@
 
 <script>
     const langData = [
-        {n:'KR', t:['메인 자산 통합 원장','가치 평가','송금','결제','예치','보상','소득','스왑','유동성 풀 $','HK_퀀텀_쉴드_활성','Pi 수량','LP 공급','24/7 글로벌 고객지원센터']},
-        {n:'EN', t:['Asset Ledger','Value Eval','Send','Pay','Stake','Reward','Income','Swap','Liquidity Pool','HK_Shield_Active','Pi Amt','Add LP','Support Center']},
-        {n:'HI', t:['लेजर','मूल्यांकन','भेजें','भुगतान','हिस्सेداری','पुरस्कार','आय','स्वैप','पूल','शील्ड सक्रिय','Pi मात्रा','LP आपूर्ति','सहायता केंद्र']},
-        {n:'PT', t:['Contábil','Avaliação','Enviar','Pagar','Apostar','Prêmio','Renda','Troca','Pool','Escudo Ativo','Qtd Pi','Fornecer LP','Suporte']},
-        {n:'CN', t:['资产账本','价值评估','转账','支付','押注','奖励','收入','交换','流动性池','量子屏蔽','Pi 数量','供应 LP','全球客服']}
+        {n:'KR (한국어)', t:['메인 자산 통합 원장','가치 평가','송금','결제','예치','보상','소득','스왑','유동성 풀 $','HK_퀀텀_쉴드_활성','Pi 수량','LP 공급','24/7 글로벌 고객지원센터']},
+        {n:'EN (English)', t:['Asset Ledger','Value Eval','Send','Pay','Stake','Reward','Income','Swap','Liquidity Pool','HK_Shield_Active','Pi Amt','Add LP','Support Center']},
+        {n:'HI (Hindi)', t:['लेजर','मूल्यांकन','भेजें','भुगतान','हिस्सेदारी','पुर사와','आय','स्वैप','तरलता','शील्ड सक्रिय','Pi मात्रा','LP आपूर्ति','सहायता']},
+        {n:'PT (Português)', t:['Contábil','Avaliação','Enviar','Pagar','Apostar','Prêmio','Renda','Troca','Pool','Escudo Ativo','Qtd Pi','Fornecer LP','Suporte']}
     ];
 
     function openLang() { document.getElementById('langList').style.display = 'block'; }
