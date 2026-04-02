@@ -1,134 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HKWB | HK World Bank</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HK WORLD BANK</title>
+    <style>
+        body {
+            margin: 0; padding: 0;
+            background-color: #121212; color: white;
+            font-family: Arial, sans-serif;
+            display: flex; flex-direction: column; align-items: center;
+            width: 100%; overflow-x: hidden;
+        }
+        .header { width: 90%; margin-top: 20px; color: #ffc107; font-weight: bold; font-size: 1.2rem; }
+        .balance-card { width: 90%; background: #1e1e1e; padding: 20px; border-radius: 15px; margin: 15px 0; text-align: center; border: 1px solid #333; }
+        .gcv-value { color: #00e676; font-size: 0.9rem; border: 1px solid #00e676; padding: 5px; border-radius: 20px; display: inline-block; margin-top: 10px; }
+        
+        /* 버튼 그리드 - 2열 정렬 핵심 */
+        .btn-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 12px; width: 90%; margin: 10px auto;
+        }
+        .btn {
+            padding: 15px; border-radius: 10px; text-align: center; font-weight: bold; font-size: 0.9rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;
+            background: #2a2a2a; color: white; border: none; width: 100%; box-sizing: border-box;
+        }
+        
+        /* 포인트 컬러 버튼 */
+        .btn-yellow { background: #ffc107; color: black; }
+        .btn-green { background: #00e676; color: white; }
+        .btn-pink { background: #ff4081; color: white; grid-column: span 2; width: 100%; } /* 고객지원센터 */
+        .btn-red { background: #e91e63; color: white; grid-column: span 1; }
+        .btn-black { background: #000; color: white; border: 1px solid #444; grid-column: span 1; }
 
-<style>
-body {margin:0;font-family:Arial;background:#070720;color:#fff;}
-header {display:flex;justify-content:space-between;padding:20px;background:#14003b;}
-.logo {font-size:22px;font-weight:bold;}
-nav a {color:white;margin-left:15px;text-decoration:none;}
-.hero {text-align:center;padding:80px 20px;}
-.section {padding:50px 20px;}
-.grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;}
-.card {background:#1f0066;padding:20px;border-radius:12px;}
-.btn {padding:10px 20px;background:#7a00ff;color:white;border-radius:8px;margin:5px;cursor:pointer;}
-input {padding:10px;width:200px;margin:5px;}
-footer {background:#14003b;padding:20px;font-size:13px;}
-.lang {font-size:12px;line-height:1.5;margin-top:20px;}
-</style>
+        /* 약관 섹션 */
+        .policy-section { width: 90%; margin-top: 30px; font-size: 0.8rem; color: #888; border-top: 1px solid #333; padding-top: 20px; }
+        .policy-content { margin-bottom: 20px; line-height: 1.5; }
+        .policy-title { color: #bbb; font-weight: bold; margin-bottom: 5px; }
 
-<script>
-function login(){
-  alert("Login system connected.");
-}
-function send(){
-  alert("Transaction request submitted.");
-}
-</script>
-
+        #google_translate_element { margin: 10px 0; }
+    </style>
 </head>
-
 <body>
 
-<header>
-<div class="logo">HKWB</div>
-<nav>
-<a href="#about">About</a>
-<a href="#services">Services</a>
-<a href="#dashboard">Dashboard</a>
-<a href="#company">Company</a>
-<a href="#compliance">Compliance</a>
-<a href="#media">Media</a>
-<a href="#contact">Contact</a>
-</nav>
-</header>
+    <div class="header">HK WORLD BANK</div>
 
-<section class="hero">
-<h1>HK World Bank (HKWB)</h1>
-<p>Global Digital Banking & Web3 Financial Infrastructure</p>
-<button class="btn" onclick="login()">Login</button>
-<button class="btn">Open Account</button>
-</section>
+    <div id="google_translate_element"></div>
 
-<section id="about" class="section">
-<h2>About</h2>
-<p>
-HKWB is a regulated-oriented digital financial platform delivering payment,
-banking, and Web3 infrastructure services globally.
-</p>
+    <div class="balance-card">
+        <div style="color:#aaa; font-size:0.8rem;">Main Asset Ledger</div>
+        <div style="font-size: 2.2rem; font-weight: bold; margin: 10px 0;">00.0247 <span style="font-size:1.2rem;">Pi</span></div>
+        <div class="gcv-value">Value: $ 314,159 (GCV Estimate)</div>
+    </div>
 
-<div class="lang">
-한국어 / 中文 / العربية / हिन्दी / Русский / Français / Українська / 日本語 / Español / Português / Indonesia / Tiếng Việt / ไทย
-</div>
-</section>
+    <div class="btn-grid">
+        <div class="btn">🛒 Pay (결제)</div>
+        <div class="btn">💰 Staking (예치)</div>
+        <div class="btn">🌍 UBI (기본소득)</div>
+        <div class="btn">🔄 Swap (스왑)</div>
+    </div>
 
-<section id="services" class="section">
-<h2>Core Services</h2>
-<div class="grid">
-<div class="card"><h3>Payments</h3><p>Global transfer system</p></div>
-<div class="card"><h3>Digital Banking</h3><p>Account & asset management</p></div>
-<div class="card"><h3>Web3 Finance</h3><p>Blockchain integration</p></div>
-<div class="card"><h3>Liquidity Pool</h3><p>Digital liquidity support</p></div>
-</div>
-</section>
+    <div style="width:90%; color:#ffc107; font-size:0.8rem; margin-top:10px;">STAKING 31.4% | Liquidity Pool $</div>
+    <div style="width:90%; font-size:1.5rem; font-weight:bold; margin-bottom:10px;">1,844,206</div>
 
-<section id="dashboard" class="section">
-<h2>User Dashboard (Demo)</h2>
-<p>Account Balance: 10,000 HKWB</p>
+    <div class="btn-grid">
+        <div class="btn btn-yellow">SWAP</div>
+        <div class="btn btn-green">Add LP (LP 공급)</div>
+        <div class="btn btn-red">▶ YOUTUBE</div>
+        <div class="btn btn-black">♪ TIKTOK</div>
+        <div class="btn btn-pink">🎧 Global Support Center (고객지원)</div>
+    </div>
 
-<input type="text" placeholder="Recipient Address">
-<input type="number" placeholder="Amount">
-<br>
-<button class="btn" onclick="send()">Send</button>
-<button class="btn">Deposit</button>
-<button class="btn">Reward</button>
-</section>
+    <div class="policy-section">
+        <div class="policy-content">
+            <div class="policy-title">Terms of Service (이용약관)</div>
+            1. Acceptance: By using HK WorldBank, you agree to these terms.<br>
+            2. Services: We provide Web3 digital banking and Pi Network ecosystem services.<br>
+            3. Responsibility: Users are responsible for their own wallet security.<br>
+            4. Compliance: All activities must comply with Pi Network policies.
+        </div>
+        <div class="policy-content">
+            <div class="policy-title">Privacy Policy (개인정보 처리방침)</div>
+            1. Data: We collect minimal data necessary for blockchain transactions.<br>
+            2. Security: HK Quantum Shield is active to protect your digital assets.<br>
+            3. Third Parties: We do not sell your personal data to third parties.
+        </div>
+    </div>
 
-<section id="company" class="section">
-<h2>Company Information</h2>
-<p><b>Company Name:</b> HK World Bank (HKWB)</p>
-<p><b>Registration Number:</b> [YOUR NUMBER]</p>
-<p><b>Registered Address:</b> [YOUR ADDRESS]</p>
-<p><b>Director:</b> [YOUR NAME]</p>
-<p><b>Status:</b> Active</p>
-</section>
-
-<section id="compliance" class="section">
-<h2>Compliance & Risk Control</h2>
-<p>
-HKWB complies with AML, KYC, and international financial regulations.
-All transactions are monitored to prevent fraud and illegal activities.
-</p>
-
-<h3>Risk Notice</h3>
-<p>Digital asset services carry risk. Users must comply with laws.</p>
-
-<h3>AML Policy</h3>
-<p>We verify identity and monitor suspicious transactions.</p>
-
-<h3>KYC Policy</h3>
-<p>All users must complete identity verification.</p>
-</section>
-
-<section id="media" class="section">
-<h2>Media</h2>
-<p>YouTube: Hyekong2025</p>
-<p>TikTok: hyekong2025</p>
-</section>
-
-<section id="contact" class="section">
-<h2>Contact</h2>
-<p>Email: info@hkwb.world</p>
-<p>Support: support@hkwb.world</p>
-<p>Compliance: compliance@hkwb.world</p>
-</section>
-
-<footer>
-<p>© 2026 HKWB - HK World Bank</p>
-</footer>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'ko', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
